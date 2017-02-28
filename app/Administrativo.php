@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
+use App\Cargo;
 
 class Administrativo extends Authenticatable
 {
@@ -15,11 +16,16 @@ class Administrativo extends Authenticatable
 
     public function cargo()
     {
-    	return $this->belongsTo('App\Cargo');
+    	return $this->belongsTo(Cargo::class,'id_cargo','id');
     }
 
     public function noticias()
     {
     	return $this->hasMany('App\Noticia');
+    }
+
+    public function scopeSearch($query, $nombre)
+    {
+        return $query->where('nombre', 'LIKE', "%$nombre%");
     }
 }

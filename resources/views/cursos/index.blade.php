@@ -4,7 +4,15 @@
 
 @section('content')
 	        	
-	<a class="btn btn-success" href="{{ route('cursos.create') }}"> Registrar Nuevo Curso</a><hr>
+	<a class="btn btn-success" href="{{ route('cursos.create') }}"> Registrar Nuevo Curso</a>
+	<!-- Buscador -->
+	{!! Form::open(['route' => 'cursos.index', 'method' => 'GET', 'class' => 'navbar-form pull-right']) !!}
+		<div class="input-group">
+			{!! Form::text('nombre', null, ['class' => 'form-control', 'placeholder' => 'Buscar Curso..', 'aria-describedby' => 'search']) !!}
+			<span class="btn input-group-addon" id="search"><span class="fa fa-search" aria-hidden="true"></span></span>
+		</div>
+	{!! Form::close() !!}
+	<!-- fin -->
 	 
 	<table class="table table-bordered">
 		<tr>

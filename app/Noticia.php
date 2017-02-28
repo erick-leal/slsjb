@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Administrativo;
 
 class Noticia extends Model
 {
@@ -12,6 +13,11 @@ class Noticia extends Model
 
     public function administrativo()
     {
-    	return $this->belongsTo('App\Administrativo');
+    	return $this->belongsTo(Administrativo::class, 'id_administrativo', 'id');
+    }
+
+    public function scopeSearch($query, $nombre)
+    {
+    	return $query->where('nombre', 'LIKE', "%$nombre%");
     }
 }

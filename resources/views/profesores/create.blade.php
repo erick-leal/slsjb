@@ -5,14 +5,14 @@
 @section('content')
 	
 	@if(count($errors)>0)
-        <div class='alert alert-danger'>
+        <div class='alert alert-danger'> 
             @foreach ($errors->all('<p>:message</p>') as $message)
             	{!! $message !!}
             @endforeach
         </div>
     @endif
 
-	{!! Form::open(array('route' => 'profesores.store','method'=>'POST')) !!}
+	{!! Form::open(array('route' => 'profesores.store','method'=>'POST', 'files' => true)) !!}
 		<div class="row">
 			<div class="col-xs-6 col-sm-6 col-md-6">
 	            <div class="form-group">
@@ -56,11 +56,6 @@
 	            </div>
 
 	            <div class="form-group">
-	                {!! Form::label('foto','Foto')!!}
-	                {!! Form::text('foto', null, array('placeholder' => 'Foto...','class' => 'form-control')) !!}
-	            </div>
-
-	            <div class="form-group">
 	                {!! Form::label('fecha_nacimiento','Fecha Nacimiento')!!}
 	                {!! Form::date('fecha_nacimiento', null, array('placeholder' => 'Fecha Nacimiento...','class' => 'form-control')) !!}
 	            </div>
@@ -73,6 +68,11 @@
 	            <div class="form-group">
 	                {!! Form::label('direccion','Direccion')!!}
 	                {!! Form::text('direccion', null, array('placeholder' => 'Direccion...','class' => 'form-control')) !!}
+	            </div>
+
+	            <div class="form-group">
+	                {!! Form::label('foto','Foto')!!}
+	                {!! Form::file('foto', null, array('placeholder' => 'Foto...','class' => 'form-control')) !!}
 	            </div>
 
 				<button type="submit" class="btn btn-primary">Registrar</button>    

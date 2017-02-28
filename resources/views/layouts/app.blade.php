@@ -15,6 +15,17 @@
     <title>{{ config('app.name', '') }}</title>
 
     <!-- Styles -->
+    <!-- Bootstrap 3.3.5 -->
+    <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{{asset('css/font-awesome.css')}}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{asset('css/AdminLTE.min.css')}}">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="{{asset('css/_all-skins.min.css')}}">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+    <link rel="shortcut icon" href="img/favicon.ico">
      <!-- Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -51,8 +62,8 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
-                        @if (!Auth::guard('profesor')->check())
-                            <li><a href="{{url ('login')}}">Iniciar Sesión</a></li>
+                        @if (!Auth::guard('profesor')->check() &&  !Auth::guard('apoderado')->check()  &&  !Auth::guard('administrativo')->check())
+                            
                             <!--<li><a href="">Registrarse</a></li>-->
                         @elseif(Auth::guard('profesor')->check())
                             <li class="dropdown">
@@ -62,8 +73,32 @@
                                 </a>
 
                               <ul class="dropdown-menu" role="menu">
-                             <li><a href=""><i class="fa fa-btn fa-sign-out"></i>Editar Usuario</a></li>
+                            
                              <li><a href="{{ url('profesores/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Desconectar</a></li>
+                            </ul>
+                            </li>
+                            @elseif(Auth::guard('administrativo')->check())
+                            <li class="dropdown">
+                                <b>Administrativo</b>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    {{ Auth::guard('administrativo')->user()->nombre }} <span class="caret"></span>
+                                </a>
+
+                              <ul class="dropdown-menu" role="menu">
+                            
+                             <li><a href="{{ url('administrativos/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Desconectar</a></li>
+                            </ul>
+                            </li>
+                            @elseif(Auth::guard('apoderado')->check())
+                            <li class="dropdown">
+                                <b>Profesor</b>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    {{ Auth::guard('apoderado')->user()->nombre }} <span class="caret"></span>
+                                </a>
+
+                              <ul class="dropdown-menu" role="menu">
+                            
+                             <li><a href="{{ url('apoderados/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Desconectar</a></li>
                             </ul>
                             </li>
                         @endif
@@ -78,5 +113,17 @@
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+    <script src="{{asset('js/jQuery-2.1.4.min.js')}}"></script>
+
+    <script src="{{asset('js/jQuery.Rut.js')}}"></script>
+    <!-- Bootstrap 3.3.5 -->
+    <script src="{{asset('js/bootstrap.min.js')}}"></script>
+    <!-- AdminLTE App -->
+    <script src="{{asset('js/app.min.js')}}"></script>
+
+    <script>
+    $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
+    </script>
 </body>
 </html>

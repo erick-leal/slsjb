@@ -4,7 +4,15 @@
 
 @section('content')
 	        	
-	<a class="btn btn-success" href="{{ route('profesores.create') }}"> Registrar Nuevo Profesor</a><hr>
+	<a class="btn btn-success" href="{{ route('profesores.create') }}"> Registrar Nuevo Profesor</a>
+	<!-- Buscador -->
+	{!! Form::open(['route' => 'profesores.index', 'method' => 'GET', 'class' => 'navbar-form pull-right']) !!}
+		<div class="input-group">
+			{!! Form::text('nombre', null, ['class' => 'form-control', 'placeholder' => 'Buscar Profesor..', 'aria-describedby' => 'search']) !!}
+			<span class="btn input-group-addon" id="search"><span class="fa fa-search" aria-hidden="true"></span></span>
+		</div>
+	{!! Form::close() !!}
+	<!-- fin -->
 	 
 	<table class="table table-bordered">
 		<tr>
@@ -13,6 +21,7 @@
 			<th>Apellidos</th>
 			<th>Email</th>
 			<th>Telefono</th>	
+			<th>Opciones</th>
 		</tr>
 			@foreach ($profesores as $pro)
 				<tr>

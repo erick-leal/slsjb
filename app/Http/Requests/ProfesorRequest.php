@@ -28,7 +28,7 @@ class ProfesorRequest extends Request
             case 'POST':
             {
                 return [
-                    "rut" => "required|unique:profesores",
+                    "rut" => "required|unique:apoderados|unique:profesores|unique:administrativos|unique:alumnos",
                     "nombre"=> "required|min:3|max:30",
                     "apellido_paterno"=> "required|min:3|max:30",
                     "apellido_materno"=> "required|min:3|max:30",
@@ -42,7 +42,7 @@ class ProfesorRequest extends Request
                     "nombre"=> "required|min:3|max:30",
                     "apellido_paterno"=> "required|min:3|max:30",
                     "apellido_materno"=> "required|min:3|max:30",
-                     "email" => "required|email|unique:profesores",
+                     "email" => "required|email",
                     
                 ];
             }
@@ -50,7 +50,7 @@ class ProfesorRequest extends Request
         }
     }
 
-    /*public function messages()
+    public function messages()
     {
         return [
             
@@ -73,5 +73,5 @@ class ProfesorRequest extends Request
             'password.confirmed' => 'Recuerde confirmar su contraseña',
             'password.min' => 'Su contraseña debe tener minimo 6 caracteres'
         ];
-    }*/
+    }
 }

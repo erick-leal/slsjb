@@ -18,6 +18,8 @@
     <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
     <link rel="shortcut icon" href="img/favicon.ico">
 
+    <link rel="stylesheet" href="{{asset('plugins/trumbowyg/ui/trumbowyg.css')}}">
+
   </head>
   <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
@@ -56,18 +58,113 @@
                   <li class="user-header">
                     
                     <p>
-                     foto
+                    @if((Auth::guard('profesor')->user()->foto)!= "")
+                    <img src="{{ asset('imagenes/profesores/'. Auth::guard('profesor')->user()->foto) }}" height="100px" width="100px">
+                    @else
+                     <img src="{{ asset('imagenes/profesores/default.jpg') }}" height="100px" width="100px">
+                     @endif
                     </p>
                   </li>
                   
                   <!-- Menu Footer-->
-                  <li class="user-footer">
-                    
-                    <div class="pull-right">
-                      <a href="{{ url('profesores/logout') }}"><i class="fa fa-btn fa-sign-out"></i> Cerrar Sesion</a>
+                  <li class="user-footer">    
+                    <div class="pull">
+                      <a href="{{url('profesores/modificar')}}"><i class="fa fa-btn fa-user"></i> Editar Usuario</a>  
                     </div>
-                    <div class="pull-left">
-                      <a href=""><i class="fa fa-btn fa-user"></i> Perfil</a>
+                    <div class="pull">
+                      <a href="{{ url('profesores/logout') }}"><i class="fa fa-btn fa-sign-out"></i> Cerrar Sesión</a>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+              @elseif(Auth::guard('administrativo')->check())
+              <li class="dropdown user user-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                  <small class="bg-yellow"><b> Administrativo </b></small>&nbsp;&nbsp;
+                  {{ Auth::guard('administrativo')->user()->nombre }}
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <!-- User image -->
+                  <li class="user-header">
+                    <p>
+                    @if((Auth::guard('administrativo')->user()->foto)!= "")
+                     <img src="{{ asset('imagenes/administrativos/'. Auth::guard('administrativo')->user()->foto) }}" height="100px" width="100px">
+                     @else
+                     <img src="{{ asset('imagenes/administrativos/default.jpg') }}" height="100px" width="100px">
+                     @endif
+                    </p>
+                  </li>
+                  
+                  <!-- Menu Footer-->
+                  <li class="user-footer">    
+                    <div class="pull">
+                      <a href="{{url('administrativos/modificar')}}"><i class="fa fa-btn fa-user"></i> Editar Usuario</a>  
+                    </div>
+                    <div class="pull">
+                      <a href="{{ url('administrativos/logout') }}"><i class="fa fa-btn fa-sign-out"></i> Cerrar Sesión</a>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+                @elseif(Auth::guard('apoderado')->check())
+              <li class="dropdown user user-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                  <small class="bg-green"><b> Apoderado </b></small>&nbsp;&nbsp;
+                  {{ Auth::guard('apoderado')->user()->nombre }}
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <!-- User image -->
+                  <li class="user-header">
+                    
+                    <p>
+                    @if((Auth::guard('apoderado')->user()->foto)!= "")
+                     <img src="{{ asset('imagenes/apoderados/'. Auth::guard('apoderado')->user()->foto) }}" height="100px" width="100px">
+                      @else
+                     <img src="{{ asset('imagenes/apoderados/default.jpg') }}" height="100px" width="100px">
+                     @endif
+                    </p>
+                  </li>
+                  
+                  <!-- Menu Footer-->
+                  <li class="user-footer">    
+                    <div class="pull">
+                      <a href="{{url('apoderados/modificar')}}"><i class="fa fa-btn fa-user"></i> Editar Usuario</a>  
+                    </div>
+                    <div class="pull">
+                      <a href="{{ url('apoderados/logout') }}"><i class="fa fa-btn fa-sign-out"></i> Cerrar Sesión</a>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+              @elseif(Auth::guard('alumno')->check())
+              <li class="dropdown user user-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                  <small class="bg-blue"><b> Alumno </b></small>&nbsp;&nbsp;
+                  {{ Auth::guard('alumno')->user()->nombre }}
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <!-- User image -->
+                  <li class="user-header">
+                    
+                    <p>
+                     @if((Auth::guard('alumno')->user()->foto)!= "")
+                     <img src="{{ asset('imagenes/alumnos/'. Auth::guard('alumno')->user()->foto) }}" height="100px" width="100px">
+                     @else
+                     <img src="{{ asset('imagenes/alumnos/default.jpg') }}" height="100px" width="100px">
+                     @endif
+                    </p>
+                  </li>
+                  
+                  <!-- Menu Footer-->
+                  <li class="user-footer">    
+                    <div class="pull">
+                      <a href="{{url('alumnos/modificar')}}"><i class="fa fa-btn fa-user"></i> Editar Usuario</a>  
+                    </div>
+                    <div class="pull">
+                      <a href="{{ url('alumnos/logout') }}"><i class="fa fa-btn fa-sign-out"></i> Cerrar Sesión</a>
                     </div>
                   </li>
                 </ul>
@@ -79,6 +176,7 @@
         </nav>
       </header>
       <!-- Left side column. contains the logo and sidebar -->
+     
       <aside class="main-sidebar">
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
@@ -86,38 +184,83 @@
                     
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu">
-            <li class="header"> algo puede ir aqui</li>
+            <li class="header"> -----</li>
             
             
-             <li>
-              <a href="/profesores">
-                <i class="fa fa-male"></i> <span>Profesores</span>
-                <small class="label pull-right bg-red">PDF</small>
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-users"></i>
+                <span>Usuarios</span>
+                 <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+
+               <li>
+              <a href="/alumnos">
+                <i class="fa  fa-user"></i> <span>Alumnos</span>
+                <small class="label pull-right bg-blue">♦♦♦</small>
               </a>
             </li>
+                
+                 <li>
+              <a href="/apoderados">
+                <i class="fa fa-male"></i> <span>Apoderados</span>
+                <small class="label pull-right bg-green">♦♦♦</small>
+              </a>
+            </li>
+
+              <li>
+              <a href="/administrativos">
+                <i class="fa fa-user-secret"></i> <span>Administrativos</span>
+                <small class="label pull-right bg-yellow">♦♦♦</small>
+              </a>
+            </li>
+               <li>
+              <a href="/profesores">
+                <i class="fa fa-user-md"></i> <span>Profesores</span>
+                <small class="label pull-right bg-red">♦♦♦</small>
+              </a>
+            </li>
+              </ul>
+            </li>
+
+           
             <li>
-              <a href="/roles">
-                <i class="fa fa-info-circle"></i> <span>Roles</span>
-                <small class="label pull-right bg-yellow">IT</small>
+              <a href="/cargos">
+                <i class="fa fa-briefcase"></i> <span>Cargos</span>
+                <small class="label pull-right bg-yellow">mod1</small>
               </a>
             </li>
             <li>
               <a href="/cursos">
                 <i class="fa fa-graduation-cap"></i> <span>Cursos</span>
-                <small class="label pull-right bg-yellow">IT</small>
+                <small class="label pull-right bg-yellow">mod2</small>
               </a>
             </li>
+           
             <li>
-              <a href="/itemCRUD2">
-                <i class="fa fa-info-circle"></i> <span>Item</span>
-                <small class="label pull-right bg-yellow">IT</small>
+              <a href="/salas">
+                <i class="fa fa-building"></i> <span>Sala</span>
+                <small class="label pull-right bg-red">mod3</small>
               </a>
             </li>
+
+            
+
+            <li>
+              <a href="/noticias">
+                <i class="fa fa-newspaper-o"></i> <span>Noticias</span>
+                <small class="label pull-right bg-red">mod4</small>
+              </a>
+            </li>
+
+           
                         
           </ul>
         </section>
         <!-- /.sidebar -->
       </aside>
+  
 
 
 
@@ -180,9 +323,11 @@
     <!-- AdminLTE App -->
     <script src="{{asset('js/app.min.js')}}"></script>
 
+    <script src="{{asset('plugins/trumbowyg/trumbowyg.js')}}"></script>
+
     <script>
     $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
     </script>
-    
+   @yield('js') 
   </body>
 </html>

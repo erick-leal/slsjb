@@ -17,4 +17,9 @@ class Apoderado extends Authenticatable
     {
     	return $this->hasMany('App\Alumno');
     }
+
+    public function scopeSearch($query, $nombre)
+    {
+        return $query->where('nombre', 'LIKE', "%$nombre%");
+    }
 }

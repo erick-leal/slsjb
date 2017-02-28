@@ -40,14 +40,26 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'api' => [
+            'driver' => 'token',
+            'provider' => 'users',
+        ],
+        /*Mis guards*/ 
         'profesor' => [
             'driver' => 'session',
             'provider' => 'profesores',
         ],
-
-        'api' => [
-            'driver' => 'token',
-            'provider' => 'users',
+        'apoderado' => [
+            'driver' => 'session',
+            'provider' => 'apoderados',
+        ],
+        'administrativo' => [
+            'driver' => 'session',
+            'provider' => 'administrativos',
+        ],
+        'alumno' => [
+            'driver' => 'session',
+            'provider' => 'alumnos',
         ],
     ],
 
@@ -73,11 +85,26 @@ return [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
+
         'profesores' => [
             'driver' => 'eloquent',
             'model' => App\Profesor::class,
         ],
+        
+        'apoderados' => [
+            'driver' => 'eloquent',
+            'model' => App\Apoderado::class,
+        ],
 
+        'administrativos' => [
+            'driver' => 'eloquent',
+            'model' => App\Administrativo::class,
+        ],
+
+        'alumnos' => [
+            'driver' => 'eloquent',
+            'model' => App\Alumno::class,
+        ],
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',

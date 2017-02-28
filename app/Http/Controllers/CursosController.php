@@ -8,14 +8,15 @@ use App\Http\Requests\CursoRequest;
 
 class CursosController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
+    public function __construct()
+    {
+        $this->middleware('profesor');
+    }
+
     public function index(Request $request)
     {
-        $cursos = Curso::orderBy('id','ASC')->paginate(5);
+        $cursos = Curso::search($request->nombre)->orderBy('id','ASC')->paginate(5);
         return view('cursos.index')->with('cursos',$cursos)->with('i', ($request->input('page', 1) - 1) * 5);
     }
 

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Cargo;
+use App\Http\Requests\CargoRequest; 
 
 class CargosController extends Controller
 {
@@ -11,9 +13,10 @@ class CargosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('cargos.index');
+        $cargos = Cargo::search($request->nombre)->orderBy('id','ASC')->paginate(5);
+        return view('cargos.index')->with('cargos',$cargos)->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -23,7 +26,7 @@ class CargosController extends Controller
      */
     public function create()
     {
-        
+        return view('cargos.create');
     }
 
     /**
@@ -32,9 +35,12 @@ class CargosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CargoRequest $request)
     {
-        //
+        $cargo =  new Cargo($request->all());
+        $cargo->save();
+        flash('Cargo ' .$cargo->nombre.' agregado exitosamente!','success');
+        return redirect()->route('cargos.index');
     }
 
     /**
@@ -56,7 +62,8 @@ class CargosController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cargo = Cargo::find($id);
+        return view('cargos.edit')->with('cargo', $cargo);
     }
 
     /**
@@ -66,9 +73,14 @@ class CargosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CargoRequest $request, $id)
     {
-        //
+        $cargo = Cargo::find($id);
+        $cargo->nombre = $request->nombre;
+        $cargo->descripcion = $request->descripcion;
+        $cargo->save();
+        flash('Cargo ' .$cargo->nombre.' editado exitosamente!','warning');
+        return redirect()->route('cargos.index');
     }
 
     /**
@@ -79,6 +91,9 @@ class CargosController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $cargo=Cargo::findOrFail($id);
+        $cargo->delete();
+        flash('Cargo eliminado exitosamente!','danger');
+        return redirect()->route('cargos.index');
     }
 }

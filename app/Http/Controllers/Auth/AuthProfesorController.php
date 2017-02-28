@@ -17,21 +17,19 @@ class AuthProfesorController extends Controller
     protected $loginView = 'profesores.login';
     protected $registerView = 'profesores.register';
     protected $guard = 'profesor';
-    protected $redirectTo = 'profesores/login';
+    
 
     public function __construct()
     {
         $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
     }
 
-    public function prueba(){
-        return "hola " . auth('profesor')->user()->nombre;
-    }
+ 
 
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'rut' => 'required|unique:profesores',
+            "rut" => "required|unique:apoderados|unique:profesores|unique:administrativos|unique:alumnos",
             'nombre' => 'required|max:30',
             'apellido_paterno' => 'required|max:30',
             'apellido_materno' => 'required|max:30',

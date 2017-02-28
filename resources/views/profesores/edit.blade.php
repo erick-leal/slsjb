@@ -2,7 +2,7 @@
 
 @section('title','Editar Profesor')
 
-@section('content')
+@section('content') 
 	
 	@if(count($errors)>0)
         <div class='alert alert-danger'>
@@ -12,7 +12,7 @@
         </div>
     @endif
 
-	{!! Form::open(array('route' => ['profesores.update',$profesor],'method'=>'PUT')) !!}
+	{!! Form::open(array('route' => ['profesores.update',$profesor],'method'=>'PUT', 'files' => true)) !!}
 		<div class="row">
 			<div class="col-xs-6 col-sm-6 col-md-6">
 	            <div class="form-group">
@@ -51,11 +51,6 @@
 	            </div>
 
 	            <div class="form-group">
-	                {!! Form::label('foto','Foto')!!}
-	                {!! Form::text('foto', $profesor->foto, array('placeholder' => 'Foto...','class' => 'form-control')) !!}
-	            </div>
-
-	            <div class="form-group">
 	                {!! Form::label('fecha_nacimiento','Fecha Nacimiento')!!}
 	                {!! Form::date('fecha_nacimiento', $profesor->fecha_nacimiento, array('placeholder' => 'Fecha Nacimiento...','class' => 'form-control')) !!}
 	            </div>
@@ -69,6 +64,14 @@
 	                {!! Form::label('direccion','Direccion')!!}
 	                {!! Form::text('direccion', $profesor->direccion, array('placeholder' => 'Direccion...','class' => 'form-control')) !!}
 	            </div>
+
+	            <div class="form-group">
+					{!! Form::label('foto','Foto')!!}
+					{!! Form::file('foto', null, array('placeholder' => 'Foto...','class' => 'form-control')) !!}
+					@if(($profesor->foto)!="")
+						<br><img src="{{ asset('imagenes/profesores/'.$profesor->foto) }}" height="200px" width="200px">
+					@endif
+				</div>
 
 				<button type="submit" class="btn btn-primary">Editar</button>    
 				<a class="btn btn-danger" href="{{route('profesores.index')}}">Cancelar</a>   	

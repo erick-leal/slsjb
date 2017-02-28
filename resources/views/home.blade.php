@@ -8,10 +8,20 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
+                   @if(Auth::guard('profesor')->check())
                     Hello profesor
+                    @elseif(Auth::guard('apoderado')->check())
+                    Hello apoderado
+                    @elseif(Auth::guard('administrativo')->check())
+                    Hello administrativo
+                    @elseif(Auth::guard('alumno')->check())
+                    Hello alumno
+                    @endif
+
                 </div>
             </div>
         </div>
     </div>
 </div>
 @endsection
+ 

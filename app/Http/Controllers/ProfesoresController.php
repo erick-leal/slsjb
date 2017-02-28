@@ -1,9 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers; 
 
 use Illuminate\Http\Request;
 use App\Profesor;
+use App\Http\Requests\ProfesorRequest; 
+use Illuminate\Support\Facades\Input;
+
 
 class ProfesoresController extends Controller
 {
@@ -12,9 +15,9 @@ class ProfesoresController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $profesores = Profesor::orderBy('apellido_paterno','ASC')->paginate(5);
+        $profesores = Profesor::search($request->nombre)->orderBy('apellido_paterno','ASC')->paginate(5);
         return view('profesores.index')->with('profesores',$profesores);
     }
 
@@ -34,8 +37,16 @@ class ProfesoresController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProfesorRequest $request)
     {
+        //Manipulacion de Imagenes
+        if ($request->file('foto'))
+        {    
+            $file = $request->file('foto');
+            $name = 'liceosanjuanbautista_'. time(). '.' .$file->getClientOriginalExtension();
+            $path = public_path(). '/imagenes/profesores';
+            $file->move($path, $name);
+        }
         $profesor = new Profesor($request->all());
         $profesor->save();
         flash('Profesor ' .$profesor->nombre.' agregado exitosamente!','success');
@@ -72,20 +83,17 @@ class ProfesoresController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProfesorRequest $request, $id)
     {
         $profesor = Profesor::find($id);
-        $profesor->rut = $request->rut;
-        $profesor->nombre = $request->nombre;
-        $profesor->apellido_paterno = $request->apellido_paterno;
-        $profesor->apellido_materno = $request->apellido_materno;
-        $profesor->email = $request->email;
-        $profesor->sexo = $request->sexo;
-        $profesor->telefono = $request->telefono;
-        $profesor->foto = $request->foto;
-        $profesor->fecha_nacimiento = $request->fecha_nacimiento;
-        $profesor->edad = $request->edad;
-        $profesor->direccion = $request->direccion;
+        $profesor->fill($request->all());
+
+        if(Input::hasFile('foto')){
+            $file=Input::file('foto');
+            $file->move(public_path().'/imagenes/profesores',$file->getClientOriginalName());
+            $profesor->foto=$file->getClientOriginalName();
+        }
+
         $profesor->save();
         flash('Profesor ' .$profesor->nombre.' editado exitosamente!','warning');
         return redirect()->route('profesores.index');

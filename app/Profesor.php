@@ -9,7 +9,7 @@ class Profesor extends Authenticatable
 {
     protected $table = "profesores";
 
-    protected $fillable = ['rut', 'nombre', 'apellido_paterno', 'apellido_materno', 'email', 'password'];
+    protected $fillable = ['rut', 'nombre', 'apellido_paterno', 'apellido_materno', 'email', 'password', 'sexo', 'telefono', 'foto', 'fecha_nacimiento', 'edad', 'direccion'];
  
     protected $hidden = ['password', 'remember_token'];
 
@@ -21,5 +21,10 @@ class Profesor extends Authenticatable
     public function eventos()
     {
     	return $this->hasMany('App\Evento');
+    }
+
+    public function scopeSearch($query, $nombre)
+    {
+        return $query->where('nombre', 'LIKE', "%$nombre%");
     }
 }
