@@ -4,8 +4,10 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
+use App\Notifications\ProfesorResetPasswordNotification;
 
-class Profesor extends Authenticatable
+class Profesor extends User
 {
     protected $table = "profesores";
 
@@ -26,5 +28,15 @@ class Profesor extends Authenticatable
     public function scopeSearch($query, $nombre)
     {
         return $query->where('nombre', 'LIKE', "%$nombre%");
+    }
+    /**
+     * Send the password reset notification.
+     *
+     * @param  string  $token
+     * @return void
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ProfesorResetPasswordNotification($token));
     }
 }

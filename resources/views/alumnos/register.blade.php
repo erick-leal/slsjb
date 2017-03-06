@@ -61,7 +61,11 @@
         </div>
     </div>
 </div>
-<!--<script>
-    $('#rut').Rut();
-</script>-->
+
+@endsection
+
+@section('js')
+<script>
+    $("input#rut").rut();
+</script>
 @endsection

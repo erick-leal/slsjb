@@ -5,14 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Curso;
 use App\Http\Requests\CursoRequest; 
+use App\Alumno;
+use App\Asignatura;
 
 class CursosController extends Controller
 {
     
-    public function __construct()
-    {
-        $this->middleware('profesor');
-    }
+   
 
     public function index(Request $request)
     {
@@ -52,9 +51,14 @@ class CursosController extends Controller
      */
     public function show($id)
     {
-        //
+        $curso = Curso::find($id);
+        $asignaturas = Curso::find($id)->asignaturas;
+        foreach ($asignaturas as $asignatura){      
+        }
+        return view('cursos.show')->with('asignaturas',$asignaturas)->with('curso',$curso);    
     }
 
+     
     /**
      * Show the form for editing the specified resource.
      *

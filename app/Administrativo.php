@@ -5,8 +5,10 @@ namespace App;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use App\Cargo;
+use Illuminate\Notifications\Notifiable;
+use App\Notifications\AdministrativoResetPasswordNotification;
 
-class Administrativo extends Authenticatable
+class Administrativo extends User
 {
     protected $table = "administrativos";
 
@@ -27,5 +29,9 @@ class Administrativo extends Authenticatable
     public function scopeSearch($query, $nombre)
     {
         return $query->where('nombre', 'LIKE', "%$nombre%");
+    }
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new AdministrativoResetPasswordNotification($token));
     }
 }

@@ -71,6 +71,11 @@
 	            </div>
 
 	            <div class="form-group">
+                    {!! Form::label('id_apoderado', 'Apoderado') !!}
+                    {!! Form::select('id_apoderado',$apoderados,null,['class' => 'form-control select-apoderado', 'placeholder' => 'Seleccione una opción']) !!}
+                </div>
+
+	            <div class="form-group">
 	                {!! Form::label('direccion','Direccion')!!}
 	                {!! Form::text('direccion', null, array('placeholder' => 'Direccion...','class' => 'form-control')) !!}
 	            </div>
@@ -85,5 +90,13 @@
 	        </div>
 		</div>
 	{!! Form::close() !!}
+
+@endsection
+
+@section('js')
+<script>
+    $("input#rut").rut();
+	$('.select-apoderado').chosen({no_results_text: "Apoderado no registrado", max_selected_options: 1});
+</script>
 
 @endsection

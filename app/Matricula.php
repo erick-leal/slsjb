@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Alumno;
 
 class Matricula extends Model
 {
@@ -12,6 +13,11 @@ class Matricula extends Model
 
     public function alumno()
     {
-    	return $this->belongsTo('App\Alumno');
+    	return $this->belongsTo(Alumno::class,'id_alumno','id');
+    }
+
+    public function scopeSearch($query, $fecha)
+    {
+        return $query->where('fecha', 'LIKE', "%$fecha%");
     }
 }

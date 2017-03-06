@@ -82,3 +82,9 @@
 	{!! Form::close() !!}
 
 @endsection
+
+@section('js')
+<script>
+    $("input#rut").rut();
+</script>
+@endsection

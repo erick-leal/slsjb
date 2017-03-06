@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Alumno;
+use App\Asignatura;
 
 class Conducta extends Model
 {
@@ -12,11 +14,11 @@ class Conducta extends Model
 
     public function alumno()
     {
-    	return $this->belongsTo('App\Alumno');
+    	return $this->belongsTo(Alumno::class, 'id_alumno', 'id');
     }
 
     public function asignatura()
     {
-    	return $this->belongsTo('App\Asignatura');
+    	return $this->belongsTo(Asignatura::class, 'id_asignatura', 'id');
     }
 }

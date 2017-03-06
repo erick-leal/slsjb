@@ -20,7 +20,7 @@
 	                {!! Form::text('rut', $alumno->rut, array('placeholder' => 'Rut...','class' => 'form-control')) !!}
 	            </div>
 
-	            <div class="form-group">
+	            <div class="form-group"> 
 	                {!! Form::label('nombre','Nombre')!!}
 	                {!! Form::text('nombre', $alumno->nombre, array('placeholder' => 'Nombre...','class' => 'form-control')) !!}
 	            </div>
@@ -40,10 +40,14 @@
 	                {!! Form::text('email', $alumno->email, array('placeholder' => 'Correo...','class' => 'form-control')) !!}
 	            </div>
 
+
 	            
 	            <div class="form-group">
                     {!! Form::label('id_curso', 'Curso') !!}
+                  	
                     {!! Form::select('id_curso',$cursos,null,['class' => 'form-control', 'placeholder' => 'Seleccione una opción']) !!}
+                 
+              
                 </div>
 	      
 	            <div class="form-group">
@@ -67,6 +71,14 @@
 	            </div>
 
 	            <div class="form-group">
+                    {!! Form::label('id_apoderado', 'Apoderado') !!}
+                
+                    {!! Form::select('id_apoderado',$apoderados,null,['class' => 'form-control select-apoderado', 'placeholder' => 'Apoderado']) !!}
+               
+                   
+                </div>
+
+	            <div class="form-group">
 	                {!! Form::label('direccion','Direccion')!!}
 	                {!! Form::text('direccion', $alumno->direccion, array('placeholder' => 'Direccion...','class' => 'form-control')) !!}
 	            </div>
@@ -85,4 +97,11 @@
 		</div>
 	{!! Form::close() !!}
 
+@endsection
+
+@section('js')
+<script>
+    $("input#rut").rut();
+    $('.select-apoderado').chosen({no_results_text: "Apoderado no registrado", max_selected_options: 1});
+</script>
 @endsection

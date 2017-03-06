@@ -24,12 +24,12 @@ class Curso extends Model
  	
  	public function alumnos()
  	{
- 		return $this->hasMany('App\Alumno');
+ 		return $this->hasMany('App\Alumno','id_curso');
  	}
 
  	public function asignaturas()
  	{
- 		return $this->hasMany('App\Asignatura');
+ 		return $this->hasMany('App\Asignatura','id_curso');
  	}
 
     public function scopeSearch($query, $nombre)

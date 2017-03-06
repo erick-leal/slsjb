@@ -4,7 +4,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-6 col-md-offset-0">
+            <div class="col-md-6 col-md-offset-0"> 
                 <div class="panel panel-default">
                     
                     @if($errors->has())
@@ -58,7 +58,24 @@
                             {!! Form::label('edad','Edad')!!}
                             {!! Form::text('edad', $apoderado->edad, array('placeholder' => 'Edad...','class' => 'form-control')) !!}
                         </div>
-        
+
+                        <strong>Alumnos:</strong>
+                            <table class="table table-bordered">
+                           
+                                <tr>
+                                    <th>Nombre: </th>
+                                    <th>Apellidos: </th>
+                                    <th>Correo: </th>
+                                </tr>
+                                @foreach($mis_alumnos as $m)
+                                <tr>
+                                    <td>{{$m->nombre}}</td>
+                                    <td>{{$m->apellido_paterno." ".$m->apellido_materno}}</td>
+                                    <td>{{$m->email}}</td>
+                                </tr>
+                                @endforeach
+                            </table>
+                    
                         <div class="form-group">
                             {!! Form::label('direccion','Direccion')!!}
                             {!! Form::text('direccion', $apoderado->direccion, array('placeholder' => 'Direccion...','class' => '        form-control')) !!}
@@ -83,4 +100,11 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('js')
+<script>
+    $("input#rut").rut();
+    $('.select-alumno').chosen({no_results_text: "Alumno no registrado", max_selected_options: 3});
+</script>
 @endsection

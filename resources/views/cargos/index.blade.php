@@ -8,8 +8,10 @@
 	<!-- Buscador -->
 	{!! Form::open(['route' => 'cargos.index', 'method' => 'GET', 'class' => 'navbar-form pull-right']) !!}
 		<div class="input-group">
-			{!! Form::text('nombre', null, ['class' => 'form-control', 'placeholder' => 'Buscar Cargo..', 'aria-describedby' => 'search']) !!}
-			<span class="btn input-group-addon" id="search"><span class="fa fa-search" aria-hidden="true"></span></span>
+			{!! Form::text('nombre', null, ['class' => 'form-control', 'placeholder' => 'Buscar...', 'aria-describedby' => 'search']) !!}
+		<span class="input-group-btn">
+			<button type="submit" class="btn btn-primary">Buscar</button>
+		</span>
 		</div>
 	{!! Form::close() !!}
 	<!-- fin -->

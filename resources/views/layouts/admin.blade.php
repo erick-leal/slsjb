@@ -20,6 +20,8 @@
 
     <link rel="stylesheet" href="{{asset('plugins/trumbowyg/ui/trumbowyg.css')}}">
 
+    <link rel="stylesheet" href="{{asset('plugins/chosen/chosen.css')}}">
+
   </head>
   <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
@@ -103,6 +105,35 @@
                     </div>
                     <div class="pull">
                       <a href="{{ url('administrativos/logout') }}"><i class="fa fa-btn fa-sign-out"></i> Cerrar Sesión</a>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+              @elseif(Auth::guard('administrador')->check())
+              <li class="dropdown user user-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                  <small style="background-color: rgb(0,31,63); border-color: rgb(0, 31, 63);"><b> Administrador </b></small>&nbsp;&nbsp;
+                  {{ Auth::guard('administrador')->user()->nombre }}
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <!-- User image -->
+                  <li class="user-header">
+                    <p>
+                    
+                     
+                    <img src="{{ asset('imagenes/administrador/administrador.png') }}" height="100px" width="100px">
+                   
+                    </p>
+                  </li>
+                  
+                  <!-- Menu Footer-->
+                  <li class="user-footer">    
+                    <div class="pull">
+                      <a href="{{url('administradores/modificar')}}"><i class="fa fa-btn fa-user"></i> Editar Usuario</a>  
+                    </div>
+                    <div class="pull">
+                      <a href="{{ url('administradores/logout') }}"><i class="fa fa-btn fa-sign-out"></i> Cerrar Sesión</a>
                     </div>
                   </li>
                 </ul>
@@ -243,9 +274,7 @@
                 <i class="fa fa-building"></i> <span>Sala</span>
                 <small class="label pull-right bg-red">mod3</small>
               </a>
-            </li>
-
-            
+            </li>      
 
             <li>
               <a href="/noticias">
@@ -254,6 +283,26 @@
               </a>
             </li>
 
+            <li>
+              <a href="/matriculas">
+                <i class="fa fa-edit "></i> <span>Matriculas</span>
+                <small class="label pull-right bg-red">mod4</small>
+              </a>
+            </li>
+
+            <li>
+              <a href="/asignaturas">
+                <i class="fa fa-book"></i> <span>Asignaturas</span>
+                <small class="label pull-right bg-red">mod5</small>
+              </a>
+            </li>
+
+            <li>
+              <a href="/conductas">
+                <i class="fa fa-clone"></i> <span>Conductas</span>
+                <small class="label pull-right bg-red">mod6</small>
+              </a>
+            </li>
            
                         
           </ul>
@@ -325,9 +374,15 @@
 
     <script src="{{asset('plugins/trumbowyg/trumbowyg.js')}}"></script>
 
+    <script src="{{asset('plugins/chosen/chosen.jquery.js')}}"></script>
+
+    <script src="{{asset('plugins/rut/jquery.rut.js')}}"></script> 
+
     <script>
     $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
     </script>
+
    @yield('js') 
+  
   </body>
 </html>

@@ -15,7 +15,7 @@ class CreateMatriculasTable extends Migration
     {
         Schema::create('matriculas', function (Blueprint $table) {
             $table->increments('id');
-            $table->enum('estado',['Matriculado','Pendiente','No Matriculado'])->default('No Matriculado');
+            $table->enum('estado',['Matriculado','Pendiente','No Matriculado'])->default('No Matriculado'); 
             $table->date('fecha');
             $table->string('monto');
             $table->integer('id_alumno')->unsigned();

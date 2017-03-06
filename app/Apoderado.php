@@ -4,8 +4,10 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
+use App\Notifications\ApoderadoResetPasswordNotification;
 
-class Apoderado extends Authenticatable
+class Apoderado extends User
 {
     protected $table = "apoderados";
 
@@ -15,11 +17,16 @@ class Apoderado extends Authenticatable
 
     public function alumnos()
     {
-    	return $this->hasMany('App\Alumno');
+    	return $this->hasMany('App\Alumno','id_apoderado');
     }
 
     public function scopeSearch($query, $nombre)
     {
         return $query->where('nombre', 'LIKE', "%$nombre%");
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ApoderadoResetPasswordNotification($token));
     }
 }

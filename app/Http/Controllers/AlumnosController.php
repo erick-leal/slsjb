@@ -1,12 +1,12 @@
 <?php 
 
-namespace App\Http\Controllers;
- 
+namespace App\Http\Controllers; 
+
 use Illuminate\Http\Request;
 use App\Alumno;
 use App\Curso;
 use App\Apoderado;
-use App\Http\Requests\AlumnoRequest; 
+use App\Http\Requests\AlumnoRequest;    
 use Illuminate\Support\Facades\Input;
 
 class AlumnosController extends Controller
@@ -18,7 +18,7 @@ class AlumnosController extends Controller
      */
     public function index(Request $request)
     {
-        $alumnos = Alumno::search($request->nombre)->orderBy('apellido_paterno','ASC')->paginate(5);
+        $alumnos = Alumno::search($request->nombre)->orderBy('created_at','DSC')->paginate(5);
         return view('alumnos.index')->with('alumnos',$alumnos);
     }
 
@@ -30,7 +30,7 @@ class AlumnosController extends Controller
     public function create() 
     {
     	$cursos = Curso::orderBy('nombre','ASC')->pluck('nombre','id');
-    	$apoderados = Apoderado::orderBy('apellido_paterno','ASC')->pluck('nombre','id');
+    	$apoderados = Apoderado::orderBy('nombre','ASC')->pluck('nombre','id');
         return view('alumnos.create')->with('cursos',$cursos)->with('apoderados',$apoderados);
     }
 
@@ -64,7 +64,8 @@ class AlumnosController extends Controller
      */
     public function show($id)
     {
-        // 
+        $alumno = Alumno::find($id);
+        return view('alumnos.show')->with('alumno',$alumno);
     }
 
     /**
@@ -76,10 +77,12 @@ class AlumnosController extends Controller
     public function edit($id) 
     {
     	$alumno = Alumno::find($id);
-    	$alumno->curso;
-    	$cursos	= Curso::orderBy('id','ASC')->pluck('nombre','id');  
-    	$alumno->apoderado;
-    	$apoderados = Apoderado::orderBy('apellido_paterno','ASC')->pluck('nombre','id');    
+    	
+    	$cursos	= Curso::orderBy('id','ASC')->pluck('nombre','id'); 
+        $alumno->curso; 
+    	
+    	$apoderados = Apoderado::orderBy('id','ASC')->pluck('nombre','id'); 
+        $alumno->apoderado;   
         return view('alumnos.edit')->with('alumno', $alumno)->with('cursos',$cursos)->with('apoderados',$apoderados);
     }
 

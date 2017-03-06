@@ -8,8 +8,10 @@
 	<!-- Buscador -->
 	{!! Form::open(['route' => 'alumnos.index', 'method' => 'GET', 'class' => 'navbar-form pull-right']) !!}
 		<div class="input-group">
-			{!! Form::text('nombre', null, ['class' => 'form-control', 'placeholder' => 'Buscar Alumno..', 'aria-describedby' => 'search']) !!}
-			<span class="btn input-group-addon" id="search"><span class="fa fa-search" aria-hidden="true"></span></span>
+			{!! Form::text('nombre', null, ['class' => 'form-control', 'placeholder' => 'Buscar...', 'aria-describedby' => 'search']) !!}
+			<span class="input-group-btn">
+			<button type="submit" class="btn btn-primary">Buscar</button>
+		</span>
 		</div>
 	{!! Form::close() !!}
 	<!-- fin -->
@@ -30,7 +32,7 @@
 					<td>{{ $alu->apellido_paterno.' '.$alu->apellido_materno}}</td>
 					<td>{{ $alu->email}}</td>
 					<td>{{ $alu->telefono}}</td>
-					<td><a href="" class="btn btn-info" ><span class="fa fa-eye" aria-hidden="true"></span></a>
+					<td><a href="{{route('alumnos.show', $alu->id)}}" class="btn btn-info" ><span class="fa fa-eye" aria-hidden="true"></span></a>
 						<a href="{{route('alumnos.edit', $alu->id)}}" class="btn btn-warning"><span class="fa fa-edit" aria-hidden="true"></span></a>
 						
 						<a href="" data-target="#modal-delete-{{ $alu->id }}"" data-toggle="modal" class="btn btn-danger"> <span class="fa fa-trash" aria-hidden="true"></span></a>

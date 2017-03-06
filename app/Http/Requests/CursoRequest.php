@@ -34,7 +34,7 @@ class CursoRequest extends FormRequest
             'nombre.required' =>'El nombre del curso es obligatorio',
             'nombre.unique' =>'El curso ingresado ya existe',
             'nombre.min' =>'El nombre debe contener al menos 5 caracteres',
-            'nombre.max' => 'El debe contener un maximo de 20 caracteres',
+            'nombre.max' => 'El nombre debe contener un maximo de 20 caracteres',
             'tipo.required' => 'Seleccione modalidad del curso',
         ];
     }

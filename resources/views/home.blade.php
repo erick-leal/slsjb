@@ -1,4 +1,5 @@
 @extends('layouts.admin')
+@section('title','Inicio')
 
 @section('content')
 <div class="container">
@@ -16,6 +17,8 @@
                     Hello administrativo
                     @elseif(Auth::guard('alumno')->check())
                     Hello alumno
+                    @elseif(Auth::guard('administrador')->check())
+                    Hello Administrador
                     @endif
 
                 </div>

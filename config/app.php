@@ -181,7 +181,8 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Cviebrock\EloquentSluggable\ServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
-
+        Freshwork\ChileanBundle\Laravel\ChileanBundleServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
     ],
 
     /*
@@ -235,6 +236,8 @@ return [
 
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+        'Rut'   => Freshwork\ChileanBundle\Laravel\Facades\Rut::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
     ],
 
 ];

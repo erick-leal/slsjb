@@ -8,8 +8,10 @@
 	<!-- Buscador -->
 	{!! Form::open(['route' => 'cursos.index', 'method' => 'GET', 'class' => 'navbar-form pull-right']) !!}
 		<div class="input-group">
-			{!! Form::text('nombre', null, ['class' => 'form-control', 'placeholder' => 'Buscar Curso..', 'aria-describedby' => 'search']) !!}
-			<span class="btn input-group-addon" id="search"><span class="fa fa-search" aria-hidden="true"></span></span>
+			{!! Form::text('nombre', null, ['class' => 'form-control', 'placeholder' => 'Buscar...', 'aria-describedby' => 'search']) !!}
+			<span class="input-group-btn">
+			<button type="submit" class="btn btn-primary">Buscar</button>
+		</span>
 		</div>
 	{!! Form::close() !!}
 	<!-- fin -->
@@ -17,7 +19,7 @@
 	<table class="table table-bordered">
 		<tr>
 			<th>N°</th>
-			<th>Curso</th>
+			<th>Curso</th> 
 			<th>Modalidad</th>
 			<th>Opciones</th>
 				
@@ -27,9 +29,10 @@
 					<td>{{ ++$i }}</td>
 					<td>{{ $curso->nombre }}</td>
 					<td>{{ $curso->tipo }}</td>
-					<td><a href="" class="btn btn-info" ><span class="fa fa-eye" aria-hidden="true"></span></a>
+					<td><a href="{{route('cursos.show', $curso->id)}}" class="btn btn-info" ><span class="fa fa-eye" aria-hidden="true"></span></a>
+					<a href="{{URL('showalumnos', $curso->id)}}" class="btn btn-success" ><span class="fa fa-user" aria-hidden="true"></span></a>
+					<a href="{{URL('showasignaturas', $curso->id)}}" class="btn btn-primary" ><span class="fa fa-book" aria-hidden="true"></span></a>
 						<a href="{{route('cursos.edit', $curso->id)}}" class="btn btn-warning"><span class="fa fa-edit" aria-hidden="true"></span></a>
-						<!--<a href="{{route('cursos.destroy', $curso->id)}}" class="btn btn-danger" onclick="return confirm('Seguro deseas eliminar?')"> <span class="fa fa-trash" aria-hidden="true"></span></a></td>-->
 						<a href="" data-target="#modal-delete-{{ $curso->id }}"" data-toggle="modal" class="btn btn-danger"> <span class="fa fa-trash" aria-hidden="true"></span></a>
 				</tr>
 				@include('cursos.modal')

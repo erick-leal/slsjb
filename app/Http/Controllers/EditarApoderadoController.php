@@ -8,13 +8,17 @@ use App\Http\Requests;
 use App\Http\Requests\ApoderadoRequest;
 use Laracasts\Flash\Flash;
 use Illuminate\Support\Facades\Input;
+use App\Alumno;
 
 class EditarApoderadoController extends Controller
 {
       public function edit()
 	{
 		$apoderado = Apoderado::find(auth('apoderado')->user()->id);
-		return view('apoderados.modificar')->with('apoderado', $apoderado);
+		
+		$mis_alumnos = $apoderado->alumnos->all();
+			
+		return view('apoderados.modificar')->with('apoderado', $apoderado)->with('mis_alumnos', $mis_alumnos);
 	}
 	/**
 	* Update the specified resource in storage.

@@ -6,8 +6,10 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use App\Curso;
 use App\Apoderado;
+use Illuminate\Notifications\Notifiable;
+use App\Notifications\AlumnoResetPasswordNotification;
 
-class Alumno extends Authenticatable
+class Alumno extends User
 {
     protected $table = "alumnos";
 
@@ -30,7 +32,7 @@ class Alumno extends Authenticatable
         return $this->hasMany('App\Matricula');
     }
 
-    public function asiganturas()
+    public function asignaturas()
     {
         return $this->belongsToMany('App\Asignatura');
     }
@@ -53,5 +55,16 @@ class Alumno extends Authenticatable
     public function scopeSearch($query, $nombre)
     {
         return $query->where('nombre', 'LIKE', "%$nombre%");
+    }
+   
+    /**
+     * Send the password reset notification.
+     *
+     * @param  string  $token
+     * @return void
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new AlumnoResetPasswordNotification($token));
     }
 }

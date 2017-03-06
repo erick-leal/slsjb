@@ -28,7 +28,7 @@ class AlumnoRequest extends Request
             case 'POST':
             {
                 return [
-                    "rut" => "required|unique:apoderados|unique:profesores|unique:administrativos|unique:alumnos",
+                    "rut" => "required|cl_rut|unique:apoderados|unique:profesores|unique:administrativos|unique:alumnos",
                     "nombre"=> "required|min:3|max:30|alpha",
                     "apellido_paterno"=> "required|min:3|max:30|alpha",
                     "apellido_materno"=> "required|min:3|max:30|alpha",
@@ -71,7 +71,9 @@ class AlumnoRequest extends Request
             'email.unique' => 'Su correo electronico ya existe en nuestros datos',
             'password.required' => 'La contraseña es obligatoria',
             'password.confirmed' => 'Recuerde confirmar su contraseña',
-            'password.min' => 'Su contraseña debe tener minimo 6 caracteres'
+            'password.min' => 'Su contraseña debe tener minimo 6 caracteres',
+            'rut.cl_rut' => 'Rut invalido',
+            'rut.unique' => 'Rut existente en nuestra base de datos',
         ];
     }
 }

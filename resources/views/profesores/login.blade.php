@@ -5,8 +5,10 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Login de Profesores</div>
+             <div class="panel panel-default">
+                <div class="panel-heading" align="center">
+                    <font  size="4" face="verdana">Profesores</font>
+                </div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/profesores/login') }}">
                         {{ csrf_field() }}
@@ -52,9 +54,10 @@
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
                                     <button type="submit" class="btn btn-primary">
-                                        <i class="fa fa-btn fa-sign-in"></i> Ingresar
+                                        <i class="fa fa-btn fa-key"></i> Ingresar
                                     </button>
                                     <a class="btn btn-primary" href="{{ url('profesores/register') }}">Crear cuenta</a>
+                                    <a class="btn btn-link" href="{{ url('/profesor-auth/passwords/reset') }}">Olvidaste tu Contraseña?</a>
                                 </div>
                             </div>
                         </form>
