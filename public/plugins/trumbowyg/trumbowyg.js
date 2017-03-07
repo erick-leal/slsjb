@@ -360,7 +360,7 @@ jQuery.trumbowyg = {
 
             prefix: 'trumbowyg-',
 
-            semantic: true,
+            semantic: false,
             resetCss: false,
             removeformatPasted: false,
             tagsToRemove: [],

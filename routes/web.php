@@ -15,9 +15,28 @@
 Route::get('/', function(){
     return view('login');
 });
-Route::get('/home', function (){
-	return view('home');
-});
+
+//Vista Principal
+Route::get('/home', [
+	'as' => '/home',
+	'uses' => 'HomeController@index'
+]);
+
+//Vista Alumno
+Route::get('datos-alumno/conductas', [
+	'as' => '/datos-alumno/conductas',
+	'uses' => 'DatosAlumnoController@conductas'
+]);
+
+Route::get('datos-alumno/asignaturas', [
+	'as' => '/datos-alumno/asignaturas',
+	'uses' => 'DatosAlumnoController@asignaturas'
+]);
+
+Route::get('datos-alumno/personal', [
+	'as' => '/datos-alumno/personal',
+	'uses' => 'DatosAlumnoController@personal'
+]);
 
 //PDF Matricula
 Route::get('pdf/{id}','PDFController@pdfmatricula');
@@ -79,8 +98,8 @@ Route::post('administradores/login','Auth\AuthAdministradorController@login');
 Route::get('administradores/logout','Auth\AuthAdministradorController@logout');
 Route::get('administradores/register', 'Auth\AuthAdministradorController@showRegistrationForm');
 Route::post('administradores/register', 'Auth\AuthAdministradorController@register');
-Route::get('administradores/modificar', ['as' => 'administrador.modificar', 'uses' => 'EditarAdministradorController@edit']);
-Route::put('administradores', ['as' => 'administrador.update', 'uses' => 'EditarAdministradorController@update']);
+Route::get('administradores/modificar', ['as' => 'administradores.modificar', 'uses' => 'EditarAdministradorController@edit']);
+Route::put('administradores', ['as' => 'administradores.update', 'uses' => 'EditarAdministradorController@update']);
 Route::patch('administradores', 'EditarAdministradorController@update');
 //Resetear Password Administrativos
 Route::post('administrador-auth/passwords/email',['as' => 'password.request','uses' => 'AdministradorAuth\ForgotPasswordController@sendResetLinkEmail']);
@@ -146,3 +165,7 @@ Route::delete('asignaturas/{id}',['as'=>'asignaturas.destroy','uses'=>'Asignatur
 //CRUD Conducta
 Route::resource('conductas','ConductasController');
 Route::delete('conductas/{id}',['as'=>'conductas.destroy','uses'=>'ConductasController@destroy']);
+
+//CRUD Calificacion
+Route::resource('calificaciones','CalificacionController');
+Route::delete('calificaciones/{id}',['as'=>'calificaciones.destroy','uses'=>'CalificacionController@destroy']);

@@ -70,8 +70,8 @@ class ConductasController extends Controller
      */
     public function edit($id) 
     {
-    	$conducta = Conducta::find($id);
-    	
+    	$conducta = Conducta::find($id); 
+    	$conducta->profesor;
     	$alumnos	= Alumno::orderBy('id','ASC')->pluck('rut','id'); 
         $conducta->alumno; 
     	

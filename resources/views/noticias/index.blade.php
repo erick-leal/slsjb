@@ -19,14 +19,14 @@
 	<table class="table table-bordered">
 		<tr>
 			<th>Fecha</th>
-			<th>Nombre</th>
+			<th>Titulo</th>
 			<th>Administrador</th>
 			<th>Opciones</th>
 				
 		</tr>
 			@foreach ($noticias as $n)
 				<tr>
-					<td>{{ $n->fecha }}</td>
+					<td>{{ $n->created_at }}</td>
 					<td>{{ $n->nombre }}</td>
 					<td>{{ $n->administrativo->nombre." ".$n->administrativo->apellido_paterno}}</td>
 					<td><a href="" class="btn btn-info" ><span class="fa fa-eye" aria-hidden="true"></span></a>
@@ -38,5 +38,6 @@
 			@endforeach
 
 	</table>
-	
+	{{$noticias->render()}}
+
 @endsection

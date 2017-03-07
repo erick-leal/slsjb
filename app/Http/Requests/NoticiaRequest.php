@@ -25,8 +25,7 @@ class NoticiaRequest extends FormRequest
     {
         return [
             'nombre' => 'required|min:5|max:255',
-            'descripcion' => 'required|max:255',
-            'fecha' => 'date',
+            'descripcion' => 'required|min:5|max:2000',
             'foto' => 'nullable',
         ];
     }
@@ -37,8 +36,8 @@ class NoticiaRequest extends FormRequest
             'nombre.min' =>'El nombre debe contener al menos 5 caracteres',
             'nombre.max' => 'El nombre debe contener un maximo de 255 caracteres',
             'descripcion.required' => 'La descripcion de la noticia es obligatorio',
-            'descripcion.max' => 'La descripcion debe contener un maximo de 255 caracteres',
-            'fecha.date' =>'Fecha invalida',
+            'descripcion.min' => 'La descripcion debe contener como minimo 5 caracteres',
+            'descripcion.max' => 'La descripcion debe contener como maximo 2000 caracteres',
             'foto.required' =>'Foto invalida',
         ];
     }

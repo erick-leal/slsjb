@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Alumno;
+use App\Profesor;
 use App\Asignatura;
 
 class Conducta extends Model
@@ -20,5 +21,10 @@ class Conducta extends Model
     public function asignatura()
     {
     	return $this->belongsTo(Asignatura::class, 'id_asignatura', 'id');
+    }
+
+    public function profesor()
+    {
+        return $this->belongsTo(Profesor::class, 'id_profesor', 'id');
     }
 }

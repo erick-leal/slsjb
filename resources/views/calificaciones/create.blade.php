@@ -18,7 +18,7 @@
 
 				<div class="form-group">
                     {!! Form::label('id_alumno', 'Alumno') !!}
-                    {!! Form::select('id_alumno',$alumnos,null,['class' => 'form-control select-alumno', 'placeholder' => 'Seleccione un alumno']) !!}
+                    {!! Form::select('id_alumno',$alumnos,null,['class' => 'form-control select-alumno', 'placeholder' => 'Seleccione una alumno']) !!}
                 </div>
 
                 <div class="form-group">

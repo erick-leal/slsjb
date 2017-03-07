@@ -40,6 +40,8 @@
 
 @section('js')
 	<script>
-		$('.textarea-descripcion').trumbowyg();
+		$('.textarea-descripcion').trumbowyg({
+			removeformatPasted: true
+		});
 	</script>
 @endsection

@@ -4,26 +4,26 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use App\Noticia;
+use App\Alumno;
+use App\Profesor;
+use App\Apoderado;
+use App\Administrativo;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index()
-    {
-        return view('home');
+    {  
+        $cantidadAlumnos = Alumno::count();
+        $cantidadApoderados = Apoderado::count();
+        $cantidadAdministrativos = Administrativo::count();
+        $cantidadProfesores = Profesor::count();
+
+        $noticias = Noticia::orderBy('id','DSC')->paginate(4);
+        $noticias->each(function($noticias){
+            $noticias->administrativo;
+        });
+        return view('home')->with('noticias',$noticias)->with('cantidadAlumnos',$cantidadAlumnos)->with('cantidadApoderados',$cantidadApoderados)->with('cantidadAdministrativos',$cantidadAdministrativos)->with('cantidadProfesores',$cantidadProfesores);
     }
 }

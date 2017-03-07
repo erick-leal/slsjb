@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Apoderado;
 use App\Http\Requests;
-use App\Http\Requests\ApoderadoRequest;
+use App\Http\Requests\ApoderadoRequest; 
 use Laracasts\Flash\Flash;
 use Illuminate\Support\Facades\Input;
 use App\Alumno;

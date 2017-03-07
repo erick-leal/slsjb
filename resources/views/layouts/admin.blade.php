@@ -29,7 +29,7 @@
       <header class="main-header">
 
         <!-- Logo -->
-        <a href="#" class="logo">
+        <a href="{{url('home')}}" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b></b>Inet</span>
           <!-- logo for regular state and mobile devices -->
@@ -207,7 +207,7 @@
         </nav>
       </header>
       <!-- Left side column. contains the logo and sidebar -->
-     
+           
       <aside class="main-sidebar">
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
@@ -217,7 +217,7 @@
           <ul class="sidebar-menu">
             <li class="header"> -----</li>
             
-            
+            @if (Auth::guard('profesor')->check()|| Auth::guard("apoderado")->check() || Auth::guard("administrativo")->check() || Auth::guard("administrador")->check())
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-users"></i>
@@ -304,6 +304,33 @@
               </a>
             </li>
            
+            @elseif(Auth::guard('alumno')->check())
+
+            <li>
+              <a href="/datos-alumno/personal">
+                <i class="fa  fa-user"></i> <span>Informacion Personal</span>
+                <small class="label pull-right bg-blue">♦♦♦</small>
+              </a>
+            </li>
+
+           <li>
+              <a href="/datos-alumno/conductas">
+                <i class="fa fa-clone"></i> <span>Libro de Anotaciones</span>
+                <small class="label pull-right bg-red">mod6</small>
+              </a>
+            </li>
+
+            <li>
+              <a href="/datos-alumno/asignaturas">
+                <i class="fa fa-book"></i> <span>Mis Asignaturas</span>
+                <small class="label pull-right bg-red">mod5</small>
+              </a>
+            </li>
+
+            
+
+
+            @endif
                         
           </ul>
         </section>

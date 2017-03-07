@@ -14,7 +14,7 @@ class NoticiasController extends Controller
 {
     
     public function index(Request $request)
-    {
+    {   
         $noticias = Noticia::search($request->nombre)->orderBy('id','DSC')->paginate(5);
         return view('noticias.index')->with('noticias',$noticias);
     }
@@ -35,18 +35,16 @@ class NoticiasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(NoticiaRequest $request)
+    public function store(NoticiaRequest $request) 
     {
-        //Manipulacion de Imagenes
-        if ($request->file('foto'))
-        {    
-            $file = $request->file('foto');
-            $name = 'liceosanjuanbautista_'. time(). '.' .$file->getClientOriginalExtension();
-            $path = public_path(). '/imagenes/noticias';
-            $file->move($path, $name);
-        }
-
         $noticia =  new Noticia($request->all());
+        //Manipulacion de Imagenes
+        if(Input::hasFile('foto')){
+            $file=Input::file('foto');
+            $file->move(public_path().'/imagenes/noticias',$file->getClientOriginalName());
+            $noticia->foto=$file->getClientOriginalName();
+        }
+  
         $noticia->id_administrativo = auth('administrativo')->user()->id;
         $noticia->fecha = Carbon::now();
         $noticia->save();
@@ -75,6 +73,7 @@ class NoticiasController extends Controller
     {
         $noticia = Noticia::find($id);
         $noticia->administrativo;
+        $noticia->fecha = Carbon::now();
     	$administrativos = Administrativo::orderBy('nombre','ASC')->pluck('nombre','id');
         return view('noticias.edit')->with('noticia', $noticia);
     }

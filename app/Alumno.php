@@ -39,7 +39,7 @@ class Alumno extends User
 
     public function conductas()
     {
-        return $this->hasMany('App\Conducta');
+        return $this->hasMany('App\Conducta','id_alumno');
     }
 
     public function calificaciones()

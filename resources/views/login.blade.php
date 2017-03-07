@@ -20,6 +20,7 @@ ul.thumb li img.hover {margin-top:15px;background:url() no-repeat center center;
 </head>
 
 <body>
+<link><a href="{{url('administradores/login')}}">Admin</a></link>
 <h1>Consulta de Datos</h1>
 <ul class="thumb">
 

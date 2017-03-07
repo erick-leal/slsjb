@@ -64,7 +64,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'America/Santiago',
 
     /*
     |--------------------------------------------------------------------------
@@ -183,6 +183,7 @@ return [
         Laracasts\Flash\FlashServiceProvider::class,
         Freshwork\ChileanBundle\Laravel\ChileanBundleServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
+        
     ],
 
     /*
@@ -238,6 +239,7 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'Rut'   => Freshwork\ChileanBundle\Laravel\Facades\Rut::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
+
     ],
 
 ];
