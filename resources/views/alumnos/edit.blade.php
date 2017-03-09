@@ -45,7 +45,7 @@
 	            <div class="form-group">
                     {!! Form::label('id_curso', 'Curso') !!}
                   	
-                    {!! Form::select('id_curso',$cursos,null,['class' => 'form-control', 'placeholder' => 'Seleccione una opción']) !!}
+                    {!! Form::select('id_curso',$cursos,$alumno->curso,['class' => 'form-control']) !!}
                  
               
                 </div>
@@ -73,7 +73,7 @@
 	            <div class="form-group">
                     {!! Form::label('id_apoderado', 'Apoderado') !!}
                 
-                    {!! Form::select('id_apoderado',$apoderados,null,['class' => 'form-control select-apoderado', 'placeholder' => 'Apoderado']) !!}
+                    {!! Form::select('id_apoderado',$apoderados,$alumno->apoderado,['class' => 'form-control select-apoderado']) !!}
                
                    
                 </div>

@@ -41,5 +41,5 @@
 			@endforeach
 
 	</table>
-	
+	{!! $alumnos->render() !!}
 @endsection

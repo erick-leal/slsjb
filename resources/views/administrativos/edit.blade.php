@@ -43,7 +43,7 @@
 	            
 	            <div class="form-group">
                     {!! Form::label('id_cargo', 'Cargo') !!}
-                    {!! Form::select('id_cargo',$cargos,null,['class' => 'form-control', 'placeholder' => 'Seleccione una opción']) !!}
+                    {!! Form::select('id_cargo',$cargos,$administrativo->cargo,['class' => 'form-control']) !!}
                 </div>
 	      
 	            <div class="form-group">

@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Alumno;
 use App\Curso;
+use Carbon\Carbon;
 
 class DatosAlumnoController extends Controller
 {
+
+
     public function conductas()
     {  
         $alumno = Alumno::find(auth('alumno')->user()->id);

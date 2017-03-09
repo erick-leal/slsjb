@@ -14,7 +14,7 @@
 //Login general
 Route::get('/', function(){
     return view('login');
-});
+}); 
 
 //Vista Principal
 Route::get('/home', [
@@ -38,14 +38,34 @@ Route::get('datos-alumno/personal', [
 	'uses' => 'DatosAlumnoController@personal'
 ]);
 
+//Vista Profesor
+Route::get('datos-profesor/asignaturas', [
+	'as' => '/datos-alumno/asignaturas',
+	'uses' => 'DatosProfesorController@asignaturas'
+]); 
+
+Route::get('datos-profesor/personal', [
+	'as' => '/datos-profesor/personal',
+	'uses' => 'DatosProfesorController@personal'
+]);
+
+Route::get('datos-profesor/veranotacion/{id}/{idasi}','DatosProfesorController@verAnotacion');
+
 //PDF Matricula
 Route::get('pdf/{id}','PDFController@pdfmatricula');
 
 //Mostrar Asignaturas
-Route::get('showasignaturas/{id}','ShowAsignaturaController@showAsignatura');
+Route::get('showasignaturascurso/{id}','ShowAsignaturaCursoController@showAsignaturaCurso');
 
-//Mostrar ALumnos
-Route::get('showalumnos/{id}','ShowAlumnosController@showAlumnos');
+//Mostrar ALumnos x Curso
+Route::get('showalumnoscurso/{id}','ShowAlumnosCursoController@showAlumnosCurso');
+
+//Mostrar ALumnos x Asignatura
+Route::get('showalumnosasignatura/{id}','ShowAlumnosAsignaturaController@showAlumnosAsignatura');
+
+//Agregar anotacion
+Route::get('agregar/anotacion/{id}/{idasi}','AgregarAnotacionController@agregarAnotacion');
+Route::post('agregar/anotacion','AgregarAnotacionController@guardarAnotacion');
 
 //Registro y login de profesores
 Route::get('profesores/login','Auth\AuthProfesorController@showLoginForm');
@@ -54,8 +74,8 @@ Route::get('profesores/logout','Auth\AuthProfesorController@logout');
 Route::get('profesores/register', 'Auth\AuthProfesorController@showRegistrationForm');
 Route::post('profesores/register', 'Auth\AuthProfesorController@register');
 Route::get('profesores/modificar', ['as' => 'profesores.modificar', 'uses' => 'EditarProfesorController@edit']);
-Route::put('profesores', ['as' => 'profesores.update', 'uses' => 'EditarProfesorController@update']);
-Route::patch('profesores', 'EditarProfesorController@update');
+Route::put('profesores', ['as' => 'profesores.updateprofesor', 'uses' => 'EditarProfesorController@updateprofesor']);
+Route::patch('profesores', 'EditarProfesorController@updateprofesor');
 //Resetear Password Profesores
 Route::post('profesor-auth/passwords/email',['as' => 'password.request','uses' => 'ProfesorAuth\ForgotPasswordController@sendResetLinkEmail']);
 Route::get('profesor-auth/passwords/reset','ProfesorAuth\ForgotPasswordController@showLinkRequestForm');
@@ -69,8 +89,8 @@ Route::get('apoderados/logout','Auth\AuthApoderadoController@logout');
 Route::get('apoderados/register', 'Auth\AuthApoderadoController@showRegistrationForm');
 Route::post('apoderados/register', 'Auth\AuthApoderadoController@register');
 Route::get('apoderados/modificar', ['as' => 'apoderados.modificar', 'uses' => 'EditarApoderadoController@edit']);
-Route::put('apoderados', ['as' => 'apoderados.update', 'uses' => 'EditarApoderadoController@update']);
-Route::patch('apoderados', 'EditarApoderadoController@update');
+Route::put('apoderados', ['as' => 'apoderados.updateapoderado', 'uses' => 'EditarApoderadoController@updateapoderado']);
+Route::patch('apoderados', 'EditarApoderadoController@updateapoderado');
 //Resetear Password Apoderados
 Route::post('apoderado-auth/passwords/email',['as' => 'password.request','uses' => 'ApoderadoAuth\ForgotPasswordController@sendResetLinkEmail']);
 Route::get('apoderado-auth/passwords/reset','ApoderadoAuth\ForgotPasswordController@showLinkRequestForm');
@@ -84,8 +104,8 @@ Route::get('administrativos/logout','Auth\AuthAdministrativoController@logout');
 Route::get('administrativos/register', 'Auth\AuthAdministrativoController@showRegistrationForm');
 Route::post('administrativos/register', 'Auth\AuthAdministrativoController@register');
 Route::get('administrativos/modificar', ['as' => 'administrativos.modificar', 'uses' => 'EditarAdministrativoController@edit']);
-Route::put('administrativos', ['as' => 'administrativos.update', 'uses' => 'EditarAdministrativoController@update']);
-Route::patch('administrativos', 'EditarAdministrativoController@update');
+Route::put('administrativos', ['as' => 'administrativos.updateadministrativo', 'uses' => 'EditarAdministrativoController@updateadministrativo']);
+Route::patch('administrativos', 'EditarAdministrativoController@updateadministrativo');
 //Resetear Password Administrativos
 Route::post('administrativo-auth/passwords/email',['as' => 'password.request','uses' => 'AdministrativoAuth\ForgotPasswordController@sendResetLinkEmail']);
 Route::get('administrativo-auth/passwords/reset','AdministrativoAuth\ForgotPasswordController@showLinkRequestForm');
@@ -114,8 +134,8 @@ Route::get('alumnos/logout','Auth\AuthAlumnoController@logout');
 Route::get('alumnos/register', 'Auth\AuthAlumnoController@showRegistrationForm');
 Route::post('alumnos/register', 'Auth\AuthAlumnoController@register');
 Route::get('alumnos/modificar', ['as' => 'alumnos.modificar', 'uses' => 'EditarAlumnoController@edit']);
-Route::put('alumnos', ['as' => 'alumnos.update', 'uses' => 'EditarAlumnoController@update']);
-Route::patch('alumnos', 'EditarAlumnoController@update');
+Route::put('alumnos', ['as' => 'alumnos.updatealumno', 'uses' => 'EditarAlumnoController@updatealumno']);
+Route::patch('alumnos', 'EditarAlumnoController@updatealumno');
 //Resetear Password Alumnos
 Route::post('alumno-auth/passwords/email',['as' => 'password.request','uses' => 'AlumnoAuth\ForgotPasswordController@sendResetLinkEmail']);
 Route::get('alumno-auth/passwords/reset','AlumnoAuth\ForgotPasswordController@showLinkRequestForm');
@@ -167,5 +187,5 @@ Route::resource('conductas','ConductasController');
 Route::delete('conductas/{id}',['as'=>'conductas.destroy','uses'=>'ConductasController@destroy']);
 
 //CRUD Calificacion
-Route::resource('calificaciones','CalificacionController');
-Route::delete('calificaciones/{id}',['as'=>'calificaciones.destroy','uses'=>'CalificacionController@destroy']);
+Route::resource('calificaciones','CalificacionesController');
+Route::delete('calificaciones/{id}',['as'=>'calificaciones.destroy','uses'=>'CalificacionesController@destroy']);

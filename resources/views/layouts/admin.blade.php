@@ -217,7 +217,7 @@
           <ul class="sidebar-menu">
             <li class="header"> -----</li>
             
-            @if (Auth::guard('profesor')->check()|| Auth::guard("apoderado")->check() || Auth::guard("administrativo")->check() || Auth::guard("administrador")->check())
+            @if (Auth::guard("apoderado")->check() || Auth::guard("administrativo")->check() || Auth::guard("administrador")->check())
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-users"></i>
@@ -303,6 +303,15 @@
                 <small class="label pull-right bg-red">mod6</small>
               </a>
             </li>
+
+             <li>
+              <a href="/calificaciones">
+                <i class="fa fa-file-text"></i> <span>Calificaciones</span>
+                <small class="label pull-right bg-red">mod7</small>
+              </a>
+            </li>
+
+            
            
             @elseif(Auth::guard('alumno')->check())
 
@@ -327,8 +336,28 @@
               </a>
             </li>
 
-            
+            @elseif(Auth::guard('profesor')->check())
 
+            <li>
+              <a href="/datos-profesor/personal">
+                <i class="fa  fa-user"></i> <span>Informacion Personal</span>
+                <small class="label pull-right bg-blue">♦♦♦</small>
+              </a>
+            </li>
+
+            <li>
+              <a href="/datos-profesor/asignaturas">
+                <i class="fa fa-book"></i> <span>Mis Asignaturas</span>
+                <small class="label pull-right bg-red">mod5</small>
+              </a>
+            </li>
+
+            <li>
+              <a href="/conductas">
+                <i class="fa fa-clone"></i> <span>Conductas</span>
+                <small class="label pull-right bg-red">mod6</small>
+              </a>
+            </li>
 
             @endif
                         

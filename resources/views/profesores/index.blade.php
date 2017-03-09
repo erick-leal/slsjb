@@ -41,5 +41,5 @@
 			@endforeach
 
 	</table>
-	
+	{!! $profesores->render() !!}
 @endsection

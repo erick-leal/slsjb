@@ -28,7 +28,7 @@
                             <br><br>
                             <i class="fa fa-user"></i>  <a>{{$noticia->administrativo->nombre." ".$noticia->administrativo->apellido_paterno}}</a>
                                 <div class="pull-right">
-                                    <i class="fa fa-clock-o"></i> {{$noticia->fecha}} 
+                                    <i class="fa fa-clock-o"></i> {{$noticia->created_at}} 
                                 </div>
                         </div>
                     </div>

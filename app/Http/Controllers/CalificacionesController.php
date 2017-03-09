@@ -46,7 +46,7 @@ class CalificacionesController extends Controller
     {
         $calificacion = new Calificacion($request->all());
         $calificacion->id_profesor = auth('profesor')->user()->id;
-        $calificacion->fecha = Carbon::now();
+        
         $calificacion->save();
         flash('Calificacion agregada exitosamente!','success');
         return redirect()->route('calificaciones.index');

@@ -43,6 +43,7 @@ class AlumnoRequest extends Request
                     "apellido_paterno"=> "required|min:3|max:30|alpha",
                     "apellido_materno"=> "required|min:3|max:30|alpha",
                      "email" => "required|email",
+                     
                     
                 ];
             }
@@ -74,6 +75,7 @@ class AlumnoRequest extends Request
             'password.min' => 'Su contraseña debe tener minimo 6 caracteres',
             'rut.cl_rut' => 'Rut invalido',
             'rut.unique' => 'Rut existente en nuestra base de datos',
+           
         ];
     }
 }

@@ -17,9 +17,10 @@
 			<th>Correo</th>
 			<th>Opciones</th>	
 		</tr>
+
 			@foreach ($alumnos as $alu)
 				<tr>
-					<td></td>
+					<td>{{ ++$i }}</td>
 					<td>{{ $alu->rut }}</td>
 					<td>{{ $alu->nombre}}</td>
 					<td>{{ $alu->apellido_paterno}}</td>

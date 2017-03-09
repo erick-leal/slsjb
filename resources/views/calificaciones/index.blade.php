@@ -4,7 +4,7 @@
 
 @section('content')
 	        	
-	<a class="btn btn-success" href="{{ route('conductas.create') }}"> Registrar Nueva Anotacion</a><br><br>
+	<a class="btn btn-success" href="{{ route('calificaciones.create') }}"> Registrar Nueva Nota</a><br><br>
 	 
 	<table class="table table-bordered">
 		<tr>
@@ -15,21 +15,21 @@
 			<th>Tipo</th>
 			<th>Opciones</th>	
 		</tr>
-			@foreach ($conductas as $con)
+			@foreach ($calificaciones as $cal)
 				<tr>
-					<td>{{ $con->created_at }}</td>
-					<td>{{ $con->alumno->rut}}</td>
-					<td>{{ $con->alumno->nombre." ".$con->alumno->apellido_paterno." ".$con->alumno->apellido_materno }}</td>
-					<td>{{ $con->asignatura->nombre}}</td>
-					<td>{{ $con->tipo}}</td>
-					<td><a href="{{route('conductas.show', $con->id)}}" class="btn btn-info" ><span class="fa fa-eye" aria-hidden="true"></span></a>
-						<a href="{{route('conductas.edit', $con->id)}}" class="btn btn-warning"><span class="fa fa-edit" aria-hidden="true"></span></a>
+					<td>{{ $cal->created_at }}</td>
+					<td>{{ $cal->alumno->rut}}</td>
+					<td>{{ $cal->alumno->nombre." ".$cal->alumno->apellido_paterno." ".$cal->alumno->apellido_materno }}</td>
+					<td>{{ $cal->asignatura->nombre}}</td>
+					<td>{{ $cal->observacion}}</td>
+					<td><a href="{{route('calificaciones.show', $cal->id)}}" class="btn btn-info" ><span class="fa fa-eye" aria-hidden="true"></span></a>
+						<a href="{{route('calificaciones.edit', $cal->id)}}" class="btn btn-warning"><span class="fa fa-edit" aria-hidden="true"></span></a>
 						
-						<a href="" data-target="#modal-delete-{{ $con->id }}"" data-toggle="modal" class="btn btn-danger"> <span class="fa fa-trash" aria-hidden="true"></span></a>
+						<a href="" data-target="#modal-delete-{{ $cal->id }}"" data-toggle="modal" class="btn btn-danger"> <span class="fa fa-trash" aria-hidden="true"></span></a>
 				</tr>
-				@include('conductas.modal')
+				@include('calificaciones.modal')
 			@endforeach
 
 	</table>
-	
+	{!! $calificaciones->render() !!}
 @endsection

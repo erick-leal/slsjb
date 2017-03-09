@@ -11,6 +11,10 @@ use Carbon\Carbon;
 
 class ConductasController extends Controller
 {
+    public function __construct()
+    {
+        Carbon::setLocale('es');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +22,7 @@ class ConductasController extends Controller
      */
     public function index(Request $request)
     {
-        $conductas = Conducta::orderBy('created_at','DSC')->paginate(5);
+        $conductas = Conducta::orderBy('created_at','DSC')->paginate(10);
         return view('conductas.index')->with('conductas',$conductas);
     }
 
@@ -59,7 +63,7 @@ class ConductasController extends Controller
     public function show($id)
     {
         $conducta = Conducta::find($id);
-        return view('conductas.show')->with('conducta',$conducta);   
+        return view('conductas.show')->with('conducta',$conducta);    
     }
 
     /**

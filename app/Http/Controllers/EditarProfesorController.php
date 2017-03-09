@@ -22,7 +22,7 @@ class EditarProfesorController extends Controller
 	* @param  int  $id
 	* @return Response
 	*/
-	public function update(ProfesorRequest $request)
+	public function updateprofesor(ProfesorRequest $request)
 	{
 		$profesor = Profesor::find(auth('profesor')->user()->id);
 		$profesor->fill($request->all());

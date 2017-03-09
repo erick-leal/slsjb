@@ -4,7 +4,7 @@
 
 @section('content')
 	        	
-	<a class="btn btn-success" href="{{ route('conductas.create') }}"> Registrar Nueva Anotacion</a><br><br>
+	<br>
 	 
 	<table class="table table-bordered">
 		<tr>
@@ -31,5 +31,5 @@
 			@endforeach
 
 	</table>
-	
+	{!! $conductas->render() !!}
 @endsection

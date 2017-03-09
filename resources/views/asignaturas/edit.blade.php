@@ -27,7 +27,7 @@
 
 	            <div class="form-group">
                     {!! Form::label('id_curso', 'Curso') !!}
-                    {!! Form::select('id_curso',$cursos,null,['class' => 'form-control', 'placeholder' => 'Seleccione una opción']) !!}
+                    {!! Form::select('id_curso',$cursos,$asignatura->curso,['class' => 'form-control']) !!}
                 </div>
 	      
 	            <div class="form-group">
@@ -37,13 +37,18 @@
 
 	           <div class="form-group">
                     {!! Form::label('id_sala', 'Sala') !!}
-                    {!! Form::select('id_sala',$salas,null,['class' => 'form-control', 'placeholder' => 'Seleccione una opción']) !!}
+                    {!! Form::select('id_sala',$salas,$asignatura->sala,['class' => 'form-control']) !!}
                 </div>
 
                 <div class="form-group">
                     {!! Form::label('id_profesor', 'Profesor') !!}
-                    {!! Form::select('id_profesor',$profesores,null,['class' => 'form-control', 'placeholder' => 'Seleccione una opción']) !!}
+                    {!! Form::select('id_profesor',$profesores, $asignatura->profesor,['class' => 'form-control select-profesor']) !!}
                 </div>
+
+                <div class="form-group">
+                    {!! Form::label('alumnos', 'Alumnos') !!}
+                    {!! Form::select('alumnos[]',$alumnos,$mis_alumnos,['class' => 'form-control select-alumnos', 'multiple']) !!}
+                </div> 
 
                 <div class="form-group">
 	                {!! Form::label('horario','Horario')!!}
@@ -56,4 +61,11 @@
 		</div>
 	{!! Form::close() !!}
 
+@endsection
+
+@section('js')
+	<script>
+		$('.select-profesor').chosen({no_results_text: "Profesor no registrado", max_selected_options: 1});
+		$('.select-alumnos').chosen({no_results_text: "Alumno no registrado", max_selected_options: 50});
+	</script>
 @endsection

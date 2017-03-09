@@ -35,7 +35,7 @@ class Asignatura extends Model
 
     public function conductas()
     {
-        return $this->hasMany('App\Conducta');
+        return $this->hasMany('App\Conducta','id_asignatura');
     }
 
     public function eventos()

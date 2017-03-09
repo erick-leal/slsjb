@@ -23,7 +23,7 @@ class EditarAdministrativoController extends Controller
 	* @param  int  $id
 	* @return Response
 	*/
-	public function update(AdministrativoRequest $request)
+	public function updateadministrativo(AdministrativoRequest $request)
 	{
 		$administrativo= Administrativo::find(auth('administrativo')->user()->id);
 		$administrativo->fill($request->all());

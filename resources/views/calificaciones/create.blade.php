@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title','Registrar Anotacion')
+@section('title','Registrar Nota')
 
 @section('content')
 	
@@ -12,7 +12,8 @@
         </div> 
     @endif
 
-	{!! Form::open(array('route' => 'conductas.store','method'=>'POST')) !!}
+	{!! Form::open(array('route' => 'calificaciones.store','method'=>'POST')) !!}
+		
 		<div class="row">
 			<div class="col-xs-6 col-sm-6 col-md-6">
 
@@ -26,20 +27,94 @@
                     {!! Form::select('id_asignatura',$asignaturas,null,['class' => 'form-control select-asignatura', 'placeholder' => 'Seleccione una asignatura']) !!}
                 </div>
 
-                 <div class="form-group">
-	                {!! Form::label('tipo','Tipo')!!}
-	                {!! Form::select('tipo', ['' => 'Seleccionar...','Positiva' => 'Positiva', 'Negativa' => 'Negativa'], null, ['class' => 'form-control']) !!}
-	            </div>
+                </div>
+                </div>
+                <br><br>
+                <strong>Calificaciones : </strong><br><br>
+               <div class="panel panel-primary">
+				<div class="panel-body">
+					<div class="col-lg-1 col-md-1 col-sm-1 col-xs-12"">
+						<div class="form-group">
+							{!! Form::label('n1', 'Nota') !!}
+							{!! Form::text('n1', null, array('class' => 'form-control')) !!}
+						</div>
+					</div>
+					<div class="col-lg-1 col-md-1 col-sm-1 col-xs-12"">
+						<div class="form-group">
+							{!! Form::label('n2', 'Nota') !!}
+							{!! Form::text('n2', null, array('class' => 'form-control')) !!}
+						</div>
+					</div>
+					<div class="col-lg-1 col-md-1 col-sm-1 col-xs-12"">
+						<div class="form-group">
+							{!! Form::label('n3', 'Nota') !!}
+							{!! Form::text('n3', null, array('class' => 'form-control')) !!}
+						</div>
+					</div>
+					<div class="col-lg-1 col-md-1 col-sm-1 col-xs-12"">
+						<div class="form-group">
+							{!! Form::label('n4', 'Nota') !!}
+							{!! Form::text('n4', null, array('class' => 'form-control')) !!}
+						</div>
+					</div>
+					<div class="col-lg-1 col-md-1 col-sm-1 col-xs-12"">
+						<div class="form-group">
+							{!! Form::label('n5', 'Nota') !!}
+							{!! Form::text('n5', null, array('class' => 'form-control')) !!}
+						</div>
+					</div>
+					<div class="col-lg-1 col-md-1 col-sm-1 col-xs-12"">
+						<div class="form-group">
+							{!! Form::label('n6', 'Nota') !!}
+							{!! Form::text('n6', null, array('class' => 'form-control')) !!}
+						</div>
+					</div>
+					<div class="col-lg-1 col-md-1 col-sm-1 col-xs-12"">
+						<div class="form-group">
+							{!! Form::label('n7', 'Nota') !!}
+							{!! Form::text('n7', null, array('class' => 'form-control')) !!}
+						</div>
+					</div>
+					<div class="col-lg-1 col-md-1 col-sm-1 col-xs-12"">
+						<div class="form-group">
+							{!! Form::label('n8', 'Nota') !!}
+							{!! Form::text('n8', null, array('class' => 'form-control')) !!}
+						</div>
+					</div>
+					<div class="col-lg-1 col-md-1 col-sm-1 col-xs-12"">
+						<div class="form-group">
+							{!! Form::label('promedio', 'Promedio') !!}
+							{!! Form::text('promedio', null, array('class' => 'form-control')) !!}
+						</div>
+					</div>
+					<div class="col-lg-1 col-md-1 col-sm-1 col-xs-12"">
+						<div class="form-group">
+							{!! Form::label('examen', 'Examen') !!}
+							{!! Form::text('examen', null, array('class' => 'form-control')) !!}
+						</div>
+					</div>		
+					<div class="col-lg-1 col-md-1 col-sm-1 col-xs-12"">
+						<div class="form-group">
+							{!! Form::label('final', 'Final') !!}
+							{!! Form::text('final', null, array('class' => 'form-control')) !!}
+						</div>
+					</div>
 
-	            <div class="form-group">
-	                {!! Form::label('descripcion','Descripcion')!!}
-	                {!! Form::textarea('descripcion', null,['class' => 'form-control textarea-descripcion']) !!}
-	            </div>
+					
+
+				</div>
+			</div>
+
+			<div class="form-group">
+		                {!! Form::label('observacion','Observaciones : ')!!}
+		                {!! Form::textarea('observacion', null,['class' => 'form-control textarea-descripcion']) !!}
+	            	</div>
+
 
 				<button type="submit" class="btn btn-primary">Registrar</button>    
 				<a class="btn btn-danger" href="{{route('conductas.index')}}">Cancelar</a>   	
-	        </div>
-		</div>
+	        
+		
 	{!! Form::close() !!}
 
 @endsection

@@ -26,7 +26,7 @@ class EditarApoderadoController extends Controller
 	* @param  int  $id
 	* @return Response
 	*/
-	public function update(ApoderadoRequest $request)
+	public function updateapoderado(ApoderadoRequest $request)
 	{
 		$apoderado = Apoderado::find(auth('apoderado')->user()->id);
 		$apoderado->fill($request->all());

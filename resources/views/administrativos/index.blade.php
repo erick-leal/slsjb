@@ -41,5 +41,5 @@
 			@endforeach
 
 	</table>
-	
+	{!! $administrativos->render() !!}
 @endsection

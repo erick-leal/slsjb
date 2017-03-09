@@ -1,6 +1,6 @@
 <?php 
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers; 
  
 use Illuminate\Http\Request;
 use App\Asignatura;
@@ -12,6 +12,7 @@ use App\Http\Requests\AsignaturaRequest;
 
 class AsignaturasController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      *
@@ -76,10 +77,16 @@ class AsignaturasController extends Controller
     	$asignatura->profesor;
     	$asignatura->curso;
     	$asignatura->sala;
+        $asignatura->alumnos;
     	$profesores = Profesor::orderBy('nombre','ASC')->pluck('nombre','id');
     	$cursos = Curso::orderBy('nombre','ASC')->pluck('nombre','id');
-    	$salas = Sala::orderBy('nombre','ASC')->pluck('nombre','id');      
-        return view('asignaturas.edit')->with('asignatura', $asignatura)->with('profesores',$profesores)->with('cursos',$cursos)->with('salas',$salas);
+    	$salas = Sala::orderBy('nombre','ASC')->pluck('nombre','id'); 
+        $alumnos = Alumno::orderBy('nombre','ASC')->pluck('rut','id'); 
+
+        $mis_alumnos = $asignatura->alumnos->pluck('id')->ToArray();
+
+
+        return view('asignaturas.edit')->with('asignatura', $asignatura)->with('profesores',$profesores)->with('cursos',$cursos)->with('salas',$salas)->with('alumnos',$alumnos)->with('mis_alumnos',$mis_alumnos);
     }
 
     /**
@@ -94,6 +101,7 @@ class AsignaturasController extends Controller
         $asignatura = Asignatura::find($id);
         $asignatura->fill($request->all());
         $asignatura->save();
+        $asignatura->alumnos()->sync($request->alumnos);
         flash('Asignatura ' .$asignatura->nombre.' editada exitosamente!','warning');
         return redirect()->route('asignaturas.index');
     }

@@ -1,20 +1,11 @@
 @extends('layouts.admin')
 
-@section('title','Listado de Asignaturas')
+@section('title','Listado de Asignaturas') 
 
 @section('content')
 	        	
-	 <strong>Curso : </strong> <a>{{$curso->nombre}}</a>
-	<!-- Buscador -->
-	{!! Form::open(['route' => 'asignaturas.index', 'method' => 'GET', 'class' => 'navbar-form pull-right']) !!}
-		<div class="input-group">
-			{!! Form::text('nombre', null, ['class' => 'form-control', 'placeholder' => 'Buscar...', 'aria-describedby' => 'search']) !!}
-			<span class="input-group-btn">
-			<button type="submit" class="btn btn-primary">Buscar</button>
-		</span>
-		</div>
-	{!! Form::close() !!}
-	<!-- fin -->
+	 <strong>Curso : </strong> <a>{{$curso->nombre}}</a><br><br>
+	
 	 
 	<table class="table table-bordered">
 		<tr>

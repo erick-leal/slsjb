@@ -23,7 +23,7 @@ class EditarAlumnoController extends Controller
 	* @param  int  $id
 	* @return Response
 	*/
-	public function update(AlumnoRequest $request)
+	public function updatealumno(AlumnoRequest $request)
 	{
 		$alumno= Alumno::find(auth('alumno')->user()->id);
 		$alumno->fill($request->all());

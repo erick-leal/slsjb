@@ -25,12 +25,26 @@ class CalificacionRequest extends FormRequest
     {
         return [
             
+            'n1' => 'digits_between:0,7', 
+            'n2' => 'digits_between:0,7', 
+            'n3' => 'digits_between:0,7', 
+            'n4' => 'digits_between:0,7', 
+            'n5' => 'digits_between:0,7', 
+            'n6' => 'digits_between:0,7', 
+            'n7' => 'digits_between:0,7', 
+            'n8' => 'digits_between:0,7',
+            'promedio' => 'digits_between:0,7',
+            'examen' => 'digits_between:0,7',
+            'final' => 'digits_between:0,7'
+            
         ];
     }
     public function messages()
     {
         return [
-            
+           
+            'n1.numeric' => 'La nota debe ser un numero',
+            'n1.between' => 'La nota ingresada no es válida'
         ];
     }
 }

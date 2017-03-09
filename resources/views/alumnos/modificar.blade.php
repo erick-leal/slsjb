@@ -15,7 +15,7 @@
                         </div>
                     @endif
                     <div class="panel-body">
-                        {!! Form::open(['route' => ['alumnos.update', $alumno], 'method' => 'PUT', 'files' => true]) !!}
+                        {!! Form::open(['route' => ['alumnos.updatealumno', $alumno], 'method' => 'PUT', 'files' => true]) !!}
                          
                          <div class="form-group">
                             {!! Form::label('rut', 'Rut',['class'=>'control-label']) !!}

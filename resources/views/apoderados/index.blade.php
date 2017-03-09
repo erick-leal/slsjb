@@ -41,5 +41,5 @@
 			@endforeach
 
 	</table>
-	
+	{!! $apoderados->render() !!}
 @endsection

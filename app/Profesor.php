@@ -17,7 +17,7 @@ class Profesor extends User
 
     public function asignaturas()
     {
-    	return $this->hasMany('App\Asignatura');
+    	return $this->hasMany('App\Asignatura','id_profesor');
     }
 
     public function eventos()

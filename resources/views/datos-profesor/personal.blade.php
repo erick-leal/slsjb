@@ -10,8 +10,8 @@
 				<div class="form-group">
 					<label for="foto"></label>
 					
-					@if(($alumno->foto)!="")
-						<img src="{{ asset('imagenes/alumnos/'.$alumno->foto) }}" height="150px" width="150px">
+					@if(($profesor->foto)!="")
+						<img src="{{ asset('imagenes/profesors/'.$profesor->foto) }}" height="150px" width="150px">
 					@endif
 				</div>
 			</div>
@@ -20,26 +20,26 @@
 			<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12"">
 				<div class="form-group">
 					<label for="rut">Rut</label>
-					<p>{{ $alumno->rut }}</p>
+					<p>{{ $profesor->rut }}</p>
 				</div>
 			</div>
 			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
 				<div class="form-group">
 					<label for="nombre">Nombre</label>
-					<p>{{ $alumno->nombre }}</p>
+					<p>{{ $profesor->nombre }}</p>
 				</div>
 			</div>
 			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
 				<div class="form-group">
 					<label for="apellido_paterno">Apellidos</label>
-					<p>{{ $alumno->apellido_paterno." ".$alumno->apellido_materno }}</p>
+					<p>{{ $profesor->apellido_paterno." ".$profesor->apellido_materno }}</p>
 				</div>
 			</div>
 			
 			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
 				<div class="form-group">
 					<label for="email">Correo</label>
-					<p>{{ $alumno->email}}</p>
+					<p>{{ $profesor->email}}</p>
 				</div>
 			</div>
 			
@@ -47,10 +47,10 @@
 				<div class="form-group">
 					<label>Sexo</label>
 				
-				@if ($alumno->sexo == 'Masculino')
-					<p>{{ $alumno->sexo}}</p>
+				@if ($profesor->sexo == 'Masculino')
+					<p>{{ $profesor->sexo}}</p>
 				@else
-					<p>{{ $alumno->sexo}}</p>
+					<p>{{ $profesor->sexo}}</p>
 				@endif		
 				
 				</div>
@@ -58,41 +58,30 @@
 			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
 				<div class="form-group">
 					<label for="telefono">Telefono</label>
-					<p>{{ $alumno->telefono}}</p>
+					<p>{{ $profesor->telefono}}</p>
 				</div>
 			</div>
 			
 
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
-			<div class="form-group">
-				<label>Curso</label>
-					<p> {{ $alumno->curso->nombre}}</p>
-			</div>
-		</div>
-
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
-				<div class="form-group">
-					<label>Apoderado</label>
-						<p>{{$alumno->apoderado->nombre." ".$alumno->apoderado->apellido_paterno." ".$alumno->apoderado->apellido_materno}}</p>
-				</div>
-			</div>
+			
+			
 
 			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
 				<div class="form-group">
 					<label for="fecha_nacimiento">Fecha Nacimiento</label>
-					<p>{{ $alumno->fecha_nacimiento}}</p>
+					<p>{{ $profesor->fecha_nacimiento}}</p>
 				</div>
 			</div>
 			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
 				<div class="form-group">
 					<label for="edad">Edad</label>
-					<p>{{ $alumno->edad}}</p>
+					<p>{{ $profesor->edad}}</p>
 				</div>
 			</div>
 			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
 				<div class="form-group">
 					<label for="direccion">Direccion</label>
-					<p>{{ $alumno->direccion}}</p>
+					<p>{{ $profesor->direccion}}</p>
 				</div>
 			</div>
 			
