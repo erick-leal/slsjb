@@ -22,7 +22,12 @@ class Profesor extends User
 
     public function eventos()
     {
-    	return $this->hasMany('App\Evento');
+    	return $this->hasMany('App\Evento','id_profesor');
+    }
+
+    public function conductas()
+    {
+        return $this->hasMany('App\Conducta','id_profesor');
     }
 
     public function scopeSearch($query, $nombre)

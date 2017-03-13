@@ -4,9 +4,14 @@
 
 @section('content')
 		
-	
-           <strong>Alumno : {{$alumno->nombre." ".$alumno->apellido_paterno." ".$alumno->apellido_materno}}</strong><br>
-           <strong>Rut: {{$alumno->rut}}</strong><br><br>
+        
+        {!! Form::open( ['class' => 'navbar-form pull-right']) !!}
+        <a class="btn btn-success" href="{{URL('agregar/anotacion', array($alumno->id, $asignatura->id ))}}"> Registrar Nueva Anotacion</a>
+	    {!! Form::close()!!}
+        
+
+           <strong>Alumno : </strong><a>{{$alumno->nombre." ".$alumno->apellido_paterno." ".$alumno->apellido_materno}}</a><br>
+           <strong>Rut: </strong><a>{{$alumno->rut}}</a><br><br>
                             <table class="table table-bordered">
                            
                                 <tr>
@@ -18,6 +23,7 @@
                                     <th>Descripcion : </th>
                                     
                                     
+                                    
                                 </tr>
                                 @foreach($mis_anotaciones as $anotacion)
                                 <tr>
@@ -27,6 +33,7 @@
                                     <td>{{$anotacion->profesor->nombre." ".$anotacion->profesor->apellido_paterno}}</td>
                                     <td>{{$anotacion->tipo}}</td>
                                     <td>{{$anotacion->descripcion}}</td>
+
                                     
                                 </tr>
                                 @endforeach

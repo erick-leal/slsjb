@@ -49,7 +49,7 @@
         
     </div>
    <a class="btn btn-primary" href="{{ route('matriculas.index') }}">Volver</a>
-   <a class="btn btn-danger" href="{{ URL('pdf', $matricula->id) }}"><span class="fa  fa-print" aria-hidden="true"></span> Imprimir</a>
+   <a class="btn btn-danger" href="{{ URL('pdfmatricula', $matricula->id) }}"><span class="fa  fa-print" aria-hidden="true"></span> Imprimir</a>
    
 
 @endsection

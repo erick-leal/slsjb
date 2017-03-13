@@ -21,7 +21,7 @@
 	            </div>
 
 	            <div class="form-group"> 
-	                {!! Form::label('nombre','Nombre')!!}
+	                {!! Form::label('nombre','Nombres')!!}
 	                {!! Form::text('nombre', $alumno->nombre, array('placeholder' => 'Nombre...','class' => 'form-control')) !!}
 	            </div>
 
@@ -40,16 +40,20 @@
 	                {!! Form::text('email', $alumno->email, array('placeholder' => 'Correo...','class' => 'form-control')) !!}
 	            </div>
 
-
-	            
-	            <div class="form-group">
-                    {!! Form::label('id_curso', 'Curso') !!}
-                  	
-                    {!! Form::select('id_curso',$cursos,$alumno->curso,['class' => 'form-control']) !!}
-                 
-              
+	            @if(($alumno->id_curso) == null)
+				<div class="form-group">
+					{!! Form::label('id_curso', 'Curso') !!}
+                    {!! Form::select('id_curso', $cursos, null, array('class' => 'form-control', 'placeholder' => 'Seleccione un Curso...')) !!}
                 </div>
-	      
+                @else
+                <div class="form-group">
+                    {!! Form::label('id_curso', 'Curso') !!}
+                    {!! Form::select('id_curso', $cursos, $alumno->curso->id, array('class' => 'form-control', 'placeholder' => 'Seleccione un Curso...')) !!}
+                </div>
+                @endif
+                 
+                 
+
 	            <div class="form-group">
 	                {!! Form::label('sexo','Sexo')!!}
 	                {!! Form::select('sexo', ['' => 'Seleccionar...','Masculino' => 'Masculino', 'Femenino' => 'Femenino'], $alumno->sexo, ['class' => 'form-control']) !!}
@@ -70,14 +74,18 @@
 	                {!! Form::text('edad', $alumno->edad, array('placeholder' => 'Edad...','class' => 'form-control')) !!}
 	            </div>
 
+	            @if(($alumno->id_apoderado) == null)
 	            <div class="form-group">
-                    {!! Form::label('id_apoderado', 'Apoderado') !!}
-                
-                    {!! Form::select('id_apoderado',$apoderados,$alumno->apoderado,['class' => 'form-control select-apoderado']) !!}
-               
-                   
+	            	{!! Form::label('id_apoderado', 'Apoderado') !!}
+                    {!! Form::select('id_apoderado',$apoderados,null,array('class' => 'form-control select-apoderado', 'placeholder' => 'Seleccione un apoderado')) !!}
                 </div>
-
+               	@else
+               	<div class="form-group">
+                    {!! Form::label('id_apoderado', 'Apoderado') !!}
+                    {!! Form::select('id_apoderado',$apoderados,$alumno->apoderado->id,array('class' => 'form-control select-apoderado', 'placeholder' => 'Seleccione un apoderado')) !!}
+                </div>
+                @endif   
+                
 	            <div class="form-group">
 	                {!! Form::label('direccion','Direccion')!!}
 	                {!! Form::text('direccion', $alumno->direccion, array('placeholder' => 'Direccion...','class' => 'form-control')) !!}

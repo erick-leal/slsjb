@@ -6,15 +6,16 @@
 <br><br>
 
 
-<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
-				<div class="form-group">
-					<label for="foto"></label>
-					
-					@if(($alumno->foto)!="")
-						<img src="{{ asset('imagenes/alumnos/'.$alumno->foto) }}" height="150px" width="150px">
-					@endif
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
+			<div class="form-group">
+				<label for="foto"></label>
+				@if(($alumno->foto)!="")
+					<img src="{{ asset('imagenes/alumnos/'.$alumno->foto) }}" height="150px" width="150px">
+				@else
+					<img src="{{ asset('imagenes/alumnos/default.jpg') }}" height="150px" width="150px">
+				@endif
 				</div>
-			</div>
+		</div> 
 
 		<div class="row">
 			<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12"">
@@ -23,12 +24,14 @@
 					<p>{{ $alumno->rut }}</p>
 				</div>
 			</div>
+
 			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
 				<div class="form-group">
 					<label for="nombre">Nombre</label>
 					<p>{{ $alumno->nombre }}</p>
 				</div>
 			</div>
+
 			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
 				<div class="form-group">
 					<label for="apellido_paterno">Apellidos</label>
@@ -46,15 +49,14 @@
 			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
 				<div class="form-group">
 					<label>Sexo</label>
-				
-				@if ($alumno->sexo == 'Masculino')
-					<p>{{ $alumno->sexo}}</p>
-				@else
-					<p>{{ $alumno->sexo}}</p>
-				@endif		
-				
+					@if ($alumno->sexo == 'Masculino')
+						<p>{{ $alumno->sexo}}</p>
+					@else
+						<p>{{ $alumno->sexo}}</p>
+					@endif			
 				</div>
 			</div>
+
 			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
 				<div class="form-group">
 					<label for="telefono">Telefono</label>
@@ -62,18 +64,25 @@
 				</div>
 			</div>
 			
-
 			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
-			<div class="form-group">
-				<label>Curso</label>
-					<p> {{ $alumno->curso->nombre}}</p>
+				<div class="form-group">
+					<label>Curso</label>
+					@if($alumno->curso == null)
+						<p></p>
+					@else
+						<p> {{ $alumno->curso->nombre}}</p>
+					@endif
+				</div>
 			</div>
-		</div>
 
 			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
 				<div class="form-group">
 					<label>Apoderado</label>
+					@if($alumno->apoderado == null)
+						<p></p>
+					@else
 						<p>{{$alumno->apoderado->nombre." ".$alumno->apoderado->apellido_paterno." ".$alumno->apoderado->apellido_materno}}</p>
+					@endif
 				</div>
 			</div>
 
@@ -83,20 +92,20 @@
 					<p>{{ $alumno->fecha_nacimiento}}</p>
 				</div>
 			</div>
+
 			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
 				<div class="form-group">
 					<label for="edad">Edad</label>
 					<p>{{ $alumno->edad}}</p>
 				</div>
 			</div>
+
 			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
 				<div class="form-group">
 					<label for="direccion">Direccion</label>
 					<p>{{ $alumno->direccion}}</p>
 				</div>
-			</div>
-			
-			
+			</div>		
 		</div>
 
 @endsection

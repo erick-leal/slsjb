@@ -11,22 +11,15 @@ use Illuminate\Support\Facades\Input;
 
 class AlumnosController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
+
     public function index(Request $request)
     {
-        $alumnos = Alumno::search($request->nombre)->orderBy('created_at','DSC')->paginate(5);
+        $alumnos = Alumno::search($request->nombre)->orderBy('created_at','DSC')->paginate(10);
         return view('alumnos.index')->with('alumnos',$alumnos);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function create() 
     {
     	$cursos = Curso::orderBy('nombre','ASC')->pluck('nombre','id');
@@ -65,7 +58,7 @@ class AlumnosController extends Controller
     public function show($id)
     {
         $alumno = Alumno::find($id);
-        return view('alumnos.show')->with('alumno',$alumno);
+        return view('alumnos.show')->with('alumno',$alumno); 
     }
 
     /**
@@ -82,7 +75,8 @@ class AlumnosController extends Controller
         $alumno->curso; 
     	
     	$apoderados = Apoderado::orderBy('id','ASC')->pluck('nombre','id'); 
-        $alumno->apoderado;   
+        $alumno->apoderado;  
+         
         return view('alumnos.edit')->with('alumno', $alumno)->with('cursos',$cursos)->with('apoderados',$apoderados);
     }
 

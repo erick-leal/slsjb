@@ -21,7 +21,7 @@
 	            </div>
 
 	            <div class="form-group">
-	                {!! Form::label('nombre','Nombre')!!}
+	                {!! Form::label('nombre','Nombres')!!}
 	                {!! Form::text('nombre', null, array('placeholder' => 'Nombre...','class' => 'form-control')) !!}
 	            </div>
 

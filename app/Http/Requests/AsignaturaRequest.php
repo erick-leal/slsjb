@@ -28,7 +28,7 @@ class AsignaturaRequest extends FormRequest
             case 'POST':
             {
                 return [
-                    'nombre' => 'required|min:5|max:30|unique:asignaturas',
+                    'nombre' => 'required|min:5|max:30',
                     //'horario' => 'required',
                     'periodo' => 'required',
                     'codigo' => 'required|unique:asignaturas',
@@ -50,7 +50,6 @@ class AsignaturaRequest extends FormRequest
     {
         return [
             'nombre.required' =>'El nombre de la asignatura es obligatorio',
-            'nombre.unique' =>'La asignatura ingresada ya existe',
             'nombre.min' =>'El nombre debe contener al menos 5 caracteres',
             'nombre.max' => 'El nombredebe contener un maximo de 30 caracteres',
             'periodo.required' => 'Seleccione periodo',

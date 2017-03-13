@@ -8,22 +8,17 @@ use App\Asignatura;
 use App\Http\Requests\ConductaRequest; 
 use App\Conducta;   
 use Carbon\Carbon;
+use App\Profesor;
 
 class ConductasController extends Controller
-{
-    public function __construct()
-    {
-        Carbon::setLocale('es');
-    }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+{    
     public function index(Request $request)
-    {
-        $conductas = Conducta::orderBy('created_at','DSC')->paginate(10);
-        return view('conductas.index')->with('conductas',$conductas);
+    {   
+        $profesor = Profesor::find(auth('profesor')->user()->id);
+        $mis_conductas = $profesor->conductas->all();
+        return view('conductas.index')->with('mis_conductas',$mis_conductas)->with('profesor',$profesor)->with('i', ($request->input('page', 1) - 1) * 5);
+        //$conductas = Conducta::orderBy('created_at','DSC')->paginate(10);
+        //return view('conductas.index')->with('conductas',$conductas);
     }
 
     /**

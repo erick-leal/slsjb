@@ -51,14 +51,16 @@
  
                         <div class="form-group">
                             {!! Form::label('fecha_nacimiento','Fecha Nacimiento')!!}
-                            {!! Form::date('fecha_nacimiento', $administrativo->fecha_nacimiento, array('placeholder' => 'Fecha       Nacimiento...','class' => 'form-control')) !!}
+                            {!! Form::date('fecha_nacimiento', $administrativo->fecha_nacimiento,array('class' => 'form-control datepicker1')) !!}
                         </div>
 
                         <div class="form-group">
                             {!! Form::label('edad','Edad')!!}
                             {!! Form::text('edad', $administrativo->edad, array('placeholder' => 'Edad...','class' => 'form-control')) !!}
                         </div>
-        
+
+              
+
                         <div class="form-group">
                             {!! Form::label('direccion','Direccion')!!}
                             {!! Form::text('direccion', $administrativo->direccion, array('placeholder' => 'Direccion...','class' => '        form-control')) !!}

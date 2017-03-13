@@ -22,10 +22,30 @@ Route::get('/home', [
 	'uses' => 'HomeController@index'
 ]);
 
+//Vista Apoderado//
+Route::get('datos-apoderado/alumnos', [
+	'as' => '/datos-apoderado/alumnos',
+	'uses' => 'DatosApoderadoController@alumnos'
+]);
+
+Route::get('datos-apoderado/personal', [
+	'as' => '/datos-apoderado/personal',
+	'uses' => 'DatosApoderadoController@personal'
+]);
+
+Route::get('datos-apoderado/veranotacion/{id}','DatosApoderadoController@verAnotacion');
+Route::get('datos-apoderado/vercalificacion/{id}','DatosApoderadoController@verCalificacion');
+// FIN //
+
 //Vista Alumno
 Route::get('datos-alumno/conductas', [
 	'as' => '/datos-alumno/conductas',
 	'uses' => 'DatosAlumnoController@conductas'
+]);
+
+Route::get('datos-alumno/calificaciones', [
+	'as' => '/datos-alumno/calificaciones',
+	'uses' => 'DatosAlumnoController@calificaciones'
 ]);
 
 Route::get('datos-alumno/asignaturas', [
@@ -37,6 +57,7 @@ Route::get('datos-alumno/personal', [
 	'as' => '/datos-alumno/personal',
 	'uses' => 'DatosAlumnoController@personal'
 ]);
+// FIN //
 
 //Vista Profesor
 Route::get('datos-profesor/asignaturas', [
@@ -50,9 +71,12 @@ Route::get('datos-profesor/personal', [
 ]);
 
 Route::get('datos-profesor/veranotacion/{id}/{idasi}','DatosProfesorController@verAnotacion');
+Route::get('datos-profesor/vercalificacion/{id}/{idasi}','DatosProfesorController@verCalificacion');
+// FIN //
 
 //PDF Matricula
-Route::get('pdf/{id}','PDFController@pdfmatricula');
+Route::get('pdfmatricula/{id}','PDFController@pdfmatricula');
+Route::get('pdfcalificaciones/{id}','PDFController@pdfCalificaciones');
 
 //Mostrar Asignaturas
 Route::get('showasignaturascurso/{id}','ShowAsignaturaCursoController@showAsignaturaCurso');
@@ -63,9 +87,25 @@ Route::get('showalumnoscurso/{id}','ShowAlumnosCursoController@showAlumnosCurso'
 //Mostrar ALumnos x Asignatura
 Route::get('showalumnosasignatura/{id}','ShowAlumnosAsignaturaController@showAlumnosAsignatura');
 
+//Mostrar Eventos x Asignatura
+Route::get('showeventosasignatura/{id}','ShowEventosAsignaturaController@showEventosAsignatura');
+
+//Mostrar Calificaciones x Asignatura
+Route::get('showcalificacionesasignatura/{id}','ShowCalificacionesAsignaturaController@showCalificacionesAsignatura');
+
 //Agregar anotacion
 Route::get('agregar/anotacion/{id}/{idasi}','AgregarAnotacionController@agregarAnotacion');
 Route::post('agregar/anotacion','AgregarAnotacionController@guardarAnotacion');
+
+//Agregar calificacion
+Route::get('agregar/calificacion/{id}/{idasi}','AgregarCalificacionController@agregarCalificacion');
+Route::post('agregar/calificacion','AgregarCalificacionController@guardarCalificacion');
+
+//Modificar calificacion
+Route::get('modificar/calificacion/{id}/{idasi}/{idcal}','AgregarCalificacionController@modificarCalificacion');
+Route::put('modificar/calificacion/{id}','AgregarCalificacionController@actualizarCalificacion');
+Route::patch('modificar/calificacion','AgregarCalificacionController@actualizarCalificacion');
+
 
 //Registro y login de profesores
 Route::get('profesores/login','Auth\AuthProfesorController@showLoginForm');
@@ -189,3 +229,7 @@ Route::delete('conductas/{id}',['as'=>'conductas.destroy','uses'=>'ConductasCont
 //CRUD Calificacion
 Route::resource('calificaciones','CalificacionesController');
 Route::delete('calificaciones/{id}',['as'=>'calificaciones.destroy','uses'=>'CalificacionesController@destroy']);
+
+//CRUD Eventos
+Route::resource('eventos','EventosController');
+Route::delete('eventos/{id}',['as'=>'eventos.destroy','uses'=>'EventosController@destroy']);

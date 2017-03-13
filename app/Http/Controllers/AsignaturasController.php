@@ -20,7 +20,7 @@ class AsignaturasController extends Controller
      */
     public function index(Request $request)
     {
-        $asignaturas = Asignatura::search($request->nombre)->orderBy('nombre','ASC')->paginate(5);
+        $asignaturas = Asignatura::search($request->nombre)->orderBy('codigo','ASC')->paginate(10);
         return view('asignaturas.index')->with('asignaturas',$asignaturas);
     }
 

@@ -22,6 +22,9 @@
 
     <link rel="stylesheet" href="{{asset('plugins/chosen/chosen.css')}}">
 
+   
+    
+
   </head>
   <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
@@ -215,9 +218,9 @@
                     
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu">
-            <li class="header"> -----</li>
+            <li class="header"> --------------------------------------------------- </li>
             
-            @if (Auth::guard("apoderado")->check() || Auth::guard("administrativo")->check() || Auth::guard("administrador")->check())
+            @if (Auth::guard("administrador")->check())
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-users"></i>
@@ -262,6 +265,7 @@
                 <small class="label pull-right bg-yellow">mod1</small>
               </a>
             </li>
+
             <li>
               <a href="/cursos">
                 <i class="fa fa-graduation-cap"></i> <span>Cursos</span>
@@ -297,21 +301,6 @@
               </a>
             </li>
 
-            <li>
-              <a href="/conductas">
-                <i class="fa fa-clone"></i> <span>Conductas</span>
-                <small class="label pull-right bg-red">mod6</small>
-              </a>
-            </li>
-
-             <li>
-              <a href="/calificaciones">
-                <i class="fa fa-file-text"></i> <span>Calificaciones</span>
-                <small class="label pull-right bg-red">mod7</small>
-              </a>
-            </li>
-
-            
            
             @elseif(Auth::guard('alumno')->check())
 
@@ -322,7 +311,14 @@
               </a>
             </li>
 
-           <li>
+            <li>
+              <a href="/datos-alumno/asignaturas">
+                <i class="fa fa-book"></i> <span>Mis Asignaturas</span>
+                <small class="label pull-right bg-red">mod5</small>
+              </a>
+            </li>
+
+            <li>
               <a href="/datos-alumno/conductas">
                 <i class="fa fa-clone"></i> <span>Libro de Anotaciones</span>
                 <small class="label pull-right bg-red">mod6</small>
@@ -330,11 +326,31 @@
             </li>
 
             <li>
-              <a href="/datos-alumno/asignaturas">
-                <i class="fa fa-book"></i> <span>Mis Asignaturas</span>
+              <a href="/datos-alumno/calificaciones">
+                <i class="fa fa-file-text"></i> <span>Mis Calificaciones</span>
+                <small class="label pull-right bg-red">mod7</small>
+              </a>
+            </li>
+
+            @elseif(Auth::guard('apoderado')->check())
+
+            <li>
+              <a href="/datos-apoderado/personal">
+                <i class="fa  fa-user"></i> <span>Informacion Personal</span>
+                <small class="label pull-right bg-blue">♦♦♦</small>
+              </a>
+            </li>
+
+            <li>
+              <a href="/datos-apoderado/alumnos">
+                <i class="fa fa-users"></i> <span>Mis Alumnos</span>
                 <small class="label pull-right bg-red">mod5</small>
               </a>
             </li>
+
+           
+
+            
 
             @elseif(Auth::guard('profesor')->check())
 
@@ -356,6 +372,36 @@
               <a href="/conductas">
                 <i class="fa fa-clone"></i> <span>Conductas</span>
                 <small class="label pull-right bg-red">mod6</small>
+              </a>
+            </li>
+
+            <li>
+              <a href="/eventos">
+                <i class="fa fa-calendar"></i> <span>Eventos</span>
+                <small class="label pull-right bg-red">mod7</small>
+              </a>
+            </li>
+
+             @elseif(Auth::guard('administrativo')->check())
+
+             <li>
+              <a href="/cursos">
+                <i class="fa fa-graduation-cap"></i> <span>Cursos</span>
+                <small class="label pull-right bg-yellow">mod2</small>
+              </a>
+            </li>
+
+              <li>
+              <a href="/noticias">
+                <i class="fa fa-newspaper-o"></i> <span>Noticias</span>
+                <small class="label pull-right bg-red">mod4</small>
+              </a>
+            </li>
+
+              <li>
+              <a href="/matriculas">
+                <i class="fa fa-edit "></i> <span>Matriculas</span>
+                <small class="label pull-right bg-red">mod4</small>
               </a>
             </li>
 
@@ -433,6 +479,10 @@
     <script src="{{asset('plugins/chosen/chosen.jquery.js')}}"></script>
 
     <script src="{{asset('plugins/rut/jquery.rut.js')}}"></script> 
+
+    
+
+
 
     <script>
     $('div.alert').not('.alert-important').delay(3000).fadeOut(350);

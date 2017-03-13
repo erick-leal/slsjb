@@ -2,7 +2,8 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Model; 
+use App\Asignatura;
 
 class Evento extends Model
 {
@@ -12,11 +13,16 @@ class Evento extends Model
 
     public function profesor()
     {
-    	return $this->belongsTo('App\Profesor');
+    	return $this->belongsTo('App\Profesor','id_profesor');
     }
 
     public function asignatura()
     {
-    	return $this->belongsTo('App\Asignatura');
+    	return $this->belongsTo(Asignatura::class,'id_asignatura','id');
+    }
+
+    public function scopeSearch($query, $fecha)
+    {
+        return $query->where('fecha', 'LIKE', "%$fecha%");
     }
 }

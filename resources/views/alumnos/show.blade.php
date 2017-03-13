@@ -63,20 +63,37 @@
 				</div>
 			</div>
 			
-
+			@if($alumno->id_curso == null)
 			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
-			<div class="form-group">
-				<label>Curso</label>
-					<p> {{ $alumno->curso->nombre}}</p>
+				<div class="form-group">
+					<label>Curso</label>
+						<p></p>
+				</div>
 			</div>
-		</div>
+			@else
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
+				<div class="form-group">
+					<label>Curso</label>
+						<p>{{$alumno->curso->nombre}}</p>
+				</div>
+			</div>
+			@endif
 
+			@if($alumno->id_apoderado == null)
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
+				<div class="form-group">
+					<label>Apoderado</label>
+						<p></p>
+				</div>
+			</div>
+			@else
 			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
 				<div class="form-group">
 					<label>Apoderado</label>
 						<p>{{$alumno->apoderado->nombre." ".$alumno->apoderado->apellido_paterno." ".$alumno->apoderado->apellido_materno}}</p>
 				</div>
 			</div>
+			@endif
 
 			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
 				<div class="form-group">

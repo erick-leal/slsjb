@@ -40,12 +40,12 @@ class Asignatura extends Model
 
     public function eventos()
     {
-        return $this->hasMany('App\Evento');
+        return $this->hasMany('App\Evento','id_asignatura');
     }
 
     public function calificaciones()
     {
-        return $this->hasMany('App\Calificacion');
+        return $this->hasMany('App\Calificacion','id_asignatura');
     }
 
     public function asistencias()

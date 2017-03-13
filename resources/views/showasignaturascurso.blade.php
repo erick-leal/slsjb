@@ -24,7 +24,7 @@
 					<td>{{ $asi->profesor->nombre." ".$asi->profesor->apellido_paterno}}</td>
 					<td>{{ $asi->sala->nombre}}</td>
 					<td><a href="{{route('asignaturas.show', $asi->id)}}" class="btn btn-info" ><span class="fa fa-eye" aria-hidden="true"></span></a>
-					<a href="" class="btn btn-success" ><span class="fa fa-user" aria-hidden="true"></span></a>		
+					<a href="{{URL('showalumnosasignatura', $asi->id)}}" class="btn btn-success" ><span class="fa fa-user" aria-hidden="true"></span></a>		
 				</tr>
 			@endforeach
 

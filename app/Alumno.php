@@ -44,7 +44,7 @@ class Alumno extends User
 
     public function calificaciones()
     {
-        return $this->hasMany('App\Calificacion');
+        return $this->hasMany('App\Calificacion','id_alumno');
     }
 
     public function asistencias()

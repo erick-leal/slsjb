@@ -4,12 +4,9 @@
 
 @section('content')
 
-<div class="row">
-        <div class="col-md-8 col-md-offset-1">
-            <div class="row">
 
-           <strong>Alumno : {{$alumno->nombre." ".$alumno->apellido_paterno." ".$alumno->apellido_materno}}</strong><br>
-           <strong>Rut: {{$alumno->rut}}</strong><br><br>
+           <strong>Alumno : </strong> <a>{{$alumno->nombre." ".$alumno->apellido_paterno." ".$alumno->apellido_materno}}</a><br>
+           <strong>Rut: </strong><a>{{$alumno->rut}}</a><br><br>
                             <table class="table table-bordered">
                            
                                 <tr>
@@ -32,10 +29,6 @@
                                 </tr>
                                 @endforeach
                             </table>
-
-            </div>
-           
-        </div>
-    </div>
+                            
 
 @endsection

@@ -20,7 +20,7 @@ class CalificacionesController extends Controller
      */
     public function index(Request $request)
     {
-        $calificaciones = Calificacion::orderBy('created_at','DSC')->paginate(5);
+        $calificaciones = Calificacion::orderBy('created_at','DSC')->paginate(10);
         return view('calificaciones.index')->with('calificaciones',$calificaciones);
     }
 

@@ -3,8 +3,9 @@
 @section('title','Listado de Matriculas')
 
 @section('content')
-	        	
+	 @if (Auth::guard("administrativo")->check())       	
 	<a class="btn btn-success" href="{{ route('matriculas.create') }}"> Registrar Nueva Matricula</a>
+	@endif
 	<!-- Buscador -->
 	{!! Form::open(['route' => 'matriculas.index', 'method' => 'GET', 'class' => 'navbar-form pull-right']) !!}
 		<div class="input-group">
@@ -33,9 +34,11 @@
 					<td>{{ $m->alumno->apellido_paterno.' '.$m->alumno->apellido_materno}}</td>
 					<td>{{ $m->estado}}</td>
 					<td><a href="{{route('matriculas.show', $m->id)}}" class="btn btn-info" ><span class="fa fa-eye" aria-hidden="true"></span></a>
+						@if (Auth::guard("administrativo")->check())
 						<a href="{{route('matriculas.edit', $m->id)}}" class="btn btn-warning"><span class="fa fa-edit" aria-hidden="true"></span></a>
 						
 						<a href="" data-target="#modal-delete-{{ $m->id }}"" data-toggle="modal" class="btn btn-danger"> <span class="fa fa-trash" aria-hidden="true"></span></a>
+						@endif
 				</tr>
 				@include('matriculas.modal')
 			@endforeach

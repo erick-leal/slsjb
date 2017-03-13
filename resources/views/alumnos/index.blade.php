@@ -3,8 +3,11 @@
 @section('title','Listado de Alumnos')
 
 @section('content')
-	        	
+	
+
+	@if (Auth::guard("administrador")->check())       	
 	<a class="btn btn-success" href="{{ route('alumnos.create') }}"> Registrar Nuevo Alumno</a>
+	@endif
 	<!-- Buscador -->
 	{!! Form::open(['route' => 'alumnos.index', 'method' => 'GET', 'class' => 'navbar-form pull-right']) !!}
 		<div class="input-group">
@@ -33,9 +36,11 @@
 					<td>{{ $alu->email}}</td>
 					<td>{{ $alu->telefono}}</td>
 					<td><a href="{{route('alumnos.show', $alu->id)}}" class="btn btn-info" ><span class="fa fa-eye" aria-hidden="true"></span></a>
+					@if (Auth::guard("administrador")->check())
 						<a href="{{route('alumnos.edit', $alu->id)}}" class="btn btn-warning"><span class="fa fa-edit" aria-hidden="true"></span></a>
 						
 						<a href="" data-target="#modal-delete-{{ $alu->id }}"" data-toggle="modal" class="btn btn-danger"> <span class="fa fa-trash" aria-hidden="true"></span></a>
+					@endif
 				</tr>
 				@include('alumnos.modal')
 			@endforeach
