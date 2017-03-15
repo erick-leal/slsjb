@@ -56,8 +56,33 @@
                                     <button type="submit" class="btn btn-primary">
                                         <i class="fa fa-btn fa-key"></i> Ingresar
                                     </button>
-                                    <a class="btn btn-primary" href="{{ url('alumnos/register') }}">Crear cuenta</a>
-                                    <a class="btn btn-link" href="{{ url('/alumno-auth/passwords/reset') }}">Olvidaste tu Contraseña?</a>
+                                    <!--<a class="btn btn-primary" href="{{ url('alumnos/register') }}">Crear cuenta</a>-->
+                                    <!--<a class="btn btn-link" href="{{ url('/alumno-auth/passwords/reset') }}">Olvidaste tu Contraseña?</a>-->
+                                    <a href="#" data-id="1" data-toggle="modal" data-target="#myModal">Olviste tu Contraseña?</a> 
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+
+                                               
+
+                                                <div class="modal-body">
+
+                                                    <p><center><strong>Contactar al Administrador del Sistema</strong></center></p>
+
+                                                </div>
+
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                                                   
+                                                </div>
+
+                                            </div><!-- modal content -->
+                                        </div><!-- modal dialog -->
+                                    </div><!-- modal fade -->
+                                    <!-- Cierra Modal -->
+
                                 </div>
                             </div>
                         </form>

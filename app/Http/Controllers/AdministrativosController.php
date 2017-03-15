@@ -63,7 +63,8 @@ class AdministrativosController extends Controller
      */
     public function show($id)
     {
-        // 
+        $administrativo = Administrativo::find($id);
+        return view('administrativos.show')->with('administrativo',$administrativo); 
     }
 
     /**

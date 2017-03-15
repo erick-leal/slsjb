@@ -22,7 +22,7 @@ class HomeController extends Controller
 
         $noticias = Noticia::orderBy('id','DSC')->paginate(4);
         $noticias->each(function($noticias){
-            $noticias->administrativo;
+            $noticias->administrativo->cargo;
         });
         return view('home')->with('noticias',$noticias)->with('cantidadAlumnos',$cantidadAlumnos)->with('cantidadApoderados',$cantidadApoderados)->with('cantidadAdministrativos',$cantidadAdministrativos)->with('cantidadProfesores',$cantidadProfesores);
     }

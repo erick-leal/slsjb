@@ -40,12 +40,18 @@
 	                {!! Form::text('email', $administrativo->email, array('placeholder' => 'Correo...','class' => 'form-control')) !!}
 	            </div>
 
-	            
+	            @if(($administrativo->id_cargo) == null)
 	            <div class="form-group">
+                    {!! Form::label('id_cargo', 'Cargo') !!}
+                    {!! Form::select('id_cargo',$cargos,null,['class' => 'form-control', 'placeholder' => 'Seleccione un Cargo...']) !!}
+                </div>
+                @else
+                <div class="form-group">
                     {!! Form::label('id_cargo', 'Cargo') !!}
                     {!! Form::select('id_cargo',$cargos,$administrativo->cargo->id,['class' => 'form-control', 'placeholder' => 'Seleccione un Cargo...']) !!}
                 </div>
-	      
+	      		@endif
+
 	            <div class="form-group">
 	                {!! Form::label('sexo','Sexo')!!}
 	                {!! Form::select('sexo', ['' => 'Seleccionar...','Masculino' => 'Masculino', 'Femenino' => 'Femenino'], $administrativo->sexo, ['class' => 'form-control']) !!}

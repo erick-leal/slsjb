@@ -19,7 +19,7 @@
 	{!! Form::close() !!}
 	<!-- fin -->
 	 
-	<table class="table table-bordered">
+	<table class="table table-bordered"> 
 		<tr>
 			<th>Rut</th>
 			<th>Nombre</th>
@@ -27,7 +27,7 @@
 			<th>Email</th>
 			<th>Telefono</th>
 			<th>Opciones</th>	
-		</tr>
+		</tr> 
 			@foreach ($alumnos as $alu)
 				<tr>
 					<td>{{ $alu->rut }}</td>

@@ -26,9 +26,9 @@
                                 {{$noticia->descripcion}}
                             </div>
                             <br><br>
-                            <i class="fa fa-user"></i>  <a>{{$noticia->administrativo->nombre." ".$noticia->administrativo->apellido_paterno}}</a>
+                            <i class="fa fa-user"></i>  <a>{{$noticia->administrativo->cargo->nombre}}</a>
                                 <div class="pull-right">
-                                    <i class="fa fa-clock-o"></i> {{$noticia->created_at}} 
+                                    <i class="fa fa-clock-o"></i> {{Carbon\Carbon::parse($noticia->created_at)->format('d-m-Y') }} 
                                 </div>
                         </div>
                     </div>

@@ -74,6 +74,13 @@ Route::get('datos-profesor/veranotacion/{id}/{idasi}','DatosProfesorController@v
 Route::get('datos-profesor/vercalificacion/{id}/{idasi}','DatosProfesorController@verCalificacion');
 // FIN //
 
+//Vista Administrativo
+Route::get('datos-administrativo/personal', [
+	'as' => '/datos-administrativo/personal',
+	'uses' => 'DatosAdministrativoController@personal'
+]);
+//FIN //
+
 //PDF Matricula
 Route::get('pdfmatricula/{id}','PDFController@pdfmatricula');
 Route::get('pdfcalificaciones/{id}','PDFController@pdfCalificaciones');

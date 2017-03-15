@@ -385,6 +385,13 @@
              @elseif(Auth::guard('administrativo')->check())
 
              <li>
+              <a href="/datos-administrativo/personal">
+                <i class="fa  fa-user"></i> <span>Informacion Personal</span>
+                <small class="label pull-right bg-blue">♦♦♦</small>
+              </a>
+            </li>
+
+             <li>
               <a href="/cursos">
                 <i class="fa fa-graduation-cap"></i> <span>Cursos</span>
                 <small class="label pull-right bg-yellow">mod2</small>
