@@ -1,3 +1,5 @@
+@if (Auth::guard('profesor')->check())
+
 @extends('layouts.admin')
 
 @section('title','Lista de Eventos')
@@ -45,3 +47,9 @@
 	
 
 @endsection
+
+@else
+
+@include('layouts.error')
+
+@endif	

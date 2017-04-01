@@ -1,3 +1,5 @@
+@if (Auth::guard('profesor')->check()|| Auth::guard("administrador")->check())
+
 @extends('layouts.admin')
 
 @section('title','Listado de Calificaciones')
@@ -12,7 +14,7 @@
 			<th>Rut</th>
 			<th>Alumno</th>
 			<th>Asignatura</th>
-			<th>Tipo</th>
+			
 			<th>Opciones</th>	
 		</tr>
 			@foreach ($calificaciones as $cal)
@@ -22,7 +24,7 @@
 					<td>{{ $cal->alumno->nombre." ".$cal->alumno->apellido_paterno." ".$cal->alumno->apellido_materno }}</td>
 					<td>{{ $cal->asignatura->nombre}}</td>
 					<td>{{ $cal->observacion}}</td>
-					<td><a href="{{route('calificaciones.show', $cal->id)}}" class="btn btn-info" ><span class="fa fa-eye" aria-hidden="true"></span></a>
+					<td>
 						<a href="{{route('calificaciones.edit', $cal->id)}}" class="btn btn-warning"><span class="fa fa-edit" aria-hidden="true"></span></a>
 						
 						<a href="" data-target="#modal-delete-{{ $cal->id }}"" data-toggle="modal" class="btn btn-danger"> <span class="fa fa-trash" aria-hidden="true"></span></a>
@@ -33,3 +35,9 @@
 	</table>
 	{!! $calificaciones->render() !!}
 @endsection
+
+@else
+
+@include('layouts.error')
+
+@endif	

@@ -1,3 +1,5 @@
+@if (Auth::guard("administrativo")->check())
+
 @extends('layouts.admin')
 
 @section('title','Editar Matricula')
@@ -40,3 +42,9 @@
 		$('.select-alumno').chosen({no_results_text: "Alumno no registrado", max_selected_options: 1});
 	</script>
 @endsection
+
+@else
+
+@include('layouts.error')
+
+@endif	

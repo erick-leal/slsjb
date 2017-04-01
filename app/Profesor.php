@@ -22,7 +22,7 @@ class Profesor extends User
 
     public function eventos()
     {
-    	return $this->hasMany('App\Evento','id_profesor');
+    	return $this->hasMany('App\Evento','id_profesor')->orderBy('fecha','DSC');
     }
 
     public function conductas()

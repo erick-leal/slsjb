@@ -1,3 +1,5 @@
+@if (Auth::guard('profesor')->check())
+
 @extends('layouts.admin')
 
 @section('title','Calificaciones Parciales')
@@ -126,3 +128,9 @@
 </script>
 
 @endsection
+
+@else
+
+@include('layouts.error')
+
+@endif	

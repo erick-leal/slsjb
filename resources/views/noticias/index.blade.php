@@ -1,3 +1,5 @@
+@if (Auth::guard('administrativo')->check())
+
 @extends('layouts.admin')
 
 @section('title','Lista de Noticias')
@@ -44,3 +46,9 @@
 	{{$noticias->render()}}
 
 @endsection
+
+@else
+
+@include('layouts.error')
+
+@endif	

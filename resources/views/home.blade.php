@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title','Liceo San Juan Bautista')
+@section('title','Noticias')
 
 @section('content')
     
@@ -7,7 +7,7 @@
 
     <div class="row">
         <div class="col-md-12 col-md-offset-2">
-            <div class="row">
+            <div class="row"><br><br>
 
             @foreach($noticias as $noticia)
 
@@ -18,7 +18,7 @@
                             <hr>
                             <a href="#" class="thumbail">
                             @if(($noticia->foto)!="")
-                                <img class="img-responsive img-noticia" src="{{ asset('imagenes/noticias/'.$noticia->foto) }}">
+                                <center><img class="img-responsive img-noticia" src="{{ asset('imagenes/noticias/'.$noticia->foto) }}" height="200px" width="200px"></center>
                             @endif
                             </a> 
                             <br><br>
@@ -121,7 +121,7 @@
                             <hr>
                             <a href="#" class="thumbail">
                             @if(($noticia->foto)!="")
-                                <img class="img-responsive img-noticia" src="{{ asset('imagenes/noticias/'.$noticia->foto) }}">
+                                <center><img class="img-responsive img-noticia" src="{{ asset('imagenes/noticias/'.$noticia->foto) }}" height="200px" width="200px"></center>
                             @endif
                             </a> 
                             <br><br>

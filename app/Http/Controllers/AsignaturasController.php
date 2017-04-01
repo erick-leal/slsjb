@@ -13,15 +13,17 @@ use App\Http\Requests\AsignaturaRequest;
 class AsignaturasController extends Controller
 {
     
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    //public function __construct()
+    //{
+    //     $this->middleware(['administrador','alumno']);
+//
+    //}
+
     public function index(Request $request)
     {
         $asignaturas = Asignatura::search($request->nombre)->orderBy('codigo','ASC')->paginate(10);
         return view('asignaturas.index')->with('asignaturas',$asignaturas);
+
     }
 
     /**

@@ -1,3 +1,5 @@
+@if (Auth::guard("administrador")->check())
+
 @extends('layouts.admin')
 
 @section('title','Editar Sala: ' . $sala->nombre)
@@ -38,3 +40,9 @@
 	{!! Form::close() !!}
 
 @endsection
+
+@else
+
+@include('layouts.error')
+
+@endif	

@@ -1,3 +1,5 @@
+@if (Auth::guard("administrador")->check())
+
 @extends('layouts.admin')
 
 @section('title','Lista de Salas')
@@ -41,3 +43,9 @@
 	</table>
 	{!! $salas->render() !!}
 @endsection
+
+@else
+
+@include('layouts.error')
+
+@endif	

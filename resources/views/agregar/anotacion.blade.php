@@ -1,3 +1,5 @@
+@if (Auth::guard('profesor')->check())
+
 @extends('layouts.admin')
 
 @section('title','Registrar Anotación')
@@ -51,3 +53,9 @@
 </script>
 
 @endsection
+
+@else
+
+@include('layouts.error')
+
+@endif

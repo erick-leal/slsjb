@@ -1,3 +1,5 @@
+@if (Auth::guard('profesor')->check()|| Auth::guard("administrador")->check())
+
 @extends('layouts.admin')
 
 @section('title','Listado de Anotaciones')
@@ -33,3 +35,9 @@
 	</table>
 	
 @endsection
+
+@else
+
+@include('layouts.error')
+
+@endif	

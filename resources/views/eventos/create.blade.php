@@ -1,3 +1,5 @@
+@if (Auth::guard('profesor')->check())
+
 @extends('layouts.admin')
 
 @section('title','Registrar Evento')
@@ -54,3 +56,9 @@
 		});
 	</script>
 @endsection
+
+@else
+
+@include('layouts.error')
+
+@endif	

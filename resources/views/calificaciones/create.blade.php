@@ -1,3 +1,5 @@
+@if (Auth::guard('profesor')->check()|| Auth::guard("administrador")->check())
+
 @extends('layouts.admin')
 
 @section('title','Registrar Nota')
@@ -127,3 +129,9 @@
 </script>
 
 @endsection
+
+@else
+
+@include('layouts.error')
+
+@endif	

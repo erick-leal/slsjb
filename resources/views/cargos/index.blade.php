@@ -1,3 +1,5 @@
+@if (Auth::guard("administrador")->check())
+
 @extends('layouts.admin')
 
 @section('title','Lista de Cargos')
@@ -39,3 +41,9 @@
 	</table>
 	{!! $cargos->render() !!}
 @endsection
+
+@else
+
+@include('layouts.error')
+
+@endif	

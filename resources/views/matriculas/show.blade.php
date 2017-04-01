@@ -1,3 +1,5 @@
+@if (Auth::guard("administrativo")->check())
+
 @extends ('layouts.admin')
 @section ('content')
 @section('title','Matrícula')
@@ -53,3 +55,9 @@
    
 
 @endsection
+
+@else
+
+@include('layouts.error')
+
+@endif	

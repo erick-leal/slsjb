@@ -1,3 +1,5 @@
+@if (Auth::guard("administrador")->check())
+
 @extends('layouts.admin')
 
 @section('title','Registrar Sala')
@@ -36,3 +38,9 @@
 	{!! Form::close() !!}
 
 @endsection
+
+@else
+
+@include('layouts.error')
+
+@endif	

@@ -1,3 +1,5 @@
+@if (Auth::guard("administrativo")->check())	
+
 @extends('layouts.admin')
 
 @section('title','Listado de Alumnos')
@@ -34,3 +36,9 @@
 	</table>
 
 @endsection
+
+@else
+
+@include('layouts.error')
+
+@endif	

@@ -19,10 +19,7 @@ class AuthAlumnoController extends Controller
     protected $guard = 'alumno';
     
 
-    public function __construct()
-    {
-        $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
-    }
+    
 
  
 
@@ -59,7 +56,7 @@ class AuthAlumnoController extends Controller
             );
         }
 
-        Auth::guard($this->getGuard())->login($this->create($request->all()));
+        $alumno = $this->create($request->all());
 
         return redirect($this->redirectPath());
     }

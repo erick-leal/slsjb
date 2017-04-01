@@ -1,3 +1,5 @@
+@if (Auth::guard("administrador")->check())
+
 @extends('layouts.admin')
 
 @section('title','Editar Asignatura')
@@ -69,3 +71,9 @@
 		$('.select-alumnos').chosen({no_results_text: "Alumno no registrado", max_selected_options: 50});
 	</script>
 @endsection
+
+@else
+
+@include('layouts.error')
+
+@endif

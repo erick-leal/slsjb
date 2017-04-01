@@ -19,7 +19,6 @@ class EventosController extends Controller
         $profesor = Profesor::find(auth('profesor')->user()->id);
         $mis_eventos = $profesor->eventos->all();
         return view('eventos.index')->with('mis_eventos',$mis_eventos)->with('profesor',$profesor)->with('i', ($request->input('page', 1) - 1) * 5);
-        //return view('eventos.index')->with('eventos',$eventos)->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
     /**

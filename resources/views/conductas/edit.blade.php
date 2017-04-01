@@ -1,3 +1,5 @@
+@if (Auth::guard('profesor')->check()|| Auth::guard("administrador")->check())
+
 @extends('layouts.admin')
 
 @section('title','Editar Anotacion') 
@@ -50,3 +52,9 @@
 	$('.textarea-descripcion').trumbowyg();
 </script>
 @endsection
+
+@else
+
+@include('layouts.error')
+
+@endif	

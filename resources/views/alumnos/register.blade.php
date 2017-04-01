@@ -1,3 +1,5 @@
+@if (Auth::guard("administrativo")->check())
+
 @extends('layouts.app')
 @section('titulo','Registro Alumno')
 
@@ -69,3 +71,9 @@
     $("input#rut").rut();
 </script>
 @endsection
+
+@else
+
+@include('layouts.error')
+
+@endif  

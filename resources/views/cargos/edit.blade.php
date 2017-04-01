@@ -1,3 +1,6 @@
+@if (Auth::guard("administrador")->check())
+
+
 @extends('layouts.admin')
 
 @section('title','Editar Cargo: ' . $cargo->nombre)
@@ -31,3 +34,9 @@
 	{!! Form::close() !!}
 
 @endsection
+
+@else
+
+@include('layouts.error')
+
+@endif	

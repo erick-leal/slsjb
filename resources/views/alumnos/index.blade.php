@@ -25,7 +25,7 @@
 			<th>Nombre</th>
 			<th>Apellidos</th>
 			<th>Email</th>
-			<th>Telefono</th>
+			
 			<th>Opciones</th>	
 		</tr> 
 			@foreach ($alumnos as $alu)
@@ -34,9 +34,9 @@
 					<td>{{ $alu->nombre}}</td>
 					<td>{{ $alu->apellido_paterno.' '.$alu->apellido_materno}}</td>
 					<td>{{ $alu->email}}</td>
-					<td>{{ $alu->telefono}}</td>
+					
 					<td><a href="{{route('alumnos.show', $alu->id)}}" class="btn btn-info" ><span class="fa fa-eye" aria-hidden="true"></span></a>
-					@if (Auth::guard("administrador")->check())
+					@if (Auth::guard("administrador")->check() || Auth::guard("administrativo")->check())
 						<a href="{{route('alumnos.edit', $alu->id)}}" class="btn btn-warning"><span class="fa fa-edit" aria-hidden="true"></span></a>
 						
 						<a href="" data-target="#modal-delete-{{ $alu->id }}"" data-toggle="modal" class="btn btn-danger"> <span class="fa fa-trash" aria-hidden="true"></span></a>

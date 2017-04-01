@@ -1,3 +1,5 @@
+@if (Auth::guard("administrador")->check())
+
 @extends('layouts.admin')
 
 @section('title','Crear Curso')
@@ -31,3 +33,9 @@
 	{!! Form::close() !!}
 
 @endsection
+
+@else
+
+@include('layouts.error')
+
+@endif	

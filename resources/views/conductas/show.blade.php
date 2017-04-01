@@ -1,3 +1,5 @@
+@if (Auth::guard('profesor')->check()|| Auth::guard("administrador")->check())
+
 @extends ('layouts.admin')
 @section ('content')
 @section('title','Conductas')
@@ -71,3 +73,9 @@
 </script>
 
 @endsection
+
+@else
+
+@include('layouts.error')
+
+@endif	

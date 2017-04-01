@@ -189,54 +189,60 @@ Route::get('alumno-auth/passwords/reset','AlumnoAuth\ForgotPasswordController@sh
 Route::post('alumno-auth/passwords/reset',['as' => 'password.reset','uses'=>'AlumnoAuth\ResetPasswordController@reset']);
 Route::get('alumno-auth/passwords/reset/{token}','AlumnoAuth\ResetPasswordController@showResetForm');
 
-//CRUD Curso
-Route::resource('cursos','CursosController');
-Route::delete('cursos/{id}',['as'=>'cursos.destroy','uses'=>'CursosController@destroy']);
 
-//CRUD Profesor
-Route::resource('profesores','ProfesoresController');
-Route::delete('profesores/{id}',['as'=>'profesores.destroy','uses'=>'ProfesoresController@destroy']);
 
-//CRUD Cargos
-Route::resource('cargos','CargosController');
-Route::delete('cargos/{id}',['as'=>'cargos.destroy','uses'=>'CargosController@destroy']);
+	//CRUD Curso
+	Route::resource('cursos','CursosController');
+	Route::delete('cursos/{id}',['as'=>'cursos.destroy','uses'=>'CursosController@destroy']);
 
-//CRUD Apoderado
-Route::resource('apoderados','ApoderadosController');
-Route::delete('apoderados/{id}',['as'=>'apoderados.destroy','uses'=>'ApoderadosController@destroy']);
+	//CRUD Profesor
+	Route::resource('profesores','ProfesoresController');
+	Route::delete('profesores/{id}',['as'=>'profesores.destroy','uses'=>'ProfesoresController@destroy']);
 
-//CRUD Sala
-Route::resource('salas','SalasController');
-Route::delete('salas/{id}',['as'=>'salas.destroy','uses'=>'SalasController@destroy']);
+	//CRUD Cargos
+	Route::resource('cargos','CargosController');
+	Route::delete('cargos/{id}',['as'=>'cargos.destroy','uses'=>'CargosController@destroy']);
 
-//CRUD Administrativo
-Route::resource('administrativos','AdministrativosController');
-Route::delete('administrativos/{id}',['as'=>'administrativos.destroy','uses'=>'AdministrativosController@destroy']);
+	//CRUD Apoderado
+	Route::resource('apoderados','ApoderadosController');
+	Route::delete('apoderados/{id}',['as'=>'apoderados.destroy','uses'=>'ApoderadosController@destroy']);
+
+	//CRUD Sala
+	Route::resource('salas','SalasController');
+	Route::delete('salas/{id}',['as'=>'salas.destroy','uses'=>'SalasController@destroy']);
+
+	//CRUD Administrativo
+	Route::resource('administrativos','AdministrativosController');
+	Route::delete('administrativos/{id}',['as'=>'administrativos.destroy','uses'=>'AdministrativosController@destroy']);
+		
+	//CRUD Noticia
+	Route::resource('noticias','NoticiasController');
+	Route::delete('noticias/{id}',['as'=>'noticias.destroy','uses'=>'NoticiasController@destroy']);
+
+	//CRUD Alumno
+	Route::resource('alumnos','AlumnosController');
+	Route::delete('alumnos/{id}',['as'=>'alumnos.destroy','uses'=>'AlumnosController@destroy']);
+
+	//CRUD Matricula
+	Route::resource('matriculas','MatriculasController');
+	Route::delete('matriculas/{id}',['as'=>'matriculas.destroy','uses'=>'MatriculasController@destroy']);
+
+
+
+	//CRUD Conducta
+	Route::resource('conductas','ConductasController');
+	Route::delete('conductas/{id}',['as'=>'conductas.destroy','uses'=>'ConductasController@destroy']);
+
+	//CRUD Calificacion
+	Route::resource('calificaciones','CalificacionesController');
+	Route::delete('calificaciones/{id}',['as'=>'calificaciones.destroy','uses'=>'CalificacionesController@destroy']);
+
+	//CRUD Eventos
+	Route::resource('eventos','EventosController');
+	Route::delete('eventos/{id}',['as'=>'eventos.destroy','uses'=>'EventosController@destroy']);
+
+	//CRUD Asignatura
+	Route::resource('asignaturas','AsignaturasController');
+	Route::delete('asignaturas/{id}',['as'=>'asignaturas.destroy','uses'=>'AsignaturasController@destroy']);
+
 	
-//CRUD Noticia
-Route::resource('noticias','NoticiasController');
-Route::delete('noticias/{id}',['as'=>'noticias.destroy','uses'=>'NoticiasController@destroy']);
-
-//CRUD Alumno
-Route::resource('alumnos','AlumnosController');
-Route::delete('alumnos/{id}',['as'=>'alumnos.destroy','uses'=>'AlumnosController@destroy']);
-
-//CRUD Matricula
-Route::resource('matriculas','MatriculasController');
-Route::delete('matriculas/{id}',['as'=>'matriculas.destroy','uses'=>'MatriculasController@destroy']);
-
-//CRUD Asignatura
-Route::resource('asignaturas','AsignaturasController');
-Route::delete('asignaturas/{id}',['as'=>'asignaturas.destroy','uses'=>'AsignaturasController@destroy']);
-
-//CRUD Conducta
-Route::resource('conductas','ConductasController');
-Route::delete('conductas/{id}',['as'=>'conductas.destroy','uses'=>'ConductasController@destroy']);
-
-//CRUD Calificacion
-Route::resource('calificaciones','CalificacionesController');
-Route::delete('calificaciones/{id}',['as'=>'calificaciones.destroy','uses'=>'CalificacionesController@destroy']);
-
-//CRUD Eventos
-Route::resource('eventos','EventosController');
-Route::delete('eventos/{id}',['as'=>'eventos.destroy','uses'=>'EventosController@destroy']);

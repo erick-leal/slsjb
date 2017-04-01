@@ -30,7 +30,7 @@
     <div class="wrapper">
 
       <header class="main-header">
-
+        @if (Auth::guard('profesor')->check()|| Auth::guard("apoderado")->check() || Auth::guard("administrativo")->check() || Auth::guard("alumno")->check()|| Auth::guard("administrador")->check())
         <!-- Logo -->
         <a href="{{url('home')}}" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
@@ -38,7 +38,7 @@
           <!-- logo for regular state and mobile devices -->
           <span class="logo-lg"><b>Inicio</b></span>
         </a>
-
+        
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
           <!-- Sidebar toggle button-->
@@ -49,7 +49,7 @@
           <div class="navbar-custom-menu">  
             <ul class="nav navbar-nav">
               <!-- Messages: style can be found in dropdown.less-->
-              
+        @endif   
               <!-- User Account: style can be found in dropdown.less -->
               @if(Auth::guard('profesor')->check())
               <li class="dropdown user user-menu">
@@ -231,28 +231,28 @@
 
                <li>
               <a href="/alumnos">
-                <i class="fa  fa-user"></i> <span>Alumnos</span>
-                <small class="label pull-right bg-blue">♦♦♦</small>
+                <i class="fa  fa-user"></i> <span>Alumnos</span> 
+                <i class="pull-right fa fa-circle text-blue"></i>
               </a>
             </li>
                 
                  <li>
               <a href="/apoderados">
                 <i class="fa fa-male"></i> <span>Apoderados</span>
-                <small class="label pull-right bg-green">♦♦♦</small>
+                <i class="pull-right fa fa-circle text-green"></i>
               </a>
             </li>
 
               <li>
               <a href="/administrativos">
                 <i class="fa fa-user-secret"></i> <span>Administrativos</span>
-                <small class="label pull-right bg-yellow">♦♦♦</small>
+                <i class="pull-right fa fa-circle text-yellow"></i>
               </a>
             </li>
                <li>
               <a href="/profesores">
                 <i class="fa fa-user-md"></i> <span>Profesores</span>
-                <small class="label pull-right bg-red">♦♦♦</small>
+                <i class="pull-right fa fa-circle text-red"></i>
               </a>
             </li>
               </ul>
@@ -262,42 +262,42 @@
             <li>
               <a href="/cargos">
                 <i class="fa fa-briefcase"></i> <span>Cargos</span>
-                <small class="label pull-right bg-yellow">mod1</small>
+                <small class="label pull-right bg-yellow"></small>
               </a>
             </li>
 
             <li>
               <a href="/cursos">
                 <i class="fa fa-graduation-cap"></i> <span>Cursos</span>
-                <small class="label pull-right bg-yellow">mod2</small>
+                <small class="label pull-right bg-yellow"></small>
               </a>
             </li>
            
             <li>
               <a href="/salas">
                 <i class="fa fa-building"></i> <span>Sala</span>
-                <small class="label pull-right bg-red">mod3</small>
+                <small class="label pull-right bg-red"></small>
               </a>
             </li>      
 
             <li>
               <a href="/noticias">
                 <i class="fa fa-newspaper-o"></i> <span>Noticias</span>
-                <small class="label pull-right bg-red">mod4</small>
+                <small class="label pull-right bg-red"></small>
               </a>
             </li>
 
             <li>
               <a href="/matriculas">
                 <i class="fa fa-edit "></i> <span>Matriculas</span>
-                <small class="label pull-right bg-red">mod4</small>
+                <small class="label pull-right bg-red"></small>
               </a>
             </li>
 
             <li>
               <a href="/asignaturas">
                 <i class="fa fa-book"></i> <span>Asignaturas</span>
-                <small class="label pull-right bg-red">mod5</small>
+                <small class="label pull-right bg-red"></small>
               </a>
             </li>
 
@@ -307,28 +307,28 @@
             <li>
               <a href="/datos-alumno/personal">
                 <i class="fa  fa-user"></i> <span>Informacion Personal</span>
-                <small class="label pull-right bg-blue">♦♦♦</small>
+                <i class="pull-right fa fa-circle text-blue"></i>
               </a>
             </li>
 
             <li>
               <a href="/datos-alumno/asignaturas">
                 <i class="fa fa-book"></i> <span>Mis Asignaturas</span>
-                <small class="label pull-right bg-red">mod5</small>
+                <small class="label pull-right bg-red"></small>
               </a>
             </li>
 
             <li>
               <a href="/datos-alumno/conductas">
                 <i class="fa fa-clone"></i> <span>Libro de Anotaciones</span>
-                <small class="label pull-right bg-red">mod6</small>
+                <small class="label pull-right bg-red"></small>
               </a>
             </li>
 
             <li>
               <a href="/datos-alumno/calificaciones">
                 <i class="fa fa-file-text"></i> <span>Mis Calificaciones</span>
-                <small class="label pull-right bg-red">mod7</small>
+                <small class="label pull-right bg-red"></small>
               </a>
             </li>
 
@@ -337,14 +337,14 @@
             <li>
               <a href="/datos-apoderado/personal">
                 <i class="fa  fa-user"></i> <span>Informacion Personal</span>
-                <small class="label pull-right bg-blue">♦♦♦</small>
+                <i class="pull-right fa fa-circle text-green"></i>
               </a>
             </li>
 
             <li>
               <a href="/datos-apoderado/alumnos">
                 <i class="fa fa-users"></i> <span>Mis Alumnos</span>
-                <small class="label pull-right bg-red">mod5</small>
+                <small class="label pull-right bg-red"></small>
               </a>
             </li>
 
@@ -357,28 +357,28 @@
             <li>
               <a href="/datos-profesor/personal">
                 <i class="fa  fa-user"></i> <span>Informacion Personal</span>
-                <small class="label pull-right bg-blue">♦♦♦</small>
+                <i class="pull-right fa fa-circle text-red"></i>
               </a>
             </li>
 
             <li>
               <a href="/datos-profesor/asignaturas">
                 <i class="fa fa-book"></i> <span>Mis Asignaturas</span>
-                <small class="label pull-right bg-red">mod5</small>
+                <small class="label pull-right bg-red"></small>
               </a>
             </li>
 
             <li>
               <a href="/conductas">
                 <i class="fa fa-clone"></i> <span>Conductas</span>
-                <small class="label pull-right bg-red">mod6</small>
+                <small class="label pull-right bg-red"></small>
               </a>
             </li>
 
             <li>
               <a href="/eventos">
                 <i class="fa fa-calendar"></i> <span>Eventos</span>
-                <small class="label pull-right bg-red">mod7</small>
+                <small class="label pull-right bg-red"></small>
               </a>
             </li>
 
@@ -387,30 +387,59 @@
              <li>
               <a href="/datos-administrativo/personal">
                 <i class="fa  fa-user"></i> <span>Informacion Personal</span>
-                <small class="label pull-right bg-blue">♦♦♦</small>
+                <i class="pull-right fa fa-circle text-yellow"></i>
               </a>
             </li>
 
              <li>
               <a href="/cursos">
                 <i class="fa fa-graduation-cap"></i> <span>Cursos</span>
-                <small class="label pull-right bg-yellow">mod2</small>
+                <small class="label pull-right bg-yellow"></small>
               </a>
             </li>
 
               <li>
               <a href="/noticias">
                 <i class="fa fa-newspaper-o"></i> <span>Noticias</span>
-                <small class="label pull-right bg-red">mod4</small>
+                <small class="label pull-right bg-red"></small>
               </a>
             </li>
 
-              <li>
-              <a href="/matriculas">
-                <i class="fa fa-edit "></i> <span>Matriculas</span>
-                <small class="label pull-right bg-red">mod4</small>
+             
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-users"></i>
+                <span>Alumnos</span>
+                 <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+
+               <li>
+              <a href="/alumnos/register">
+                <i class="fa  fa-user"></i> <span>Registrar Alumno</span>
+                <small class="label pull-right bg-blue">1</small>
               </a>
             </li>
+                
+              <li>
+              <a href="/alumnos">
+                <i class="fa fa-male"></i> <span>Alumnos</span>
+                <small class="label pull-right bg-green">2</small>
+              </a>
+            </li>
+
+            <li>
+              <a href="/matriculas">
+                <i class="fa fa-edit "></i> <span>Matricular</span>
+                <small class="label pull-right bg-red">3</small>
+              </a>
+            </li>
+
+            
+              </ul>
+            </li>
+
+            
 
             @endif
                         

@@ -58,7 +58,7 @@
                                     </button>
                                     <!--<a class="btn btn-primary" href="{{ url('alumnos/register') }}">Crear cuenta</a>-->
                                     <!--<a class="btn btn-link" href="{{ url('/alumno-auth/passwords/reset') }}">Olvidaste tu Contraseña?</a>-->
-                                    <a href="#" data-id="1" data-toggle="modal" data-target="#myModal">Olviste tu Contraseña?</a> 
+                                    <a href="#" data-id="1" data-toggle="modal" data-target="#myModal">Olvidaste tu Contraseña?</a> 
 
                                     <!-- Modal -->
                                     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

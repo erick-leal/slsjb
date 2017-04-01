@@ -1,3 +1,5 @@
+@if (Auth::guard('administrativo')->check())
+
 @extends('layouts.admin')
 
 @section('title','Editar Noticia: ' . $noticia->nombre)
@@ -51,3 +53,9 @@
 		$('.textarea-descripcion').trumbowyg();
 	</script>
 @endsection	
+
+@else
+
+@include('layouts.error')
+
+@endif	
