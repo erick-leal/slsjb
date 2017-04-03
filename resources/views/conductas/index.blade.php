@@ -19,7 +19,7 @@
 		</tr>
 			@foreach ($mis_conductas as $con)
 				<tr>
-					<td>{{ $con->created_at }}</td>
+					<td>{{ Carbon\Carbon::parse($con->created_at)->format('d-m-Y') }}</td>
 					<td>{{ $con->alumno->rut}}</td>
 					<td>{{ $con->alumno->nombre." ".$con->alumno->apellido_paterno." ".$con->alumno->apellido_materno }}</td>
 					<td>{{ $con->asignatura->nombre}}</td>

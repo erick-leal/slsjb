@@ -109,7 +109,7 @@ class AgregarCalificacionController extends Controller
        
        
 
-        flash('Anotacion agregada exitosamente!','success');
+        flash('Calificacion agregada exitosamente!','success');
         return view('datos-profesor/asignaturas')->with('calificacion',$calificacion)->with('profesor',$profesor)->with('mis_asignaturas',$mis_asignaturas);
     }
 

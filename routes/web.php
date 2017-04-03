@@ -81,9 +81,11 @@ Route::get('datos-administrativo/personal', [
 ]);
 //FIN //
 
-//PDF Matricula
+//PDF Matricula 
 Route::get('pdfmatricula/{id}','PDFController@pdfmatricula');
 Route::get('pdfcalificaciones/{id}','PDFController@pdfCalificaciones');
+Route::get('matriculas/reportes','MatriculasReportesController@reportes');
+
 
 //Mostrar Asignaturas
 Route::get('showasignaturascurso/{id}','ShowAsignaturaCursoController@showAsignaturaCurso');

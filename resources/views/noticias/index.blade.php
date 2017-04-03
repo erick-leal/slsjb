@@ -29,7 +29,7 @@
 		</tr>
 			@foreach ($noticias as $n)
 				<tr>
-					<td>{{ $n->created_at }}</td>
+					<td>{{Carbon\Carbon::parse($n->created_at)->format('d-m-Y') }}</td>
 					<td>{{ $n->nombre }}</td>
 					<td>{{ $n->administrativo->nombre." ".$n->administrativo->apellido_paterno}}</td>
 					<td><a href="" class="btn btn-info" ><span class="fa fa-eye" aria-hidden="true"></span></a>

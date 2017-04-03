@@ -18,7 +18,7 @@ class MatriculasController extends Controller
      */
     public function index(Request $request)
     {
-        $matriculas = Matricula::search($request->fecha)->orderBy('created_at','DSC')->paginate(5);
+        $matriculas = Matricula::search($request->fecha)->orderBy('created_at','DSC')->paginate(10);
         return view('matriculas.index')->with('matriculas',$matriculas)->with('i', ($request->input('page', 1) - 1) * 5);;
     }
 

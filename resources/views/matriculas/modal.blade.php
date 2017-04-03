@@ -9,7 +9,7 @@
 					<h4 class="modal-title">Eliminar Matricula</h4>
 				</div>
 				<div class="modal-body">
-					<p>Confirme si desea Eliminar la matricula:<strong> {{$m->alumno->rut}}</strong></p>
+					<p>Confirme si desea Eliminar la matricula del alumno:<strong> {{$m->alumno->rut}}</strong></p>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>

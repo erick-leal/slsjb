@@ -29,8 +29,8 @@
                     {!! Form::select('id_asignatura',$asignaturas,null,['class' => 'form-control select-asignatura', 'placeholder' => 'Seleccione una asignatura']) !!}
                 </div>
 
-                </div>
-                </div>
+            </div>
+        </div>
                 <br><br>
                 <strong>Calificaciones : </strong><br><br>
                <div class="panel panel-primary">

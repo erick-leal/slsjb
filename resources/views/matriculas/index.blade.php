@@ -4,9 +4,10 @@
 
 @section('title','Listado de Matriculas')
 
-@section('content')
-	 @if (Auth::guard("administrativo")->check())       	
+@section('content') 
+	@if (Auth::guard("administrativo")->check())       	
 	<a class="btn btn-success" href="{{ route('matriculas.create') }}"> Registrar Nueva Matricula</a>
+	<a class="btn btn-warning" href="{{ URL('matriculas/reportes')}}"><span class="fa  fa-bar-chart" aria-hidden="true"></span> Estadisticas</a>
 	@endif
 	<!-- Buscador -->
 	{!! Form::open(['route' => 'matriculas.index', 'method' => 'GET', 'class' => 'navbar-form pull-right']) !!}
@@ -30,7 +31,7 @@
 		</tr>
 			@foreach ($matriculas as $m)
 				<tr>
-					<td>{{ $m->created_at }}</td>
+					<td>{{Carbon\Carbon::parse($m->fecha)->format('d-m-Y') }}</td>
 					<td>{{ $m->alumno->rut }}</td>
 					<td>{{ $m->alumno->nombre}}</td>
 					<td>{{ $m->alumno->apellido_paterno.' '.$m->alumno->apellido_materno}}</td>

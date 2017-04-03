@@ -18,6 +18,6 @@ class Matricula extends Model
 
     public function scopeSearch($query, $fecha)
     {
-        return $query->where('fecha', 'LIKE', "%$fecha%");
+        return $query->whereMonth('fecha', 'LIKE', "%$fecha%");
     }
 }
