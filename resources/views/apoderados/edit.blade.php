@@ -55,10 +55,7 @@
 	                {!! Form::date('fecha_nacimiento', $apoderado->fecha_nacimiento, array('placeholder' => 'Fecha Nacimiento...','class' => 'form-control')) !!}
 	            </div>
 
-	            <div class="form-group">
-	                {!! Form::label('edad','Edad')!!}
-	                {!! Form::text('edad', $apoderado->edad, array('placeholder' => 'Edad...','class' => 'form-control')) !!}
-	            </div>
+	            
 
 	            <div class="form-group">
 	                {!! Form::label('direccion','Direccion')!!}

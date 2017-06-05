@@ -7,6 +7,7 @@ use App\Curso;
 use App\Http\Requests\CursoRequest; 
 use App\Alumno;
 use App\Asignatura;
+use App\Profesor;
 
 class CursosController extends Controller
 {
@@ -15,7 +16,7 @@ class CursosController extends Controller
 
     public function index(Request $request)
     {
-        $cursos = Curso::search($request->nombre)->withCount('alumnos')->orderBy('nombre','ASC')->paginate(10);
+        $cursos = Curso::search($request->nombre)->withCount('alumnos')->orderBy('nombre','ASC')->paginate(20);
         return view('cursos.index')->with('cursos',$cursos)->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
@@ -25,8 +26,9 @@ class CursosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('cursos.create');
+    {   
+        $profesores = Profesor::orderBy('nombre','ASC')->get()->pluck('name_and_last','id');
+        return view('cursos.create')->with('profesores',$profesores);
     }
 
     /**
@@ -67,8 +69,9 @@ class CursosController extends Controller
      */
     public function edit($id)
     {
+        $profesores = Profesor::orderBy('nombre','ASC')->get()->pluck('name_and_last','id');
         $curso = Curso::find($id);
-        return view('cursos.edit')->with('curso', $curso);
+        return view('cursos.edit')->with('curso', $curso)->with('profesores',$profesores);
     }
 
     /**
@@ -81,8 +84,8 @@ class CursosController extends Controller
     public function update(CursoRequest $request, $id)
     {
         $curso = Curso::find($id);
-        $curso->nombre = $request->nombre;
-        $curso->tipo = $request->tipo;
+        $curso->fill($request->all());
+        
         $curso->save();
         flash('Curso ' .$curso->nombre.' editado exitosamente!','warning');
         return redirect()->route('cursos.index');

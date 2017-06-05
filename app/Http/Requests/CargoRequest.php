@@ -24,7 +24,7 @@ class CargoRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre' => 'required|min:5|max:20',
+            'nombre' => 'required|min:3|max:20',
             'descripcion' => 'required'
         ];
     }
@@ -32,7 +32,7 @@ class CargoRequest extends FormRequest
     {
         return [
             'nombre.required' =>'El nombre del cargo es obligatorio',
-            'nombre.min' =>'El nombre debe contener al menos 5 caracteres',
+            'nombre.min' =>'El nombre debe contener al menos 3 caracteres',
             'nombre.max' => 'El debe contener un maximo de 20 caracteres',
             'descripcion.required' => 'La descripcion del cargo es obligatorio',
         ];

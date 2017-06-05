@@ -24,7 +24,7 @@ class CursoRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre' => 'required|min:5|max:20|unique:cursos',
+            'nombre' => 'required|min:5|max:20',
             'tipo' => 'required'
         ];
     }
@@ -32,7 +32,7 @@ class CursoRequest extends FormRequest
     {
         return [
             'nombre.required' =>'El nombre del curso es obligatorio',
-            'nombre.unique' =>'El curso ingresado ya existe',
+            //'nombre.unique' =>'El curso ingresado ya existe',
             'nombre.min' =>'El nombre debe contener al menos 5 caracteres',
             'nombre.max' => 'El nombre debe contener un maximo de 20 caracteres',
             'tipo.required' => 'Seleccione modalidad del curso',

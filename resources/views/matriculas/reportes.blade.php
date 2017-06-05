@@ -43,6 +43,7 @@
 			
 		</tr>
 			@foreach ($matriculas as $m)
+				@if($m->estado == 'Matriculado')
 				<tr>
 					<td>{{Carbon\Carbon::parse($m->fecha)->format('d-m-Y') }}</td>
 					<td>{{ $m->alumno->rut }}</td>
@@ -52,6 +53,7 @@
 
 						
 				</tr>
+				@endif
 				@include('matriculas.modal')
 			@endforeach
 

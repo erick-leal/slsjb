@@ -19,9 +19,9 @@ class AsignaturasController extends Controller
 //
     //}
 
-    public function index(Request $request)
+    public function index(Request $request) 
     {
-        $asignaturas = Asignatura::search($request->nombre)->orderBy('codigo','ASC')->paginate(10);
+        $asignaturas = Asignatura::search($request->nombre)->orderBy('codigo','DSC')->paginate(15);
         return view('asignaturas.index')->with('asignaturas',$asignaturas);
 
     }
@@ -29,12 +29,12 @@ class AsignaturasController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response 
      */
     public function create()  
     {
-    	$profesores = Profesor::orderBy('nombre','ASC')->pluck('rut','id');
-    	$cursos = Curso::orderBy('nombre','ASC')->pluck('nombre','id');
+    	$profesores = Profesor::orderBy('nombre','ASC')->get()->pluck('name_and_last','id');
+    	$cursos = Curso::orderBy('nombre','ASC')->get()->pluck('name_and_type','id');
     	$salas = Sala::orderBy('nombre','ASC')->pluck('nombre','id');
         $alumnos = Alumno::orderBy('nombre','ASC')->pluck('rut','id');
         return view('asignaturas.create')->with('profesores',$profesores)->with('cursos',$cursos)->with('salas',$salas)->with('alumnos',$alumnos);
@@ -50,7 +50,7 @@ class AsignaturasController extends Controller
     {
         $asignatura = new Asignatura($request->all());
         $asignatura->save();
-        $asignatura->alumnos()->sync($request->alumnos);
+        $asignatura->alumnos()->sync((array)$request->alumnos);
         flash('Asignatura ' .$asignatura->nombre.' agregada exitosamente!','success');
         return redirect()->route('asignaturas.index');
     }
@@ -61,7 +61,7 @@ class AsignaturasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id) 
     {
         $asignatura = Asignatura::find($id);
         return view('asignaturas.show')->with('asignatura',$asignatura);
@@ -74,14 +74,14 @@ class AsignaturasController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id) 
-    {
+    { 
     	$asignatura = Asignatura::find($id);
     	$asignatura->profesor;
     	$asignatura->curso;
     	$asignatura->sala;
         $asignatura->alumnos;
-    	$profesores = Profesor::orderBy('nombre','ASC')->pluck('nombre','id');
-    	$cursos = Curso::orderBy('nombre','ASC')->pluck('nombre','id');
+    	$profesores = Profesor::orderBy('nombre','ASC')->get()->pluck('name_and_last','id');
+    	$cursos = Curso::orderBy('nombre','ASC')->get()->pluck('name_and_type','id');
     	$salas = Sala::orderBy('nombre','ASC')->pluck('nombre','id'); 
         $alumnos = Alumno::orderBy('nombre','ASC')->pluck('rut','id'); 
 
@@ -103,7 +103,7 @@ class AsignaturasController extends Controller
         $asignatura = Asignatura::find($id);
         $asignatura->fill($request->all());
         $asignatura->save();
-        $asignatura->alumnos()->sync($request->alumnos);
+        $asignatura->alumnos()->sync((array)$request->alumnos);
         flash('Asignatura ' .$asignatura->nombre.' editada exitosamente!','warning');
         return redirect()->route('asignaturas.index');
     }

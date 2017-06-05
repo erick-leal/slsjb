@@ -11,7 +11,7 @@
             @foreach ($errors->all('<p>:message</p>') as $message)
             	{!! $message !!}
             @endforeach
-        </div>
+        </div> 
     @endif
 
 	{!! Form::open(array('route' => ['asignaturas.update',$asignatura],'method'=>'PUT')) !!}
@@ -27,25 +27,47 @@
 	                {!! Form::text('nombre', $asignatura->nombre, array('placeholder' => 'Nombre...','class' => 'form-control')) !!}
 	            </div>
 
+	            @if(($asignatura->id_curso) == null)
 	            <div class="form-group">
                     {!! Form::label('id_curso', 'Curso') !!}
-                    {!! Form::select('id_curso',$cursos,$asignatura->curso,['class' => 'form-control']) !!}
+                    {!! Form::select('id_curso',$cursos,null,['class' => 'form-control select-curso', 'placeholder' => 'Seleccione una opción']) !!}
                 </div>
+                @else
+	            <div class="form-group">
+                    {!! Form::label('id_curso', 'Curso') !!}
+                    {!! Form::select('id_curso',$cursos,$asignatura->curso->id,['class' => 'form-control select-curso', 'placeholder' => 'Seleccione una opción']) !!}
+                </div>
+                @endif
 	      
 	            <div class="form-group">
 	                {!! Form::label('periodo','Periodo')!!}
 	                {!! Form::select('periodo', ['' => 'Seleccionar...','Primer Semestre' => 'Primer Semestre', 'Segundo Semestre' => 'Segundo Semestre'], $asignatura->periodo, ['class' => 'form-control']) !!}
 	            </div>
 
+	            @if(($asignatura->id_sala) == null)
 	           <div class="form-group">
                     {!! Form::label('id_sala', 'Sala') !!}
-                    {!! Form::select('id_sala',$salas,$asignatura->sala,['class' => 'form-control']) !!}
+                    {!! Form::select('id_sala',$salas,null,['class' => 'form-control',  'placeholder' => 'Seleccione una sala...']) !!}
                 </div>
+                @else
+                <div class="form-group">
+                    {!! Form::label('id_sala', 'Sala') !!}
+                    {!! Form::select('id_sala',$salas,$asignatura->sala->id,['class' => 'form-control',  'placeholder' => 'Seleccione una sala...']) !!}
+                </div>
+                @endif
 
+
+	            @if(($asignatura->id_profesor) == null)
+	            <div class="form-group">
+                    {!! Form::label('id_profesor', 'Profesor') !!}
+                    {!! Form::select('id_profesor',$profesores, null,['class' => 'form-control select-profesor']) !!}
+                </div>
+	            @else
                 <div class="form-group">
                     {!! Form::label('id_profesor', 'Profesor') !!}
-                    {!! Form::select('id_profesor',$profesores, $asignatura->profesor,['class' => 'form-control select-profesor']) !!}
+                    {!! Form::select('id_profesor',$profesores, $asignatura->profesor->id,['class' => 'form-control select-profesor']) !!}
                 </div>
+                @endif
 
                 <div class="form-group">
                     {!! Form::label('alumnos', 'Alumnos') !!}
@@ -68,6 +90,7 @@
 @section('js')
 	<script>
 		$('.select-profesor').chosen({no_results_text: "Profesor no registrado", max_selected_options: 1});
+		$('.select-curso').chosen({no_results_text: "Curso no existe", max_selected_options: 1});
 		$('.select-alumnos').chosen({no_results_text: "Alumno no registrado", max_selected_options: 50});
 	</script>
 @endsection

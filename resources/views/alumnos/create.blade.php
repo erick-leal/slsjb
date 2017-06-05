@@ -47,7 +47,7 @@
 
 	            <div class="form-group">
                     {!! Form::label('id_curso', 'Curso') !!}
-                    {!! Form::select('id_curso',$cursos,null,['class' => 'form-control', 'placeholder' => 'Seleccione una opción']) !!}
+                    {!! Form::select('id_curso',$cursos,null,['class' => 'form-control select-curso', 'placeholder' => 'Seleccione una opción']) !!}
                 </div>
 	      
 	            <div class="form-group">
@@ -65,10 +65,7 @@
 	                {!! Form::date('fecha_nacimiento', null, array('placeholder' => 'Fecha Nacimiento...','class' => 'form-control')) !!}
 	            </div>
 
-	            <div class="form-group">
-	                {!! Form::label('edad','Edad')!!}
-	                {!! Form::text('edad', null, array('placeholder' => 'Edad...','class' => 'form-control')) !!}
-	            </div>
+	           
 
 	            <div class="form-group">
                     {!! Form::label('id_apoderado', 'Apoderado') !!}
@@ -97,6 +94,7 @@
 <script>
     $("input#rut").rut();
 	$('.select-apoderado').chosen({no_results_text: "Apoderado no registrado", max_selected_options: 1});
+	$('.select-curso').chosen({no_results_text: "Curso no existe", max_selected_options: 1});
 </script>
 
 @endsection

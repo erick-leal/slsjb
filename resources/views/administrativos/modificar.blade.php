@@ -54,10 +54,7 @@
                             {!! Form::date('fecha_nacimiento', $administrativo->fecha_nacimiento,array('class' => 'form-control datepicker1')) !!}
                         </div>
 
-                        <div class="form-group">
-                            {!! Form::label('edad','Edad')!!}
-                            {!! Form::text('edad', $administrativo->edad, array('placeholder' => 'Edad...','class' => 'form-control')) !!}
-                        </div>
+                        
 
               
 

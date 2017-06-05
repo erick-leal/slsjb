@@ -12,18 +12,18 @@ use Illuminate\Support\Facades\Input;
 class AlumnosController extends Controller
 {
    
-
+ 
     public function index(Request $request)
     {
-        $alumnos = Alumno::search($request->nombre)->orderBy('created_at','DSC')->paginate(10);
+        $alumnos = Alumno::search($request->nombre)->orderBy('created_at','DSC')->paginate(15);
         return view('alumnos.index')->with('alumnos',$alumnos);
     }
 
     
     public function create() 
     {
-    	$cursos = Curso::orderBy('nombre','ASC')->pluck('nombre','id');
-    	$apoderados = Apoderado::orderBy('nombre','ASC')->pluck('nombre','id');
+    	$cursos = Curso::orderBy('nombre','ASC')->get()->pluck('name_and_type','id');
+    	$apoderados = Apoderado::orderBy('nombre','ASC')->get()->pluck('name_and_last','id');
         return view('alumnos.create')->with('cursos',$cursos)->with('apoderados',$apoderados);
     }
 
@@ -71,10 +71,11 @@ class AlumnosController extends Controller
     {
     	$alumno = Alumno::find($id);
     	
-    	$cursos	= Curso::orderBy('id','ASC')->pluck('nombre','id'); 
+    	$cursos	= Curso::orderBy('id','ASC')->get()->pluck('name_and_type','id');
+            
         $alumno->curso; 
     	
-    	$apoderados = Apoderado::orderBy('id','ASC')->pluck('nombre','id'); 
+    	$apoderados = Apoderado::orderBy('id','ASC')->get()->pluck('name_and_last','id');
         $alumno->apoderado;  
          
         return view('alumnos.edit')->with('alumno', $alumno)->with('cursos',$cursos)->with('apoderados',$apoderados);

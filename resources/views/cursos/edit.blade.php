@@ -26,6 +26,19 @@
 	                {!! Form::label('tipo','Tipo')!!}
 	                {!! Form::select('tipo', ['' => 'Modalidad Curso...','Tecnico Profesional' => 'Tecnico Profesional', 'Humanista Cientifico' => 'Cientifico Humanista'], $curso->tipo, ['class' => 'form-control']) !!}
 	            </div>
+
+	            @if(($curso->id_profesor) == null)
+	            <div class="form-group">
+                    {!! Form::label('id_profesor', 'Profesor Jefe') !!}
+                    {!! Form::select('id_profesor',$profesores,null,['class' => 'form-control select-profesor', 'placeholder' => 'Seleccione un profesor...']) !!}
+                </div>
+                @else
+                <div class="form-group">
+                    {!! Form::label('id_profesor', 'Profesor Jefe') !!}
+                    {!! Form::select('id_profesor',$profesores,$curso->profesor->id, array('class' => 'form-control select-profesor', 'placeholder' => 'Seleccione un profesor...')) !!}
+                </div>
+                @endif
+
 				<button type="submit" class="btn btn-primary">Editar</button>
 				<a class="btn btn-danger" href="{{route('cursos.index')}}">Cancelar</a>       	
 	        </div>

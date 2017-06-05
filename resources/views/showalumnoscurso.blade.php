@@ -1,4 +1,4 @@
-@if (Auth::guard("administrativo")->check())	
+@if (Auth::guard("administrativo")->check() || Auth::guard("administrador")->check())	
 
 @extends('layouts.admin')
 
@@ -14,7 +14,7 @@
 			<th>N°</th>
 			<th>Rut</th>
 			<th>Nombre</th>
-			<th>Apellido Paterno</th>
+			<th>Apellido Paterno</th> 
 			<th>Apellido Materno</th>
 			<th>Correo</th>
 			<th>Opciones</th>	
@@ -29,7 +29,7 @@
 					<td>{{ $alu->apellido_materno}}</td>
 					<td>{{ $alu->email}}</td>
 
-					<td><a href="{{route('alumnos.show', $alu->id)}}" class="btn btn-info" ><span class="fa fa-eye" aria-hidden="true"></span></a>	
+					<td><a href="{{route('alumnos.show', $alu->id)}}" class="btn btn-info" title="Informacion Alumno"><span class="fa fa-eye" aria-hidden="true"></span></a>	
 				</tr>
 			@endforeach
 

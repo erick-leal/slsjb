@@ -11,13 +11,18 @@ class Profesor extends User
 {
     protected $table = "profesores";
 
-    protected $fillable = ['rut', 'nombre', 'apellido_paterno', 'apellido_materno', 'email', 'password', 'sexo', 'telefono', 'foto', 'fecha_nacimiento', 'edad', 'direccion'];
+    protected $fillable = ['rut', 'nombre', 'apellido_paterno', 'apellido_materno', 'email', 'password', 'sexo', 'telefono', 'foto', 'fecha_nacimiento', 'direccion'];
  
     protected $hidden = ['password', 'remember_token'];
 
     public function asignaturas()
     {
     	return $this->hasMany('App\Asignatura','id_profesor');
+    }
+
+    public function cursos()
+    {
+        return $this->hasMany('App\Curso','id_profesor');
     }
 
     public function eventos()
@@ -34,12 +39,12 @@ class Profesor extends User
     {
         return $query->where('nombre', 'LIKE', "%$nombre%");
     }
-    /**
-     * Send the password reset notification.
-     *
-     * @param  string  $token
-     * @return void
-     */
+    
+    public function getNameAndLastAttribute()
+    {
+        return $this->nombre.' '.$this->apellido_paterno.' '.$this->apellido_materno;
+    }
+
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new ProfesorResetPasswordNotification($token));

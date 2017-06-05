@@ -32,7 +32,7 @@
 					<td>{{ $pro->apellido_paterno.' '.$pro->apellido_materno}}</td>
 					<td>{{ $pro->email}}</td>
 					<td>{{ $pro->telefono}}</td>
-					<td><a href="" class="btn btn-info" ><span class="fa fa-eye" aria-hidden="true"></span></a>
+					<td><a href="{{route('profesores.show', $pro->id)}}" class="btn btn-info" ><span class="fa fa-eye" aria-hidden="true"></span></a>
 						<a href="{{route('profesores.edit', $pro->id)}}" class="btn btn-warning"><span class="fa fa-edit" aria-hidden="true"></span></a>
 						
 						<a href="" data-target="#modal-delete-{{ $pro->id }}"" data-toggle="modal" class="btn btn-danger"> <span class="fa fa-trash" aria-hidden="true"></span></a>

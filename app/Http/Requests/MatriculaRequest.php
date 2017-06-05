@@ -24,7 +24,7 @@ class MatriculaRequest extends FormRequest
     public function rules()
     {
         return [
-            'id_alumno' => 'unique:matriculas',   
+            //'id_alumno' => 'unique:matriculas',   
             'estado' => 'required',
             'monto' => 'required',
             'fecha' => 'date',
@@ -36,7 +36,7 @@ class MatriculaRequest extends FormRequest
             'estado.required' =>'El Estado de la Matricula es obligatorio',
             'monto.required' => 'EL monto es obligatorio',
             'fecha.date' =>'Fecha invalida',
-            'id_alumno.unique' => 'Matricula de alumno existente en la base de datos',
+            //'id_alumno.unique' => 'Matricula de alumno existente en la base de datos',
         ];
     }
 }

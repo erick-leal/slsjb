@@ -23,6 +23,11 @@
 	            </div>
 
 	            <div class="form-group">
+                    {!! Form::label('id_curso', 'Curso') !!}
+                    {!! Form::select('id_curso',$cursos,null,['class' => 'form-control', 'placeholder' => 'Seleccione una opción']) !!}
+                </div>
+
+	            <div class="form-group">
 	                {!! Form::label('estado','Estado')!!}
 	                {!! Form::select('estado', ['' => 'Seleccionar...','Matriculado' => 'Matriculado', 'Pendiente' => 'Pendiente', 'No Matriculado' => 'No Matriculado'], null, ['class' => 'form-control']) !!}
 	            </div>

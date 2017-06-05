@@ -1,4 +1,4 @@
-@if (Auth::guard("administrativo")->check())
+@if (Auth::guard("administrativo")->check() || Auth::guard("administrador")->check())
 
 @extends('layouts.admin')
 
@@ -24,18 +24,27 @@
 		<tr>
 			<th>Fecha</th>
 			<th>Rut</th>
-			<th>Nombre</th>
-			<th>Apellidos</th>
+			<th>Curso</th>
+			
 			<th>Estado</th>
 			<th>Opciones</th>	
 		</tr>
 			@foreach ($matriculas as $m)
 				<tr>
-					<td>{{Carbon\Carbon::parse($m->fecha)->format('d-m-Y') }}</td>
+					<td>{{Carbon\Carbon::parse($m->updated_at)->format('d-m-Y') }}</td>
 					<td>{{ $m->alumno->rut }}</td>
-					<td>{{ $m->alumno->nombre}}</td>
-					<td>{{ $m->alumno->apellido_paterno.' '.$m->alumno->apellido_materno}}</td>
-					<td>{{ $m->estado}}</td>
+					@if(($m->id_curso) == null)
+					<td>Sin Curso</td>
+					@else
+					<td>{{ $m->curso->nombre." - ".$m->curso->tipo}}</td>
+					@endif
+					
+					
+					@if(Carbon\Carbon::parse($m->fecha)->age == 1)
+					<td>No Matriculado</td>
+					@else
+					<td>{{ $m->estado }}</td>
+					@endif
 					<td><a href="{{route('matriculas.show', $m->id)}}" class="btn btn-info" ><span class="fa fa-eye" aria-hidden="true"></span></a>
 						@if (Auth::guard("administrativo")->check())
 						<a href="{{route('matriculas.edit', $m->id)}}" class="btn btn-warning"><span class="fa fa-edit" aria-hidden="true"></span></a>

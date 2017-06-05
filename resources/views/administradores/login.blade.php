@@ -57,7 +57,7 @@
                                         <i class="fa fa-btn fa-key"></i> Ingresar
                                     </button>
                                     <!--<a class="btn btn-primary" href="{{ url('administradores/register') }}">Crear cuenta</a>-->
-                                    <a class="btn btn-primary" href="{{ url('alumnos/register') }}">Registrar Alumno</a>
+                                    <!--<a class="btn btn-primary" href="{{ url('alumnos/register') }}">Registrar Alumno</a>
                                      <!--<a class="btn btn-link" href="{{ url('/administrador-auth/passwords/reset') }}">Olvidaste tu Contraseña?</a>-->
                                 </div>
                             </div>

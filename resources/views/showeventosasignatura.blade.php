@@ -9,7 +9,12 @@
 		
 	        	
 	<strong>Asignatura :   </strong>   <a>  {{$asignatura->nombre}}</a><br>
-	<strong>Curso : </strong> <a>{{$asignatura->curso->nombre." / ".$asignatura->curso->tipo}}</a><br>
+	 @if(($asignatura->id_curso)== null)
+	 <strong>Curso  :  </strong><br>
+	 @else
+	 <strong>Curso : </strong> <a>{{$asignatura->curso->nombre." / ".$asignatura->curso->tipo}}</a><br>
+	 @endif
+	
 	<strong>Periodo :	  </strong> <a>{{$asignatura->periodo." - ".$asignatura->created_at->year}}</a><br>
 	<strong>Horario : 	  </strong> <a>{{$asignatura->horario}}</a><br><br>
 

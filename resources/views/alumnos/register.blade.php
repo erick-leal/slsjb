@@ -1,4 +1,4 @@
-@if (Auth::guard("administrativo")->check())
+@if (Auth::guard("administrativo")->check() || Auth::guard("administrador")->check())
 
 @extends('layouts.app')
 @section('titulo','Registro Alumno')
@@ -55,7 +55,7 @@
                         {!! Form::password('password_confirmation',['class'=>'form-control']) !!}
                     </div>
                     <div class="form-group">
-                        {!! Form::submit('Registrarme',['class'=>'btn btn-primary']) !!}
+                        {!! Form::submit('Registrar',['class'=>'btn btn-primary']) !!}
                     </div>
                     {!! Form::close() !!}
                 </div>

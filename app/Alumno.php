@@ -13,7 +13,7 @@ class Alumno extends User
 {
     protected $table = "alumnos";
 
-    protected $fillable = ['rut', 'nombre', 'apellido_paterno', 'apellido_materno', 'email', 'password', 'sexo', 'telefono', 'foto', 'fecha_nacimiento', 'edad', 'direccion', 'id_curso', 'id_apoderado'];
+    protected $fillable = ['rut', 'nombre', 'apellido_paterno', 'apellido_materno', 'email', 'password', 'sexo', 'telefono', 'foto', 'fecha_nacimiento', 'direccion', 'id_curso', 'id_apoderado'];
  
     protected $hidden = ['password', 'remember_token'];
 
@@ -40,6 +40,11 @@ class Alumno extends User
     public function conductas()
     {
         return $this->hasMany('App\Conducta','id_alumno');
+    }
+
+    public function evaluaciones()
+    {
+        return $this->hasMany('App\Evaluacion','id_alumno');
     }
 
     public function calificaciones()

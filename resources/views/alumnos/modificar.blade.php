@@ -54,10 +54,7 @@
                             {!! Form::date('fecha_nacimiento', $alumno->fecha_nacimiento, array('placeholder' => 'Fecha       Nacimiento...','class' => 'form-control')) !!}
                         </div>
 
-                        <div class="form-group">
-                            {!! Form::label('edad','Edad')!!}
-                            {!! Form::text('edad', $alumno->edad, array('placeholder' => 'Edad...','class' => 'form-control')) !!}
-                        </div>
+                       
         
                         <div class="form-group">
                             {!! Form::label('direccion','Direccion')!!}

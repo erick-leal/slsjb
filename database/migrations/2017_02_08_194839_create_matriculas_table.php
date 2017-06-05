@@ -19,7 +19,7 @@ class CreateMatriculasTable extends Migration
             $table->date('fecha');
             $table->string('monto');
             $table->integer('id_alumno')->unsigned();
-            $table->foreign('id_alumno')->references('id')->on('alumnos');
+            $table->foreign('id_alumno')->references('id')->on('alumnos')->onDelete('cascade');
             $table->timestamps();
         });
     }

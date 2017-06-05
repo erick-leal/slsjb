@@ -115,6 +115,14 @@ Route::get('modificar/calificacion/{id}/{idasi}/{idcal}','AgregarCalificacionCon
 Route::put('modificar/calificacion/{id}','AgregarCalificacionController@actualizarCalificacion');
 Route::patch('modificar/calificacion','AgregarCalificacionController@actualizarCalificacion');
 
+//Agregar calificacion masiva
+Route::get('calificaciones/agregar/{id}','CalificacionMasivaController@agregarNota');
+//Route::post('agregar/calificacion','AgregarCalificacionController@guardarCalificacion');
+
+//Modificar calificacion masiva
+//Route::get('modificar/calificacion/{id}/{idasi}/{idcal}','AgregarCalificacionController@modificarCalificacion');
+//Route::put('modificar/calificacion/{id}','AgregarCalificacionController@actualizarCalificacion');
+//Route::patch('modificar/calificacion','AgregarCalificacionController@actualizarCalificacion');
 
 //Registro y login de profesores
 Route::get('profesores/login','Auth\AuthProfesorController@showLoginForm');

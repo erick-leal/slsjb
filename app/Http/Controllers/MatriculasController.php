@@ -7,6 +7,7 @@ use App\Matricula;
 use App\Alumno;
 use App\Http\Requests\MatriculaRequest; 
 use Carbon\Carbon;
+use App\Curso;
 
 
 class MatriculasController extends Controller
@@ -18,7 +19,7 @@ class MatriculasController extends Controller
      */
     public function index(Request $request)
     {
-        $matriculas = Matricula::search($request->fecha)->orderBy('created_at','DSC')->paginate(10);
+        $matriculas = Matricula::search($request->fecha)->orderBy('created_at','DSC')->paginate(15);
         return view('matriculas.index')->with('matriculas',$matriculas)->with('i', ($request->input('page', 1) - 1) * 5);;
     }
 
@@ -29,8 +30,9 @@ class MatriculasController extends Controller
      */
     public function create() 
     {
+        $cursos = Curso::orderBy('nombre','ASC')->get()->pluck('name_and_type','id');
     	$alumnos = Alumno::orderBy('rut','ASC')->pluck('rut','id');
-        return view('matriculas.create')->with('alumnos',$alumnos);
+        return view('matriculas.create')->with('alumnos',$alumnos)->with('cursos',$cursos);
     }
 
     /**
@@ -39,11 +41,12 @@ class MatriculasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(MatriculaRequest $request)
+    public function store(MatriculaRequest $request) 
     {
         $matricula = new Matricula($request->all());
-        $matricula->id_administrativo = auth('administrativo')->user()->id;
+        //$matricula->id_administrativo = auth('administrativo')->user()->id;
         $matricula->fecha = Carbon::now();
+        //$matricula->fecha_fin = Carbon::now()->addYear();
         $matricula->save();
         flash('Matricula agregada exitosamente!','success');
         return redirect()->route('matriculas.index');
@@ -71,7 +74,8 @@ class MatriculasController extends Controller
     {
     	$matricula = Matricula::find($id);
     	$matricula->alumno;	    
-        return view('matriculas.edit')->with('matricula', $matricula);
+        $cursos = Curso::orderBy('nombre','ASC')->get()->pluck('name_and_type','id');
+        return view('matriculas.edit')->with('matricula', $matricula)->with('cursos',$cursos);
     }
 
     /**
@@ -85,7 +89,7 @@ class MatriculasController extends Controller
     {
         $matricula = Matricula::find($id);
         $matricula->fill($request->all());
-   
+        $matricula->fecha = Carbon::now();
         $matricula->save();
         flash('Matricula editada exitosamente!','warning');
         return redirect()->route('matriculas.index');

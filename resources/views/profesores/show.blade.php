@@ -1,100 +1,99 @@
-@extends('layouts.admin')
-
-@section('title','Informacion Personal')
-
-@section('content')
-<br><br>
-
+@extends ('layouts.admin')
+@section ('content')
+@section('title','Profesor')
+	
+		<div class="box-header ">
+            <h3 class="box-title"><b>Informacion de Profesor : </b></h3>
+        </div>
+        <br>
 
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
-			<div class="form-group">
-				<label for="foto"></label>
-				@if(($administrativo->foto)!="")
-					<img src="{{ asset('imagenes/administrativos/'.$administrativo->foto) }}" height="150px" width="150px">
-				@else
-					<img src="{{ asset('imagenes/administrativos/default.jpg') }}" height="150px" width="150px">
-				@endif
+				<div class="form-group">
+					<label for="foto"></label>
+					
+					@if(($profesor->foto)!="")
+						<img src="{{ asset('imagenes/profesores/'.$profesor->foto) }}" height="150px" width="150px">
+					@endif
 				</div>
-		</div> 
+			</div>
 
 		<div class="row">
 			<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12"">
 				<div class="form-group">
 					<label for="rut">Rut</label>
-					<p>{{ $administrativo->rut }}</p>
+					<p>{{ $profesor->rut }}</p>
 				</div>
 			</div>
-
 			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
 				<div class="form-group">
 					<label for="nombre">Nombre</label>
-					<p>{{ $administrativo->nombre }}</p>
+					<p>{{ $profesor->nombre }}</p>
 				</div>
 			</div>
-
 			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
 				<div class="form-group">
 					<label for="apellido_paterno">Apellidos</label>
-					<p>{{ $administrativo->apellido_paterno." ".$administrativo->apellido_materno }}</p>
+					<p>{{ $profesor->apellido_paterno." ".$profesor->apellido_materno }}</p>
 				</div>
 			</div>
 			
 			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
 				<div class="form-group">
 					<label for="email">Correo</label>
-					<p>{{ $administrativo->email}}</p>
+					<p>{{ $profesor->email}}</p>
 				</div>
 			</div>
 			
 			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
 				<div class="form-group">
 					<label>Sexo</label>
-					@if ($administrativo->sexo == 'Masculino')
-						<p>{{ $administrativo->sexo}}</p>
-					@else
-						<p>{{ $administrativo->sexo}}</p>
-					@endif			
+				
+				@if ($profesor->sexo == 'Masculino')
+					<p>{{ $profesor->sexo}}</p>
+				@else
+					<p>{{ $profesor->sexo}}</p>
+				@endif		
+				
 				</div>
 			</div>
-
 			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
 				<div class="form-group">
 					<label for="telefono">Telefono</label>
-					<p>{{ $administrativo->telefono}}</p>
+					<p>{{ $profesor->telefono}}</p>
 				</div>
 			</div>
 			
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
-				<div class="form-group">
-					<label>Cargo</label>
-					@if($administrativo->cargo == null)
-						<p></p>
-					@else
-						<p> {{ $administrativo->cargo->nombre}}</p>
-					@endif
-				</div>
-			</div>
+			
 
 			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
 				<div class="form-group">
 					<label for="fecha_nacimiento">Fecha Nacimiento</label>
-					<p>{{ $administrativo->fecha_nacimiento}}</p>
+					<p>{{ $profesor->fecha_nacimiento}}</p>
 				</div>
 			</div>
-
 			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
 				<div class="form-group">
 					<label for="edad">Edad</label>
-					<p>{{ Carbon\Carbon::parse($administrativo->fecha_nacimiento)->age}}</p>
+					<p>{{ Carbon\Carbon::parse($profesor->fecha_nacimiento)->age}}</p>
 				</div>
 			</div>
-
 			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
 				<div class="form-group">
 					<label for="direccion">Direccion</label>
-					<p>{{ $administrativo->direccion}}</p>
+					<p>{{ $profesor->direccion}}</p>
 				</div>
-			</div>		
+			</div>
+
+			
+			
+			
 		</div>
+
+			
+
+			
+
+			
+
 
 @endsection

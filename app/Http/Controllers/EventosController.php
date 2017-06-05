@@ -28,8 +28,8 @@ class EventosController extends Controller
      */
     public function create()
     {	
-        $profesor = Profesor::find(auth('profesor')->user()->id);
-        $mis_asignaturas = $profesor->asignaturas->pluck('nombre','id');
+        $profesor = Profesor::find(auth('profesor')->user()->id); 
+        $mis_asignaturas = $profesor->asignaturas->pluck('name_format','id');
         return view('eventos.create')->with('profesor',$profesor)->with('mis_asignaturas',$mis_asignaturas);
     }
 

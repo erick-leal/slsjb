@@ -55,7 +55,7 @@
               <p>Alumnos</p>
             </div>
             <div class="icon">
-              <i class="ion ion-bag"></i>
+              <i class="fa fa-user"></i>
             </div>
             <a href="{{route('alumnos.index')}}" class="small-box-footer">Mas información <i class="fa fa-arrow-circle-right"></i></a>
           </div>
@@ -70,7 +70,7 @@
               <p>Apoderados</p>
             </div>
             <div class="icon">
-              <i class="ion ion-stats-bars"></i>
+              <i class="fa fa-male"></i>
             </div>
             <a href="{{route('apoderados.index')}}" class="small-box-footer">Mas información <i class="fa fa-arrow-circle-right"></i></a>
           </div>
@@ -85,7 +85,7 @@
               <p>Administrativos</p>
             </div>
             <div class="icon">
-              <i class="ion ion-person-add"></i>
+              <i class="fa fa-user-secret"></i>
             </div>
             <a href="{{route('administrativos.index')}}" class="small-box-footer">Mas información <i class="fa fa-arrow-circle-right"></i></a>
           </div>
@@ -100,7 +100,7 @@
               <p>Profesores</p>
             </div>
             <div class="icon">
-              <i class="ion ion-pie-graph"></i>
+              <i class="fa fa-user-md"></i>
             </div>
             <a href="{{route('profesores.index')}}" class="small-box-footer">Mas información <i class="fa fa-arrow-circle-right"></i></a>
           </div>

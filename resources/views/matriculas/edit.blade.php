@@ -29,6 +29,18 @@
 	                {!! Form::text('monto', $matricula->monto, array('placeholder' => 'Monto...','class' => 'form-control')) !!}
 	            </div>
 
+	            @if(($matricula->id_curso) == null)
+	            <div class="form-group">
+                    {!! Form::label('id_curso', 'Curso') !!}
+                    {!! Form::select('id_curso',$cursos,null,array('class' => 'form-control',  'placeholder' => 'Seleccione un Curso...')) !!}
+                </div>
+                @else
+	            <div class="form-group">
+                    {!! Form::label('id_curso', 'Curso') !!}
+                    {!! Form::select('id_curso',$cursos,$matricula->curso->id,array('class' => 'form-control',  'placeholder' => 'Seleccione un Curso...')) !!}
+                </div>
+                @endif
+
 				<button type="submit" class="btn btn-primary">Editar</button>    
 				<a class="btn btn-danger" href="{{route('matriculas.index')}}">Cancelar</a>   	
 	        </div>

@@ -43,12 +43,12 @@
 	            @if(($alumno->id_curso) == null)
 				<div class="form-group">
 					{!! Form::label('id_curso', 'Curso') !!}
-                    {!! Form::select('id_curso', $cursos, null, array('class' => 'form-control', 'placeholder' => 'Seleccione un Curso...')) !!}
+                    {!! Form::select('id_curso', $cursos, null,['class' => 'form-control select-curso', 'placeholder' => 'Seleccione una opción']) !!}
                 </div>
                 @else
                 <div class="form-group">
                     {!! Form::label('id_curso', 'Curso') !!}
-                    {!! Form::select('id_curso', $cursos, $alumno->curso->id, array('class' => 'form-control', 'placeholder' => 'Seleccione un Curso...')) !!}
+                    {!! Form::select('id_curso', $cursos, $alumno->curso->id, ['class' => 'form-control select-curso', 'placeholder' => 'Seleccione una opción']) !!}
                 </div>
                 @endif
                  
@@ -69,10 +69,7 @@
 	                {!! Form::date('fecha_nacimiento', $alumno->fecha_nacimiento, array('placeholder' => 'Fecha Nacimiento...','class' => 'form-control')) !!}
 	            </div>
 
-	            <div class="form-group">
-	                {!! Form::label('edad','Edad')!!}
-	                {!! Form::text('edad', $alumno->edad, array('placeholder' => 'Edad...','class' => 'form-control')) !!}
-	            </div>
+	            
 
 	            @if(($alumno->id_apoderado) == null)
 	            <div class="form-group">
@@ -111,5 +108,6 @@
 <script>
     $("input#rut").rut();
     $('.select-apoderado').chosen({no_results_text: "Apoderado no registrado", max_selected_options: 1});
+    $('.select-curso').chosen({no_results_text: "Curso no existe", max_selected_options: 1});
 </script>
 @endsection

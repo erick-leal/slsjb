@@ -3,7 +3,7 @@
 @extends('layouts.admin')
 
 @section('title','Crear Curso')
-
+ 
 @section('content')
 	
 	@if(count($errors)>0)
@@ -26,6 +26,12 @@
 	                {!! Form::label('tipo','Tipo')!!}
 	                {!! Form::select('tipo', ['' => 'Modalidad Curso...','Tecnico Profesional' => 'Tecnico Profesional', 'Humanista Cientifico' => 'Cientifico Humanista'], null, ['class' => 'form-control']) !!}
 	            </div>
+
+	            <div class="form-group">
+                    {!! Form::label('id_profesor', 'Profesor Jefe') !!}
+                    {!! Form::select('id_profesor',$profesores,null,['class' => 'form-control select-profesor', 'placeholder' => 'Seleccione un profesor...']) !!}
+                </div> 
+
 				<button type="submit" class="btn btn-primary">Registrar</button>    
 				<a class="btn btn-danger" href="{{route('cursos.index')}}">Cancelar</a>   	
 	        </div>

@@ -11,7 +11,7 @@ class Apoderado extends User
 {
     protected $table = "apoderados";
 
-    protected $fillable = ['rut', 'nombre', 'apellido_paterno', 'apellido_materno', 'email', 'password', 'sexo', 'telefono', 'foto', 'fecha_nacimiento', 'edad', 'direccion'];
+    protected $fillable = ['rut', 'nombre', 'apellido_paterno', 'apellido_materno', 'email', 'password', 'sexo', 'telefono', 'foto', 'fecha_nacimiento', 'direccion'];
  
     protected $hidden = ['password', 'remember_token'];
 
@@ -23,6 +23,11 @@ class Apoderado extends User
     public function scopeSearch($query, $nombre)
     {
         return $query->where('nombre', 'LIKE', "%$nombre%");
+    }
+
+    public function getNameAndLastAttribute()
+    {
+        return $this->nombre.' '.$this->apellido_paterno.' '.$this->apellido_materno;
     }
 
     public function sendPasswordResetNotification($token)

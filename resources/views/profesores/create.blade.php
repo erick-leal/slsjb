@@ -60,10 +60,7 @@
 	                {!! Form::date('fecha_nacimiento', null, array('placeholder' => 'Fecha Nacimiento...','class' => 'form-control')) !!}
 	            </div>
 
-	            <div class="form-group">
-	                {!! Form::label('edad','Edad')!!}
-	                {!! Form::text('edad', null, array('placeholder' => 'Edad...','class' => 'form-control')) !!}
-	            </div>
+	       
 
 	            <div class="form-group">
 	                {!! Form::label('direccion','Direccion')!!}

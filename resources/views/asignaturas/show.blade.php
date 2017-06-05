@@ -24,7 +24,7 @@
 					<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12"">
 						<div class="form-group">
 							<label>Curso :</label>
-							<p>{{ $asignatura->curso->nombre }}</p>
+							<p>{{ $asignatura->curso->nombre." - ".$asignatura->curso->tipo }}</p>
 						</div>
 					</div>
                     <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12"">

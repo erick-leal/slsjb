@@ -22,10 +22,19 @@
                                 <tr>
                                     <td>{{$asignatura->codigo}}</td>
                                     <td>{{$asignatura->nombre}}</td>
-                                    <td>{{$asignatura->curso->nombre}}</td>
+                                    @if(($asignatura->id_curso) == null)
+                                    <td>Sin Curso</td>
+                                    @else
+                                    <td>{{$asignatura->curso->nombre." - ".$asignatura->curso->tipo}}</td>
+                                    @endif
+                                    @if(($asignatura->id_sala) == null)
+                                    <td>Sin Sala</td>
+                                    @else
                                     <td>{{$asignatura->sala->nombre}}</td>
+                                    @endif
                                     <td>{{$asignatura->horario}}</td>
                                     <td><a href="{{URL('showalumnosasignatura', $asignatura->id)}}" class="btn btn-success" ><span class="fa fa-user" aria-hidden="true"> Alumnos</span></a>
+                                    <a href="{{URL('calificaciones/agregar', $asignatura->id)}}" class="btn btn-warning" ><span class="fa fa-file-text" aria-hidden="true"> Notas</span></a>
                                     </td>
                                 </tr>
                                 @endforeach

@@ -43,6 +43,11 @@ class Asignatura extends Model
         return $this->hasMany('App\Evento','id_asignatura');
     }
 
+    public function evaluaciones()
+    {
+        return $this->hasMany('App\Evaluacion','id_asignatura');
+    }
+
     public function calificaciones()
     {
         return $this->hasMany('App\Calificacion','id_asignatura');
@@ -56,5 +61,10 @@ class Asignatura extends Model
     public function scopeSearch($query, $nombre)
     {
         return $query->where('nombre', 'LIKE', "%$nombre%");
+    }
+
+    public function getNameFormatAttribute()
+    {
+        return $this->nombre.' : ' . $this->curso->nombre." - ".$this->curso->tipo;
     }
 }

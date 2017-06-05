@@ -1,3 +1,5 @@
+@if (Auth::guard("administrador")->check() || Auth::guard("administrativo")->check())
+
 @extends('layouts.admin')
 
 @section('title','Listado de Alumnos')
@@ -6,7 +8,7 @@
 	
 
 	@if (Auth::guard("administrador")->check())       	
-	<a class="btn btn-success" href="{{ route('alumnos.create') }}"> Registrar Nuevo Alumno</a>
+	<a class="btn btn-success" href="{{ url('alumnos/register') }}"> Registrar Nuevo Alumno</a>
 	@endif
 	<!-- Buscador -->
 	{!! Form::open(['route' => 'alumnos.index', 'method' => 'GET', 'class' => 'navbar-form pull-right']) !!}
@@ -48,3 +50,9 @@
 	</table>
 	{!! $alumnos->render() !!}
 @endsection
+
+@else
+
+@include('layouts.error')
+
+@endif

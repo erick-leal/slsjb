@@ -25,7 +25,7 @@ class CreateAlumnosTable extends Migration
             $table->string('telefono');
             $table->string('foto');
             $table->date('fecha_nacimiento');
-            $table->string('edad');
+            //$table->string('edad');
             $table->string('direccion');
             $table->rememberToken();
             $table->integer('id_curso')->unsigned();

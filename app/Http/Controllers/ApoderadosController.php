@@ -61,7 +61,8 @@ class ApoderadosController extends Controller
      */
     public function show($id)
     {
-        //
+        $apoderado = Apoderado::find($id);
+        return view('apoderados.show')->with('apoderado',$apoderado); 
     }
 
     /**

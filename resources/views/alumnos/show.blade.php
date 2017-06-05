@@ -79,6 +79,25 @@
 			</div>
 			@endif
 
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
+				<div class="form-group">
+					<label for="fecha_nacimiento">Fecha Nacimiento</label>
+					<p>{{ $alumno->fecha_nacimiento}}</p>
+				</div>
+			</div>
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
+				<div class="form-group">
+					<label for="edad">Edad</label>
+					<p>{{ Carbon\Carbon::parse($alumno->fecha_nacimiento)->age}}</p>
+				</div>
+			</div>
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
+				<div class="form-group">
+					<label for="direccion">Direccion</label>
+					<p>{{ $alumno->direccion}}</p>
+				</div>
+			</div>
+
 			@if($alumno->id_apoderado == null)
 			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
 				<div class="form-group">
@@ -89,30 +108,31 @@
 			@else
 			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
 				<div class="form-group">
-					<label>Apoderado</label>
-						<p>{{$alumno->apoderado->nombre." ".$alumno->apoderado->apellido_paterno." ".$alumno->apoderado->apellido_materno}}</p>
+					
+					<a href="#" data-id="1" data-toggle="modal" data-target="#myModal" class="btn btn-success ">Apoderado</a> 
+					<!-- Modal -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <label>Apoderado: </label>
+										<p>{{$alumno->apoderado->nombre." ".$alumno->apoderado->apellido_paterno." ".$alumno->apoderado->apellido_materno}}</p>
+										<p><span class="fa fa-phone" aria-hidden="true"></span> {{$alumno->apoderado->telefono}}</p>
+										<p><span class="fa fa-home" aria-hidden="true"></span> {{$alumno->apoderado->direccion}}</p>
+                                </div>
+
+                            <div class="modal-footer">
+                            	<button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                            </div>
+
+                           </div><!-- modal content -->
+                        </div><!-- modal dialog -->
+                    </div><!-- modal fade -->
+             		<!-- Cierra Modal -->
+
 				</div>
 			</div>
 			@endif
-
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
-				<div class="form-group">
-					<label for="fecha_nacimiento">Fecha Nacimiento</label>
-					<p>{{ $alumno->fecha_nacimiento}}</p>
-				</div>
-			</div>
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
-				<div class="form-group">
-					<label for="edad">Edad</label>
-					<p>{{ $alumno->edad}}</p>
-				</div>
-			</div>
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
-				<div class="form-group">
-					<label for="direccion">Direccion</label>
-					<p>{{ $alumno->direccion}}</p>
-				</div>
-			</div>
 			
 			
 		</div>

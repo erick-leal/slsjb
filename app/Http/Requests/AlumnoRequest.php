@@ -29,7 +29,7 @@ class AlumnoRequest extends Request
             {
                 return [
                     "rut" => "required|cl_rut|unique:apoderados|unique:profesores|unique:administrativos|unique:alumnos",
-                    "nombre"=> "required|min:3|max:30",
+                    "nombre"=> "required|min:3|max:30|alpha",
                     "apellido_paterno"=> "required|min:3|max:30|alpha",
                     "apellido_materno"=> "required|min:3|max:30|alpha",
                     "email" => "required|email|unique:alumnos",
@@ -39,7 +39,7 @@ class AlumnoRequest extends Request
             case 'PATCH':
             {
                 return [
-                    "nombre"=> "required|min:3|max:30",
+                    "nombre"=> "required|min:3|max:30|alpha",
                     "apellido_paterno"=> "required|min:3|max:30|alpha",
                     "apellido_materno"=> "required|min:3|max:30|alpha",
                      "email" => "required|email",
