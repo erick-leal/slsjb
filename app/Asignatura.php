@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Sala;
 use App\Curso;
 use App\Profesor;
+use App\Matricula;
 
 class Asignatura extends Model
 {
@@ -28,9 +29,14 @@ class Asignatura extends Model
     	return $this->belongsTo(Profesor::class,'id_profesor','id');
     }
 
-    public function alumnos()
+    //public function alumnos() 
+    //{
+    //    return $this->belongsToMany('App\Alumno')->withTimestamps(); 
+    //}
+
+    public function matriculas() 
     {
-        return $this->belongsToMany('App\Alumno')->withTimestamps();
+        return $this->belongsToMany('App\Matricula')->withTimestamps(); 
     }
 
     public function conductas()
@@ -65,6 +71,9 @@ class Asignatura extends Model
 
     public function getNameFormatAttribute()
     {
-        return $this->nombre.' : ' . $this->curso->nombre." - ".$this->curso->tipo;
+        return $this->nombre.' - '.$this->periodo.' '.$this->created_at->year.' / '.$this->curso->nombre." - ".$this->curso->tipo;
     }
+
+
+
 }

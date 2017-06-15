@@ -7,7 +7,7 @@
         </div>
         <br>
 
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"	>
 				<div class="form-group">
 					<label for="foto"></label>
 					
@@ -18,33 +18,33 @@
 			</div>
 
 		<div class="row">
-			<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12"">
+			<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
 				<div class="form-group">
 					<label for="rut">Rut</label>
 					<p>{{ $alumno->rut }}</p>
 				</div>
 			</div>
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 				<div class="form-group">
 					<label for="nombre">Nombre</label>
 					<p>{{ $alumno->nombre }}</p>
 				</div>
 			</div>
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 				<div class="form-group">
 					<label for="apellido_paterno">Apellidos</label>
 					<p>{{ $alumno->apellido_paterno." ".$alumno->apellido_materno }}</p>
 				</div>
 			</div>
 			
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 				<div class="form-group">
 					<label for="email">Correo</label>
 					<p>{{ $alumno->email}}</p>
 				</div>
 			</div>
 			
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 				<div class="form-group">
 					<label>Sexo</label>
 				
@@ -56,42 +56,46 @@
 				
 				</div>
 			</div>
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 				<div class="form-group">
 					<label for="telefono">Telefono</label>
 					<p>{{ $alumno->telefono}}</p>
 				</div>
 			</div>
 			
-			@if($alumno->id_curso == null)
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
+			
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"> 
 				<div class="form-group">
 					<label>Curso</label>
-						<p></p>
+						<p>{{$curso}}</p>
 				</div>
 			</div>
-			@else
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
-				<div class="form-group">
-					<label>Curso</label>
-						<p>{{$alumno->curso->nombre}}</p>
-				</div>
-			</div>
-			@endif
+			
 
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 				<div class="form-group">
 					<label for="fecha_nacimiento">Fecha Nacimiento</label>
 					<p>{{ $alumno->fecha_nacimiento}}</p>
 				</div>
 			</div>
+
+			@if($alumno->fecha_nacimiento == null)
 			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
+				<div class="form-group">
+					<label for="edad">Edad</label>
+					<p></p>
+				</div>
+			</div>
+			@else
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 				<div class="form-group">
 					<label for="edad">Edad</label>
 					<p>{{ Carbon\Carbon::parse($alumno->fecha_nacimiento)->age}}</p>
 				</div>
 			</div>
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
+			@endif
+
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 				<div class="form-group">
 					<label for="direccion">Direccion</label>
 					<p>{{ $alumno->direccion}}</p>
@@ -99,14 +103,14 @@
 			</div>
 
 			@if($alumno->id_apoderado == null)
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 				<div class="form-group">
 					<label>Apoderado</label>
 						<p></p>
 				</div>
 			</div>
 			@else
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 				<div class="form-group">
 					
 					<a href="#" data-id="1" data-toggle="modal" data-target="#myModal" class="btn btn-success ">Apoderado</a> 

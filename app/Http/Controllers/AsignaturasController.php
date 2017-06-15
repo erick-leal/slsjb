@@ -8,6 +8,7 @@ use App\Profesor;
 use App\Sala;
 use App\Curso;
 use App\Alumno;
+use App\Matricula;
 use App\Http\Requests\AsignaturaRequest; 
 
 class AsignaturasController extends Controller
@@ -36,8 +37,10 @@ class AsignaturasController extends Controller
     	$profesores = Profesor::orderBy('nombre','ASC')->get()->pluck('name_and_last','id');
     	$cursos = Curso::orderBy('nombre','ASC')->get()->pluck('name_and_type','id');
     	$salas = Sala::orderBy('nombre','ASC')->pluck('nombre','id');
-        $alumnos = Alumno::orderBy('nombre','ASC')->pluck('rut','id');
+        $alumnos = Matricula::orderBy('fecha','ASC')->where('estado','Matriculado')->get()->pluck('rut_alumno','id');
+        //$alumnos = Alumno::orderBy('nombre','ASC')->pluck('rut','id');
         return view('asignaturas.create')->with('profesores',$profesores)->with('cursos',$cursos)->with('salas',$salas)->with('alumnos',$alumnos);
+        
     }
 
     /**
@@ -50,7 +53,8 @@ class AsignaturasController extends Controller
     {
         $asignatura = new Asignatura($request->all());
         $asignatura->save();
-        $asignatura->alumnos()->sync((array)$request->alumnos);
+        $asignatura->matriculas()->sync((array)$request->alumnos);
+        //$asignatura->alumnos()->sync((array)$request->alumnos);
         flash('Asignatura ' .$asignatura->nombre.' agregada exitosamente!','success');
         return redirect()->route('asignaturas.index');
     }
@@ -79,13 +83,13 @@ class AsignaturasController extends Controller
     	$asignatura->profesor;
     	$asignatura->curso;
     	$asignatura->sala;
-        $asignatura->alumnos;
+        $asignatura->matriculas;
     	$profesores = Profesor::orderBy('nombre','ASC')->get()->pluck('name_and_last','id');
     	$cursos = Curso::orderBy('nombre','ASC')->get()->pluck('name_and_type','id');
     	$salas = Sala::orderBy('nombre','ASC')->pluck('nombre','id'); 
-        $alumnos = Alumno::orderBy('nombre','ASC')->pluck('rut','id'); 
+        $alumnos = Matricula::orderBy('fecha','ASC')->where('estado','Matriculado')->get()->pluck('rut_alumno','id'); 
 
-        $mis_alumnos = $asignatura->alumnos->pluck('id')->ToArray();
+        $mis_alumnos = $asignatura->matriculas->pluck('id')->ToArray();
 
 
         return view('asignaturas.edit')->with('asignatura', $asignatura)->with('profesores',$profesores)->with('cursos',$cursos)->with('salas',$salas)->with('alumnos',$alumnos)->with('mis_alumnos',$mis_alumnos);
@@ -103,7 +107,7 @@ class AsignaturasController extends Controller
         $asignatura = Asignatura::find($id);
         $asignatura->fill($request->all());
         $asignatura->save();
-        $asignatura->alumnos()->sync((array)$request->alumnos);
+        $asignatura->matriculas()->sync((array)$request->alumnos);
         flash('Asignatura ' .$asignatura->nombre.' editada exitosamente!','warning');
         return redirect()->route('asignaturas.index');
     }

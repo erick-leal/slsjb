@@ -13,14 +13,14 @@ class Alumno extends User
 {
     protected $table = "alumnos";
 
-    protected $fillable = ['rut', 'nombre', 'apellido_paterno', 'apellido_materno', 'email', 'password', 'sexo', 'telefono', 'foto', 'fecha_nacimiento', 'direccion', 'id_curso', 'id_apoderado'];
+    protected $fillable = ['rut', 'nombre', 'apellido_paterno', 'apellido_materno', 'email', 'password', 'sexo', 'telefono', 'foto', 'fecha_nacimiento', 'direccion',  'id_apoderado'];
  
     protected $hidden = ['password', 'remember_token'];
 
-    public function curso()
-    {
-    	return $this->belongsTo(Curso::class,'id_curso','id');
-    }
+    //public function curso()
+    //{
+    //	return $this->belongsTo(Curso::class,'id_curso','id');
+    //}
 
     public function apoderado()
     {
@@ -29,7 +29,7 @@ class Alumno extends User
 
     public function matriculas()
     {
-        return $this->hasMany('App\Matricula');
+        return $this->hasMany('App\Matricula','id_alumno');
     }
 
     public function asignaturas()

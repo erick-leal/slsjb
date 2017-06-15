@@ -15,7 +15,7 @@
 			<span class="input-group-btn">
 			<button type="submit" class="btn btn-primary">Buscar</button>
 		</span>
-		</div>
+		</div> 
 	{!! Form::close() !!}
 	<!-- fin -->
 	 
@@ -33,7 +33,7 @@
 					<td>{{ ++$i }}</td>
 					<td>{{ $curso->nombre }}</td>
 					<td>{{ $curso->tipo }}</td>
-					<td>{{ $curso->alumnos_count }} / 45</td>
+					<td>{{ $curso->matriculas_count }} / 45</td>
 					<td><a href="{{route('cursos.show', $curso->id)}}" class="btn btn-info" title="Ver Curso"><span class="fa fa-eye" aria-hidden="true"></span></a>
 					<a href="{{URL('showalumnoscurso', $curso->id)}}" class="btn btn-success" title="Ver Alumnos"><span class="fa fa-user" aria-hidden="true"></span></a>
 					<a href="{{URL('showasignaturascurso', $curso->id)}}" class="btn btn-primary" title="Ver Asignaturas"><span class="fa fa-book" aria-hidden="true"></span></a>

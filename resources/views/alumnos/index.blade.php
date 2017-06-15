@@ -2,7 +2,7 @@
 
 @extends('layouts.admin')
 
-@section('title','Listado de Alumnos')
+@section('title','Listado de Alumnos') 
 
 @section('content')
 	

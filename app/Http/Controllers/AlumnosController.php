@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Alumno;
 use App\Curso;
 use App\Apoderado;
+use App\Matricula;
 use App\Http\Requests\AlumnoRequest;    
 use Illuminate\Support\Facades\Input;
 
@@ -22,7 +23,7 @@ class AlumnosController extends Controller
     
     public function create() 
     {
-    	$cursos = Curso::orderBy('nombre','ASC')->get()->pluck('name_and_type','id');
+    	//$cursos = Curso::orderBy('nombre','ASC')->get()->pluck('name_and_type','id');
     	$apoderados = Apoderado::orderBy('nombre','ASC')->get()->pluck('name_and_last','id');
         return view('alumnos.create')->with('cursos',$cursos)->with('apoderados',$apoderados);
     }
@@ -51,14 +52,16 @@ class AlumnosController extends Controller
 
     /**
      * Display the specified resource.
-     *
+     * 
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         $alumno = Alumno::find($id);
-        return view('alumnos.show')->with('alumno',$alumno); 
+        $curso = Matricula::where('id_alumno',$id)->get()->pluck('curso_alumno')->first();
+        
+        return view('alumnos.show')->with('alumno',$alumno)->with('curso',$curso); 
     }
 
     /**
@@ -71,14 +74,14 @@ class AlumnosController extends Controller
     {
     	$alumno = Alumno::find($id);
     	
-    	$cursos	= Curso::orderBy('id','ASC')->get()->pluck('name_and_type','id');
+    	//$cursos	= Curso::orderBy('id','ASC')->get()->pluck('name_and_type','id');
             
-        $alumno->curso; 
+        //$alumno->curso; 
     	
     	$apoderados = Apoderado::orderBy('id','ASC')->get()->pluck('name_and_last','id');
         $alumno->apoderado;  
          
-        return view('alumnos.edit')->with('alumno', $alumno)->with('cursos',$cursos)->with('apoderados',$apoderados);
+        return view('alumnos.edit')->with('alumno', $alumno)->with('apoderados',$apoderados);
     }
 
     /**

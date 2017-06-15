@@ -35,6 +35,11 @@ class Profesor extends User
         return $this->hasMany('App\Conducta','id_profesor');
     }
 
+    public function evaluaciones()
+    {
+        return $this->hasMany('App\Evaluacion','id_profesor');
+    }
+
     public function scopeSearch($query, $nombre)
     {
         return $query->where('nombre', 'LIKE', "%$nombre%");

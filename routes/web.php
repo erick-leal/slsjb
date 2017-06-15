@@ -117,6 +117,7 @@ Route::patch('modificar/calificacion','AgregarCalificacionController@actualizarC
 
 //Agregar calificacion masiva
 Route::get('calificaciones/agregar/{id}','CalificacionMasivaController@agregarNota');
+Route::post('calificaciones/agregar/{id}','CalificacionMasivaController@guardarNotas');
 //Route::post('agregar/calificacion','AgregarCalificacionController@guardarCalificacion');
 
 //Modificar calificacion masiva
@@ -254,5 +255,9 @@ Route::get('alumno-auth/passwords/reset/{token}','AlumnoAuth\ResetPasswordContro
 	//CRUD Asignatura
 	Route::resource('asignaturas','AsignaturasController');
 	Route::delete('asignaturas/{id}',['as'=>'asignaturas.destroy','uses'=>'AsignaturasController@destroy']);
+
+	//CRUD Evaluacion
+	Route::resource('evaluaciones','EvaluacionesController');
+	Route::delete('evaluaciones/{id}',['as'=>'evaluaciones.destroy','uses'=>'EvaluacionesController@destroy']);
 
 	

@@ -6,7 +6,7 @@
 
 @section('content')
 	        	
-	<a class="btn btn-success" href="{{ route('eventos.create') }}"> Registrar Nuevo Evento</a>
+	<a class="btn btn-success" href="{{ route('eventos.create') }}">Nuevo Evento</a>
 	<!-- Buscador -->
 	{!! Form::open(['route' => 'eventos.index', 'method' => 'GET', 'class' => 'navbar-form pull-right']) !!}
 		<div class="input-group">

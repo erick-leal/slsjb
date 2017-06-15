@@ -30,7 +30,7 @@ class Curso extends Model
 
     public function matriculas()
     {
-        return $this->hasMany('App\Matricula');
+        return $this->hasMany('App\Matricula','id_curso');
     }
 
  	public function asignaturas()
@@ -50,6 +50,6 @@ class Curso extends Model
 
     public function getNameAndTypeAttribute()
     {
-        return $this->nombre . ' - ' . $this->tipo." / ".$this->created_at->year;
+        return $this->nombre . ' - ' . $this->tipo.' / '.$this->created_at->year;
     }
 }

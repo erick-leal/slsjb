@@ -7,7 +7,8 @@ use App\Curso;
 use App\Http\Requests\CursoRequest; 
 use App\Alumno;
 use App\Asignatura;
-use App\Profesor;
+use App\Profesor; 
+use App\Matricula;
 
 class CursosController extends Controller
 {
@@ -16,7 +17,7 @@ class CursosController extends Controller
 
     public function index(Request $request)
     {
-        $cursos = Curso::search($request->nombre)->withCount('alumnos')->orderBy('nombre','ASC')->paginate(20);
+        $cursos = Curso::search($request->nombre)->withCount('matriculas')->orderBy('nombre','ASC')->paginate(20);
         return view('cursos.index')->with('cursos',$cursos)->with('i', ($request->input('page', 1) - 1) * 5);
     }
 

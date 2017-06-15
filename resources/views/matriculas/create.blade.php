@@ -24,7 +24,7 @@
 
 	            <div class="form-group">
                     {!! Form::label('id_curso', 'Curso') !!}
-                    {!! Form::select('id_curso',$cursos,null,['class' => 'form-control', 'placeholder' => 'Seleccione una opción']) !!}
+                    {!! Form::select('id_curso',$cursos,null,['class' => 'form-control select-curso', 'placeholder' => 'Seleccione un curso']) !!}
                 </div>
 
 	            <div class="form-group">
@@ -48,6 +48,7 @@
 @section('js')
 	<script>
 		$('.select-alumno').chosen({no_results_text: "Alumno no registrado", max_selected_options: 1});
+		$('.select-curso').chosen({no_results_text: "Curso no registrado", max_selected_options: 1});
 	</script>
 @endsection
 

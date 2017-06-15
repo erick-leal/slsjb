@@ -21,24 +21,53 @@
 							<p>{{ $asignatura->nombre }}</p>
 						</div>
 					</div>
+
+					@if($asignatura->id_curso == null)
 					<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12"">
+						<div class="form-group">
+							<label>Curso :</label>
+							<p></p>
+						</div>
+					</div>
+					@else<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12"">
 						<div class="form-group">
 							<label>Curso :</label>
 							<p>{{ $asignatura->curso->nombre." - ".$asignatura->curso->tipo }}</p>
 						</div>
 					</div>
+					@endif
+
+					@if($asignatura->id_profesor == null)
                     <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12"">
+						<div class="form-group">
+							<label>Profesor :</label>
+							<p></p>
+						</div>
+					</div>
+					@else
+					<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12"">
 						<div class="form-group">
 							<label>Profesor :</label>
 							<p>{{ $asignatura->profesor->nombre." ".$asignatura->profesor->apellido_paterno." ".$asignatura->profesor->apellido_materno }}</p>
 						</div>
 					</div>
+					@endif
+
+					@if($asignatura->id_sala == null)
+					<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12"">
+						<div class="form-group">
+							<label>Sala :</label>
+							<p></p>
+						</div>
+					</div>
+					@else
 					<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12"">
 						<div class="form-group">
 							<label>Sala :</label>
 							<p>{{ $asignatura->sala->nombre }}</p>
 						</div>
-					</div>                   
+					</div> 
+					@endif                   
                     
                 </div>
             </div>

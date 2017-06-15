@@ -40,18 +40,7 @@
 	                {!! Form::text('email', $alumno->email, array('placeholder' => 'Correo...','class' => 'form-control')) !!}
 	            </div>
 
-	            @if(($alumno->id_curso) == null)
-				<div class="form-group">
-					{!! Form::label('id_curso', 'Curso') !!}
-                    {!! Form::select('id_curso', $cursos, null,['class' => 'form-control select-curso', 'placeholder' => 'Seleccione una opción']) !!}
-                </div>
-                @else
-                <div class="form-group">
-                    {!! Form::label('id_curso', 'Curso') !!}
-                    {!! Form::select('id_curso', $cursos, $alumno->curso->id, ['class' => 'form-control select-curso', 'placeholder' => 'Seleccione una opción']) !!}
-                </div>
-                @endif
-                 
+	     
                  
 
 	            <div class="form-group">

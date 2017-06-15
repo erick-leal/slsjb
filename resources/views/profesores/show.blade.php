@@ -71,12 +71,23 @@
 					<p>{{ $profesor->fecha_nacimiento}}</p>
 				</div>
 			</div>
+
+			@if($profesor->fecha_nacimiento == null)
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
+				<div class="form-group">
+					<label for="edad">Edad</label>
+					<p></p>
+				</div>
+			</div>
+			@else
 			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
 				<div class="form-group">
 					<label for="edad">Edad</label>
 					<p>{{ Carbon\Carbon::parse($profesor->fecha_nacimiento)->age}}</p>
 				</div>
 			</div>
+			@endif
+
 			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
 				<div class="form-group">
 					<label for="direccion">Direccion</label>

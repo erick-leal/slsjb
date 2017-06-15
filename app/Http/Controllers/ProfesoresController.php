@@ -17,7 +17,7 @@ class ProfesoresController extends Controller
      */
     public function index(Request $request)
     {
-        $profesores = Profesor::search($request->nombre)->orderBy('apellido_paterno','ASC')->paginate(10);
+        $profesores = Profesor::search($request->nombre)->orderBy('created_at','DSC')->paginate(15);
         return view('profesores.index')->with('profesores',$profesores);
     }
 

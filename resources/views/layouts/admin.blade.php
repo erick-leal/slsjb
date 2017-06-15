@@ -355,28 +355,35 @@
             @elseif(Auth::guard('profesor')->check())
 
             <li>
-              <a href="/datos-profesor/personal">
+              <a href="{{URL::asset('datos-profesor/personal')}}">
                 <i class="fa  fa-user"></i> <span>Informacion Personal</span>
                 <i class="pull-right fa fa-circle text-red"></i>
               </a>
-            </li>
+            </li> 
 
             <li>
-              <a href="/datos-profesor/asignaturas">
+              <a href="{{URL::asset('datos-profesor/asignaturas')}}">
                 <i class="fa fa-book"></i> <span>Mis Asignaturas</span>
                 <small class="label pull-right bg-red"></small>
               </a>
             </li>
 
             <li>
-              <a href="/conductas">
+              <a href="{{URL::asset('conductas')}}">
                 <i class="fa fa-clone"></i> <span>Conductas</span>
                 <small class="label pull-right bg-red"></small>
               </a>
             </li>
 
             <li>
-              <a href="/eventos">
+              <a href="{{URL::asset('evaluaciones')}}">
+                <i class="fa fa-file-text-o"></i> <span>Evaluaciones</span>
+                <small class="label pull-right bg-red"></small>
+              </a>
+            </li>
+
+            <li>
+              <a href="{{URL::asset('eventos')}}">
                 <i class="fa fa-calendar"></i> <span>Eventos</span>
                 <small class="label pull-right bg-red"></small>
               </a>

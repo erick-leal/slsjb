@@ -12,10 +12,9 @@ class ShowAlumnosAsignaturaController extends Controller
     public function showAlumnosAsignatura($id, Request $request)
     {
     	$asignatura = Asignatura::find($id);
-        $alumnos = Asignatura::find($id)->alumnos;
+        $alumnos = Asignatura::find($id)->matriculas;
   
-        foreach ($alumnos as $alumno){      
-        }
+       
         
         return view('showalumnosasignatura')->with('alumnos',$alumnos)->with('asignatura',$asignatura)->with('i', ($request->input('page', 1) - 1) * 5);
     }
