@@ -10,7 +10,7 @@
 	<!-- Buscador -->
 	{!! Form::open(['route' => 'eventos.index', 'method' => 'GET', 'class' => 'navbar-form pull-right']) !!}
 		<div class="input-group">
-			{!! Form::text('fecha', null, ['class' => 'form-control', 'placeholder' => 'Buscar...', 'aria-describedby' => 'search']) !!}
+			{!! Form::text('nombre', null, ['class' => 'form-control', 'placeholder' => 'Buscar...', 'aria-describedby' => 'search']) !!}
 			<span class="input-group-btn">
 			<button type="submit" class="btn btn-primary">Buscar</button>
 		</span>
@@ -20,21 +20,21 @@
 	 
 	<table class="table table-bordered">
 		<tr>
-			<th>N°</th>
+			<th>Fecha</th>
 			<th>Titulo</th>
 			<th>Asignatura</th>
-			<th>Profesor</th>
-			<th>Fecha</th>
+			<th>Periodo</th>
+			<th>Curso</th>
 			<th>Opciones</th>
 				
 		</tr>
 			@foreach ($mis_eventos as $e)
 				<tr>
-					<td>{{ ++$i }}</td>
+					<td>{{ Carbon\Carbon::parse($e->fecha)->format('d-m-Y') }}</td>
 					<td>{{ $e->nombre }}</td>
 					<td>{{ $e->asignatura->nombre }}</td>
-					<td>{{ $e->profesor->nombre}}</td>
-					<td>{{ Carbon\Carbon::parse($e->fecha)->format('d-m-Y') }}</td>
+					<td>{{ $e->asignatura->periodo}}</td>
+					<td>{{ $e->asignatura->curso->nombre." / ".$e->asignatura->curso->tipo}}</td>
 					<td><a href="{{route('eventos.show', $e->id)}}" class="btn btn-info" ><span class="fa fa-eye" aria-hidden="true"></span></a>
 						<a href="{{route('eventos.edit', $e->id)}}" class="btn btn-warning"><span class="fa fa-edit" aria-hidden="true"></span></a>
 						

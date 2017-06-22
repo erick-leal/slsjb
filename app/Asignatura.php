@@ -29,14 +29,17 @@ class Asignatura extends Model
     	return $this->belongsTo(Profesor::class,'id_profesor','id');
     }
 
-    //public function alumnos() 
-    //{
-    //    return $this->belongsToMany('App\Alumno')->withTimestamps(); 
-    //}
+    public function alumnos()
+    {
+        return $this->hasManyThrough('App\Alumno', 'App\Matricula','id_asignatura', 'id_matricula')
+        ->orderBy('apellido_paterno', 'desc');
+    }
+
+    
 
     public function matriculas() 
     {
-        return $this->belongsToMany('App\Matricula')->withTimestamps(); 
+        return $this->belongsToMany('App\Matricula');
     }
 
     public function conductas()
@@ -52,6 +55,11 @@ class Asignatura extends Model
     public function evaluaciones()
     {
         return $this->hasMany('App\Evaluacion','id_asignatura');
+    }
+
+    public function notas()
+    {
+        return $this->hasManyThrough('App\Nota', 'App\Evaluacion', 'id_asignatura', 'id_evaluacion');
     }
 
     public function calificaciones()
@@ -71,7 +79,7 @@ class Asignatura extends Model
 
     public function getNameFormatAttribute()
     {
-        return $this->nombre.' - '.$this->periodo.' '.$this->created_at->year.' / '.$this->curso->nombre." - ".$this->curso->tipo;
+        return $this->nombre.' - '.$this->periodo.' / '.$this->curso->nombre." - ".$this->curso->tipo;
     }
 
 

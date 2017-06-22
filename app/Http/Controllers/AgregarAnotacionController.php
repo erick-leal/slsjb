@@ -24,16 +24,15 @@ class AgregarAnotacionController extends Controller
     {
     	$conducta = new Conducta($request->all());
     	
-        $conducta->id_profesor = auth('profesor')->user()->id;
+        
         
         $conducta->fecha = Carbon::now();
 
-        $profesor = Profesor::find(auth('profesor')->user()->id);
-        $mis_asignaturas = $profesor->asignaturas->all();
+       
 
         $conducta->save();
        
         flash('Anotacion agregada exitosamente!','success');
-        return view('datos-profesor/asignaturas')->with('conducta',$conducta)->with('profesor',$profesor)->with('mis_asignaturas',$mis_asignaturas);
+        return redirect()->route('conductas.index');
     }
 }

@@ -19,9 +19,11 @@ class ShowEventosAsignaturaController extends Controller
     public function showEventosAsignatura($id, Request $request)
     {
     	$asignatura = Asignatura::find($id);
-        $eventos = Asignatura::find($id)->eventos;
-       
+        //$eventos = Asignatura::find($id)->eventos;
+        $eventos = Evento::where('id_asignatura','=',$asignatura->id)->where('fecha','>',Carbon::now())->get();
         
+        
+            
         return view('showeventosasignatura')->with('eventos',$eventos)->with('asignatura',$asignatura)->with('i', ($request->input('page', 1) - 1) * 5);
     }
 }

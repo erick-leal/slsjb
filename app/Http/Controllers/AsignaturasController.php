@@ -37,7 +37,7 @@ class AsignaturasController extends Controller
     	$profesores = Profesor::orderBy('nombre','ASC')->get()->pluck('name_and_last','id');
     	$cursos = Curso::orderBy('nombre','ASC')->get()->pluck('name_and_type','id');
     	$salas = Sala::orderBy('nombre','ASC')->pluck('nombre','id');
-        $alumnos = Matricula::orderBy('fecha','ASC')->where('estado','Matriculado')->get()->pluck('rut_alumno','id');
+        $alumnos = Matricula::orderBy('fecha','ASC')->where('estado','Matriculado')->whereYear('created_at', '=', date('Y'))->get()->pluck('rut_alumno','id');
         //$alumnos = Alumno::orderBy('nombre','ASC')->pluck('rut','id');
         return view('asignaturas.create')->with('profesores',$profesores)->with('cursos',$cursos)->with('salas',$salas)->with('alumnos',$alumnos);
         
@@ -87,7 +87,7 @@ class AsignaturasController extends Controller
     	$profesores = Profesor::orderBy('nombre','ASC')->get()->pluck('name_and_last','id');
     	$cursos = Curso::orderBy('nombre','ASC')->get()->pluck('name_and_type','id');
     	$salas = Sala::orderBy('nombre','ASC')->pluck('nombre','id'); 
-        $alumnos = Matricula::orderBy('fecha','ASC')->where('estado','Matriculado')->get()->pluck('rut_alumno','id'); 
+        $alumnos = Matricula::orderBy('fecha','ASC')->where('estado','Matriculado')->whereYear('created_at', '=', date('Y'))->get()->pluck('rut_alumno','id'); 
 
         $mis_alumnos = $asignatura->matriculas->pluck('id')->ToArray();
 

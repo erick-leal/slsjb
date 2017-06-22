@@ -24,7 +24,7 @@
 			'11' => 'Noviembre',
 			'12' => 'Diciembre'
 			], null, ['class' => 'form-control']) !!}
-
+ 
 	    	
 		
 		<button type="submit" class="btn btn-primary">Buscar</button><br><br><br>

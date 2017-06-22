@@ -14,7 +14,7 @@ class Curso extends Model
     {
         return [
             'slug' => [
-                'source' => 'nombre'
+                'source' => 'nombre' 
             ]
         ];
     }
@@ -23,6 +23,12 @@ class Curso extends Model
 
     protected $fillable = ['nombre', 'tipo', 'id_profesor'];
  	
+    public function curso()
+    {
+        return $this->hasManyThrough('App\Alumno','App\Matricula');
+    }
+
+
  	public function alumnos()
  	{
  		return $this->hasMany('App\Alumno','id_curso');

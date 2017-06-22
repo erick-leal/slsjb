@@ -1,13 +1,13 @@
-
-
 <html>
-<head>
 
+<head>
+<meta charset="utf-8">
 <title>San Juan Bautista | Consulta de Datos</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link href="estilo/default.css" rel="stylesheet" type="text/css" media="screen">
-        <link rel="shortcut icon" href="images/favicon.ico">
-        <link rel="icon" type="image/gif" href="images/favicon.ico" />
+<link rel="shortcut icon" href="img/favicon.ico">
+<link rel="icon" type="image/gif" href="images/favicon.ico" />
+
 <style type="text/css">
 h1{display: block; text-align: center; margin-top: 6%; color:#D79B11;}
 ul.thumb {list-style: none;margin: 0 auto 0 auto; padding: 10px;height:300px;width: 480px;}
@@ -20,8 +20,10 @@ ul.thumb li img.hover {margin-top:15px;background:url() no-repeat center center;
 </head>
 
 <body>
+<div class="contenedor">
 <link><a href="{{url('administradores/login')}}">Admin</a></link>
 <h1>Consulta de Datos</h1>
+
 <ul class="thumb">
 
 <li><a href="{{url('alumnos/login')}}"><img src="img/estudiante.png" alt="ALUMNO" /></a></li>
@@ -36,5 +38,6 @@ ul.thumb li img.hover {margin-top:15px;background:url() no-repeat center center;
 <script type="text/javascript">
 jQuery(document).ready(function(){jQuery('ul.thumb li').Zoomer({speedView:500,speedRemove:400,altAnim:true,speedTitle:400,debug:false});});
 </script>
+</div>
 </body>
 </html>

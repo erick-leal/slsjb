@@ -1,7 +1,10 @@
+@if (Auth::guard("alumno")->check())   
+
+
 @extends('layouts.admin')
 
 @section('title','Registro de Anotaciones') 
-
+ 
 @section('content')
 
 
@@ -11,24 +14,28 @@
                            
                                 <tr>
                                 	<th>Fecha : </th>
-                                    <th>Periodo : </th>
-                                	<th>Asignatura : </th>
-                                	<th>Profesor : </th>
+                                    <th width="370">Asignatura : </th>
+                                    
                                     <th>Tipo : </th>
                                     <th>Descripcion : </th>
                                     
                                 </tr>
-                                @foreach($mis_anotaciones as $anotacion)
+                                @foreach($conductas as $c)
                                 <tr>
-                                    <td>{{$anotacion->created_at}}</td>
-                                    <td>{{$anotacion->asignatura->periodo." - ".$anotacion->created_at->year}}</td>
-                                    <td>{{$anotacion->asignatura->nombre}}</td>
-                                    <td>{{$anotacion->profesor->nombre." ".$anotacion->profesor->apellido_paterno}}</td>
-                                    <td>{{$anotacion->tipo}}</td>
-                                    <td>{{$anotacion->descripcion}}</td>
+                                    <td>{{Carbon\Carbon::parse($c->created_at)->format('d-m-Y')}}</td>
+                                    <td>{{$c->asignatura->nombre." - ".$c->asignatura->periodo." año ".$c->asignatura->created_at->year}}</td>
+                                   
+                                    <td>{{$c->tipo}}</td>
+                                    <td>{{$c->descripcion}}</td>
                                 </tr>
                                 @endforeach
                             </table>
                             
 
 @endsection
+
+@else
+
+@include('layouts.error')
+
+@endif  

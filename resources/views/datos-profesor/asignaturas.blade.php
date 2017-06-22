@@ -1,3 +1,5 @@
+@if (Auth::guard('profesor')->check())
+
 @extends('layouts.admin')
 
 @section('title','Asignaturas')
@@ -23,7 +25,7 @@
                                 <tr>
                                     
                                     <td>{{$asignatura->nombre}}</td>
-                                    <td>{{$asignatura->periodo." - ".$asignatura->created_at->year}}</td>
+                                    <td>{{$asignatura->periodo}}</td>
                                     @if(($asignatura->id_curso) == null)
                                     <td>Sin Curso</td>
                                     @else
@@ -44,3 +46,9 @@
     
 
 @endsection
+
+@else
+
+@include('layouts.error')
+
+@endif

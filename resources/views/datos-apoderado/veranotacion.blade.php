@@ -1,3 +1,5 @@
+@if (Auth::guard('apoderado')->check())
+
 @extends('layouts.admin')
 
 @section('title','Listado de Anotaciones')
@@ -11,15 +13,15 @@
                                 <tr>
                                 	<th>Fecha : </th>
                                 	<th>Asignatura : </th>
-                                	<th>Profesor : </th>
+                                	
                                     <th>Tipo : </th>
                                     <th>Descripcion : </th>
                                 </tr>
                                 @foreach($mis_anotaciones as $anotacion)
                                 <tr>
                                     <td>{{Carbon\Carbon::parse($anotacion->created_at)->format('d-m-Y')}}</td>
-                                    <td>{{$anotacion->asignatura->nombre}}</td>
-                                    <td>{{$anotacion->profesor->nombre." ".$anotacion->profesor->apellido_paterno}}</td>
+                                    <td>{{$anotacion->asignatura->nombre." - ".$anotacion->asignatura->periodo}}</td>
+                                   
                                     <td>{{$anotacion->tipo}}</td>
                                     <td>{{$anotacion->descripcion}}</td>    
                                 </tr>
@@ -27,3 +29,9 @@
                             </table>
 
 @endsection
+
+@else
+
+@include('layouts.error')
+
+@endif

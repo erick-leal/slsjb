@@ -21,8 +21,10 @@ class Evento extends Model
     	return $this->belongsTo(Asignatura::class,'id_asignatura','id');
     }
 
-    public function scopeSearch($query, $fecha)
+    
+
+    public function scopeSearch($query, $nombre)
     {
-        return $query->where('fecha', 'LIKE', "%$fecha%");
+        return $query->where('nombre', 'LIKE', "%$nombre%");
     }
 }

@@ -1,3 +1,5 @@
+@if (Auth::guard('profesor')->check())
+
 @extends('layouts.admin')
 
 @section('title','Informacion Personal')
@@ -9,9 +11,10 @@
 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
 				<div class="form-group">
 					<label for="foto"></label>
-					
 					@if(($profesor->foto)!="")
-						<img src="{{ asset('imagenes/profesors/'.$profesor->foto) }}" height="150px" width="150px">
+						<img src="{{ asset('imagenes/profesores/'.$profesor->foto) }}" height="150px" width="150px">
+					@else
+						<img src="{{ asset('imagenes/profesores/default.jpg') }}" height="150px" width="150px">
 					@endif
 				</div>
 			</div>
@@ -89,3 +92,9 @@
 		</div>
 
 @endsection
+
+@else
+
+@include('layouts.error')
+
+@endif

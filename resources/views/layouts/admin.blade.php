@@ -230,27 +230,27 @@
               <ul class="treeview-menu">
 
                <li>
-              <a href="/alumnos">
+              <a href="{{URL::asset('alumnos')}}">
                 <i class="fa  fa-user"></i> <span>Alumnos</span> 
                 <i class="pull-right fa fa-circle text-blue"></i>
               </a>
             </li>
                 
                  <li>
-              <a href="/apoderados">
+              <a href="{{URL::asset('apoderados')}}">
                 <i class="fa fa-male"></i> <span>Apoderados</span>
                 <i class="pull-right fa fa-circle text-green"></i>
               </a>
             </li>
 
               <li>
-              <a href="/administrativos">
+              <a href="{{URL::asset('administrativos')}}">
                 <i class="fa fa-user-secret"></i> <span>Administrativos</span>
                 <i class="pull-right fa fa-circle text-yellow"></i>
               </a>
             </li>
                <li>
-              <a href="/profesores">
+              <a href="{{URL::asset('profesores')}}">
                 <i class="fa fa-user-md"></i> <span>Profesores</span>
                 <i class="pull-right fa fa-circle text-red"></i>
               </a>
@@ -260,42 +260,42 @@
 
            
             <li>
-              <a href="/cargos">
+              <a href="{{URL::asset('cargos')}}">
                 <i class="fa fa-briefcase"></i> <span>Cargos</span>
                 <small class="label pull-right bg-yellow"></small>
               </a>
             </li>
 
             <li>
-              <a href="/cursos">
+              <a href="{{URL::asset('cursos')}}">
                 <i class="fa fa-graduation-cap"></i> <span>Cursos</span>
                 <small class="label pull-right bg-yellow"></small>
               </a>
             </li>
            
             <li>
-              <a href="/salas">
+              <a href="{{URL::asset('salas')}}">
                 <i class="fa fa-building"></i> <span>Sala</span>
                 <small class="label pull-right bg-red"></small>
               </a>
             </li>      
 
             <li>
-              <a href="/noticias">
+              <a href="{{URL::asset('noticias')}}">
                 <i class="fa fa-newspaper-o"></i> <span>Noticias</span>
                 <small class="label pull-right bg-red"></small>
               </a>
             </li>
 
             <li>
-              <a href="/matriculas">
+              <a href="{{URL::asset('matriculas')}}">
                 <i class="fa fa-edit "></i> <span>Matriculas</span>
                 <small class="label pull-right bg-red"></small>
               </a>
             </li>
 
             <li>
-              <a href="/asignaturas">
+              <a href="{{URL::asset('asignaturas')}}">
                 <i class="fa fa-book"></i> <span>Asignaturas</span>
                 <small class="label pull-right bg-red"></small>
               </a>
@@ -305,44 +305,39 @@
             @elseif(Auth::guard('alumno')->check())
 
             <li>
-              <a href="/datos-alumno/personal">
+              <a href="{{URL::asset('datos-alumno/personal')}}">
                 <i class="fa  fa-user"></i> <span>Informacion Personal</span>
                 <i class="pull-right fa fa-circle text-blue"></i>
               </a>
             </li>
 
             <li>
-              <a href="/datos-alumno/asignaturas">
+              <a href="{{URL::asset('datos-alumno/asignaturas')}}">
                 <i class="fa fa-book"></i> <span>Mis Asignaturas</span>
                 <small class="label pull-right bg-red"></small>
               </a>
             </li>
 
             <li>
-              <a href="/datos-alumno/conductas">
+              <a href="{{URL::asset('datos-alumno/conductas')}}">
                 <i class="fa fa-clone"></i> <span>Libro de Anotaciones</span>
                 <small class="label pull-right bg-red"></small>
               </a>
             </li>
 
-            <li>
-              <a href="/datos-alumno/calificaciones">
-                <i class="fa fa-file-text"></i> <span>Mis Calificaciones</span>
-                <small class="label pull-right bg-red"></small>
-              </a>
-            </li>
+            
 
             @elseif(Auth::guard('apoderado')->check())
 
             <li>
-              <a href="/datos-apoderado/personal">
+              <a href="{{URL::asset('datos-apoderado/personal')}}">
                 <i class="fa  fa-user"></i> <span>Informacion Personal</span>
                 <i class="pull-right fa fa-circle text-green"></i>
               </a>
             </li>
 
             <li>
-              <a href="/datos-apoderado/alumnos">
+              <a href="{{URL::asset('datos-apoderado/alumnos')}}">
                 <i class="fa fa-users"></i> <span>Mis Alumnos</span>
                 <small class="label pull-right bg-red"></small>
               </a>
@@ -392,21 +387,21 @@
              @elseif(Auth::guard('administrativo')->check())
 
              <li>
-              <a href="/datos-administrativo/personal">
+              <a href="{{URL::asset('datos-administrativo/personal')}}">
                 <i class="fa  fa-user"></i> <span>Informacion Personal</span>
                 <i class="pull-right fa fa-circle text-yellow"></i>
               </a>
             </li>
 
              <li>
-              <a href="/cursos">
+              <a href="{{URL::asset('cursos')}}">
                 <i class="fa fa-graduation-cap"></i> <span>Cursos</span>
                 <small class="label pull-right bg-yellow"></small>
               </a>
             </li>
 
               <li>
-              <a href="/noticias">
+              <a href="{{URL::asset('noticias')}}">
                 <i class="fa fa-newspaper-o"></i> <span>Noticias</span>
                 <small class="label pull-right bg-red"></small>
               </a>
@@ -422,21 +417,21 @@
               <ul class="treeview-menu">
 
                <li>
-              <a href="/alumnos/register">
+              <a href="{{URL::asset('alumnos/register')}}">
                 <i class="fa  fa-user"></i> <span>Registrar Alumno</span>
                 <small class="label pull-right bg-blue">1</small>
               </a>
             </li>
                 
               <li>
-              <a href="/alumnos">
+              <a href="{{URL::asset('alumnos')}}">
                 <i class="fa fa-male"></i> <span>Alumnos</span>
                 <small class="label pull-right bg-green">2</small>
               </a>
             </li>
 
             <li>
-              <a href="/matriculas">
+              <a href="{{URL::asset('matriculas')}}">
                 <i class="fa fa-edit "></i> <span>Matricular</span>
                 <small class="label pull-right bg-red">3</small>
               </a>

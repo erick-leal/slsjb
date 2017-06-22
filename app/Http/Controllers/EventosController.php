@@ -11,14 +11,16 @@ use Illuminate\Support\Facades\Input;
 use App\Asignatura;
 
 
-class EventosController extends Controller
+class EventosController extends Controller 
 {
     
     public function index(Request $request)
     {   
         $profesor = Profesor::find(auth('profesor')->user()->id);
-        $mis_eventos = $profesor->eventos->all();
-        return view('eventos.index')->with('mis_eventos',$mis_eventos)->with('profesor',$profesor)->with('i', ($request->input('page', 1) - 1) * 5);
+
+        $mis_eventos = Evento::search($request->nombre)->where('id_profesor',$profesor->id)->whereYear('created_at', '=', date('Y'))->get();
+
+        return view('eventos.index')->with('mis_eventos',$mis_eventos)->with('profesor',$profesor);
     }
 
     /**
@@ -29,7 +31,10 @@ class EventosController extends Controller
     public function create()
     {	
         $profesor = Profesor::find(auth('profesor')->user()->id); 
-        $mis_asignaturas = $profesor->asignaturas->pluck('name_format','id');
+        $mis_asignaturas = Asignatura::where('id_profesor',$profesor->id)->whereYear('created_at', '=', date('Y'))->get()->pluck('name_format','id');
+
+        //$mis_asignaturas = $profesor->asignaturas->pluck('name_format','id');
+       
         return view('eventos.create')->with('profesor',$profesor)->with('mis_asignaturas',$mis_asignaturas);
     }
 
@@ -71,7 +76,7 @@ class EventosController extends Controller
     {
         $evento = Evento::find($id);
         $profesor = Profesor::find(auth('profesor')->user()->id);
-        $mis_asignaturas = $profesor->asignaturas->pluck('nombre','id');
+        $mis_asignaturas = Asignatura::where('id_profesor',$profesor->id)->whereYear('created_at', '=', date('Y'))->get()->pluck('name_format','id');
         return view('eventos.edit')->with('evento', $evento)->with('profesor',$profesor)->with('mis_asignaturas',$mis_asignaturas);
     }
 

@@ -14,9 +14,8 @@ class ConductasController extends Controller
 {    
     public function index(Request $request)
     {   
-        $profesor = Profesor::find(auth('profesor')->user()->id);
-        $mis_conductas = $profesor->conductas->all();
-        return view('conductas.index')->with('mis_conductas',$mis_conductas)->with('profesor',$profesor)->with('i', ($request->input('page', 1) - 1) * 5);
+        $mis_conductas = Conducta::whereYear('created_at', '=', date('Y'))->get();
+        return view('conductas.index')->with('mis_conductas',$mis_conductas)->with('i', ($request->input('page', 1) - 1) * 5);
         //$conductas = Conducta::orderBy('created_at','DSC')->paginate(10);
         //return view('conductas.index')->with('conductas',$conductas);
     }
@@ -42,7 +41,6 @@ class ConductasController extends Controller
     public function store(ConductaRequest $request)
     {
         $conducta = new Conducta($request->all());
-        $conducta->id_profesor = auth('profesor')->user()->id;
         $conducta->fecha = Carbon::now();
         $conducta->save();
         flash('Anotacion agregada exitosamente!','success');
@@ -70,7 +68,7 @@ class ConductasController extends Controller
     public function edit($id) 
     {
     	$conducta = Conducta::find($id); 
-    	$conducta->profesor;
+    	
     	$alumnos	= Alumno::orderBy('id','ASC')->pluck('rut','id'); 
         $conducta->alumno; 
     	

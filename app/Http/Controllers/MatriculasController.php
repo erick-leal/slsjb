@@ -28,9 +28,9 @@ class MatriculasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create() 
+    public function create()  
     {
-        $cursos = Curso::orderBy('nombre','ASC')->get()->pluck('name_and_type','id');
+        $cursos = Curso::orderBy('nombre','ASC')->whereYear('created_at', '=', date('Y'))->get()->pluck('name_and_type','id');
     	$alumnos = Alumno::orderBy('rut','ASC')->pluck('rut','id');
         return view('matriculas.create')->with('alumnos',$alumnos)->with('cursos',$cursos);
     }
@@ -74,7 +74,7 @@ class MatriculasController extends Controller
     {
     	$matricula = Matricula::find($id);
     	$matricula->alumno;	    
-        $cursos = Curso::orderBy('nombre','ASC')->get()->pluck('name_and_type','id');
+        $cursos = Curso::orderBy('nombre','ASC')->whereYear('created_at', '=', date('Y'))->get()->pluck('name_and_type','id');
         return view('matriculas.edit')->with('matricula', $matricula)->with('cursos',$cursos);
     }
 

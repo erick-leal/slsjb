@@ -59,8 +59,8 @@ class AlumnosController extends Controller
     public function show($id)
     {
         $alumno = Alumno::find($id);
-        $curso = Matricula::where('id_alumno',$id)->get()->pluck('curso_alumno')->first();
-        
+        $curso = Matricula::where('id_alumno',$id)->get()->last();
+
         return view('alumnos.show')->with('alumno',$alumno)->with('curso',$curso); 
     }
 

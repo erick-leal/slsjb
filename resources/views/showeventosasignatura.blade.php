@@ -1,4 +1,4 @@
-@if (Auth::guard('alumno')->check())	
+@if (Auth::guard('alumno')->check() || Auth::guard("apoderado")->check())	 
 
 @extends('layouts.admin')
 
@@ -24,9 +24,9 @@
 	<table class="table table-bordered">
 		<tr>
 			<th>N°</th>
-			<th>Fecha</th>
+			<th>Fecha</th> 
 			<th>Titulo</th>
-			<th>Faltan</th>
+			<th>Faltan</th> 
 			<th>Ver</th>
 			
 				
@@ -34,17 +34,19 @@
 
 			@foreach ($eventos as $e)
 				<tr>
+					
 					<td>{{ ++$i }}</td>
 					<td>{{ Carbon\Carbon::parse($e->fecha)->format('d-m-Y') }}</td>
 					<td>{{ $e->nombre}}</td>
 					<td>{{ Carbon\Carbon::parse($e->fecha)->diffForHumans()}}</td>
 					
 
-					<td><a href="{{route('eventos.show', $e->id)}}" class="btn btn-info" ><span class="fa fa-eye" aria-hidden="true"></span></a><br><br></td>
+					<td><a href="" data-target="#modal-show-{{ $e->id }}"" data-toggle="modal" class="btn btn-info"> <span class="fa fa-eye" aria-hidden="true"></span></a></td>
 					
 					
 
 				</tr>
+				@include('datos-alumno.eventos')
 			@endforeach
 
 	</table>

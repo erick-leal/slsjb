@@ -15,7 +15,7 @@ class Matricula extends Model
 
     public function alumno()
     {
-    	return $this->belongsTo(Alumno::class,'id_alumno','id');
+    	return $this->belongsTo(Alumno::class,'id_alumno','id')->orderBy('apellido_paterno','DESC');
     }
 
     public function curso()
@@ -28,15 +28,17 @@ class Matricula extends Model
         return $this->hasMany('App\Nota','id_matricula');
     }
 
+    
+
     public function asignaturas() 
     {
-        return $this->belongsToMany('App\Asignatura');
+        return $this->belongsToMany('App\Asignatura')->orderBy('nombre','ASC');
     }
 
 
     public function scopeSearch($query, $fecha)
     {
-        return $query->whereMonth('fecha', 'LIKE', "%$fecha%");
+        return $query->whereYear('fecha', '=', date('Y'))->whereMonth('fecha', 'LIKE', "%$fecha%"); 
     }
 
     public function getRutAlumnoAttribute()

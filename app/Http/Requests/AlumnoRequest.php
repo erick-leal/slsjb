@@ -29,7 +29,7 @@ class AlumnoRequest extends Request
             {
                 return [
                     "rut" => "required|cl_rut|unique:apoderados|unique:profesores|unique:administrativos|unique:alumnos",
-                    "nombre"=> "required|min:3|max:30|alpha",
+                    "nombre"=> "required|min:3|max:30",
                     "apellido_paterno"=> "required|min:3|max:30|alpha",
                     "apellido_materno"=> "required|min:3|max:30|alpha",
                     "email" => "required|email|unique:alumnos",
@@ -39,7 +39,7 @@ class AlumnoRequest extends Request
             case 'PATCH':
             {
                 return [
-                    "nombre"=> "required|min:3|max:30|alpha",
+                    "nombre"=> "required|min:3|max:30",
                     "apellido_paterno"=> "required|min:3|max:30|alpha",
                     "apellido_materno"=> "required|min:3|max:30|alpha",
                      "email" => "required|email",
@@ -58,7 +58,7 @@ class AlumnoRequest extends Request
             'nombre.required' =>'El nombre debe ser obligatorio',
             'nombre.min' =>'El nombre debe contener al menos 3 caracteres',
             'nombre.max' => 'El debe contener un maximo de 30 caracteres',
-            'nombre.alpha' => "El nombre solo debe contener letras",
+            //'nombre.alpha' => "El nombre solo debe contener letras",
             'apellido_paterno.required' => 'El apellido paterno debe ser obligatorio',
             'apellido_paterno.min' =>'El apellido paterno debe tener un minimo de 3 caracteres',
             'apellido_paterno.max' =>'El apellido paterno debe tener un maximo de 30 caracteres',

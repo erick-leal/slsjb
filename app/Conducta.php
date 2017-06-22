@@ -23,8 +23,5 @@ class Conducta extends Model
     	return $this->belongsTo(Asignatura::class, 'id_asignatura', 'id');
     }
 
-    public function profesor()
-    {
-        return $this->belongsTo(Profesor::class, 'id_profesor', 'id');
-    }
+    
 }

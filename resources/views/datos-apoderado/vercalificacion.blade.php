@@ -1,43 +1,41 @@
+@if (Auth::guard("alumno")->check() || Auth::guard("apoderado")->check()) 
+
 @extends('layouts.admin')
 
-@section('title','Listado de Calificaciones')
+@section('title','Calificaciones Parciales') 
 
 @section('content')
-		
 
-           <strong>Alumno : </strong><a>{{$alumno->nombre." ".$alumno->apellido_paterno." ".$alumno->apellido_materno}}</a><br>
-           <strong>Rut: </strong><a>{{$alumno->rut}}</a><br><br>
-                            <table class="table table-bordered">
-                                <tr>
-                                	<th>Asignatura</th>
-                                    <th>N1</th>
-                                    <th>N2</th>
-                                    <th>N3</th>
-                                    <th>N4</th>
-                                    <th>N5</th>
-                                    <th>N6</th>
-                                    <th>N7</th>
-                                    <th>N8</th>
-                                    <th>Promedio</th>
-                                    <th>Examen</th>
-                                    <th>Final</th>  
-                                </tr>
-                                 @foreach($mis_calificaciones as $n)
-                                <tr>
-                                    <td>{{$n->asignatura->nombre}}</td>
-                                    @if($n->n1 == 0.0)<td></td>@else<td>{{$n->n1}}</td>@endif
-                                    @if($n->n2 == 0.0)<td></td>@else<td>{{$n->n2}}</td>@endif
-                                    @if($n->n3 == 0.0)<td></td>@else<td>{{$n->n3}}</td>@endif
-                                    @if($n->n4 == 0.0)<td></td>@else<td>{{$n->n4}}</td>@endif
-                                    @if($n->n5 == 0.0)<td></td>@else<td>{{$n->n5}}</td>@endif
-                                    @if($n->n6 == 0.0)<td></td>@else<td>{{$n->n6}}</td>@endif
-                                    @if($n->n7 == 0.0)<td></td>@else<td>{{$n->n7}}</td>@endif
-                                    @if($n->n8 == 0.0)<td></td>@else<td>{{$n->n8}}</td>@endif
-                                    <td>{{$n->promedio}}</td>
-                                    @if($n->examen == 0.0)<td></td>@else<td>{{$n->examen}}</td>@endif
-                                    <td>{{$n->final}}</td>
-                                </tr>
-                                @endforeach
-                            </table>
+<strong>Asignatura :</strong> <a>{{$asignatura->nombre}}</a><br>
+<strong>Periodo:</strong> <a>{{$asignatura->periodo}}</a><br>
+<strong>Año: </strong><a>{{$asignatura->created_at->year}}</a><br><br>
+                            
 
+
+  <table class="table table-bordered">               
+    <tr>
+      
+        @foreach ($evaluaciones as $e)
+          <th width="10">{{$e->nombre}} <a href="" data-target="#modal-show-{{ $e->id }}"" data-toggle="modal" class="btn-xs btn-info"> <span class="fa fa-info" aria-hidden="true"></span></a></th>
+          @include('datos-alumno.modal') 
+        @endforeach
+      <th width="100">Promedio </th>
+    </tr>
+                
+    <tr>
+     
+        @for($i=0, $length = count($evaluaciones); $i < $length; $i++)
+          <td><input class="nota" disabled type="text" data-id-matricula="{{ $matricula->id }}" data-id-evaluacion="{{ $evaluaciones[$i]->id }}" value="{{ (isset($notas[$matricula->id]))? (isset($notas[$matricula->id][$evaluaciones[$i]->id]))?$notas[$matricula->id][$evaluaciones[$i]->id]: 1.0 : 1.0 }}"/></td>
+        @endfor
+      <td></td>
+    </tr>
+
+  </table>
+                            
 @endsection
+
+@else
+
+@include('layouts.error')
+
+@endif  

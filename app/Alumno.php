@@ -22,6 +22,11 @@ class Alumno extends User
     //	return $this->belongsTo(Curso::class,'id_curso','id');
     //}
 
+    public function matricula()
+    {
+        return $this->hasManyThrough('App\Matricula','App\Curso','id_curso','id_matricula');
+    }
+
     public function apoderado()
     {
     	return $this->belongsTo(Apoderado::class,'id_apoderado','id'); 

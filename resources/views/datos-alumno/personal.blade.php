@@ -1,3 +1,5 @@
+@if (Auth::guard("alumno")->check())   
+
 @extends('layouts.admin')
 
 @section('title','Informacion Personal')
@@ -109,3 +111,9 @@
 		</div>
 
 @endsection
+
+@else
+
+@include('layouts.error')
+
+@endif  

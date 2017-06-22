@@ -2,13 +2,11 @@
 
 @extends('layouts.admin')
 
-@section('title','Listado de Alumnos') 
+@section('title','Listado de Alumnos')  
 
 @section('content')
 
-	{!! Form::open( ['class' => 'navbar-form pull-right']) !!}
-        <a href="{{ URL('pdfcalificaciones', $asignatura->id) }}" class="btn btn-danger" ><span class="fa fa-print " aria-hidden="true"> Imprimir PDF</span></a>
-	{!! Form::close()!!}
+
 	        	
 	 <strong>Asignatura :   </strong>   <a>  {{$asignatura->nombre}}</a><br>
 	 @if(($asignatura->id_curso)== null)
@@ -17,35 +15,74 @@
 	 <strong>Curso : </strong> <a>{{$asignatura->curso->nombre." / ".$asignatura->curso->tipo}}</a><br>
 	 @endif
 	 <strong>Periodo :	  </strong> <a>{{$asignatura->periodo." - ".$asignatura->created_at->year}}</a><br>
+	 @if(($asignatura->horario) == null )
+	 <strong>Horario :	  </strong> <a>Sin Horario</a><br><br>
+	 @else
 	 <strong>Horario : 	  </strong> <a>{{$asignatura->horario}}</a><br><br>
+	 @endif
 	
-	<form action="{{ url ('showcalificacionesasignatura' . $asignatura->id) }}" method="post">
+	<form name="notas">
 	{{ csrf_field() }}
 	
 	<table class="table table-bordered">
 		<tr>
 			
-			<th width="120">Rut</th>
+			<th width="120">Alumno</th>
 
 			@foreach ($evaluaciones as $e)
 				<th width="120">{{$e->nombre}}</th>
 			@endforeach
 			
-			<th>Promedio</th>
+			
           
 		</tr>
 
-			@foreach ($alumnos as $a)
+			@foreach ($matriculados as $m)
 				<tr>
-					<td>{{$a->alumno->rut}}</td>
-        					
+					<td>{{$m->alumno->apellido_paterno." ".$m->alumno->apellido_materno." ".$m->alumno->nombre}}</td>
+					@for($i=0, $length = count($evaluaciones); $i < $length; $i++)
+        			<td>
+        				<input class="nota" pattern="([1-6](\.[0-9]{1,2})?)|7(\.00?)?" type="text" data-id-matricula="{{ $m->id }}" data-id-evaluacion="{{ $evaluaciones[$i]->id }}" value="{{ (isset($notas[$m->id]))? (isset($notas[$m->id][$evaluaciones[$i]->id]))?$notas[$m->id][$evaluaciones	[$i]->id]: 1.0 : 1.0 }}"/>
+        			</td>
+        			@endfor	
 				</tr>
 			@endforeach
 
 	</table>
-	<button type="submit" class="btn btn-primary">Guardar</button>
+	<button type="button" class="btn btn-primary" onclick="guardarNotas()">Guardar</button>
 
 	</form>
+
+<script>
+	function guardarNotas(){
+		var object = [];
+
+		$(".nota").each(function (index, element){
+			object.push({
+				'idMatricula': $(element).data('idMatricula'),
+				'idEvaluacion': $(element).data('idEvaluacion'),
+				'nota': $(element).val()
+			});
+		});
+
+		$.ajax('../savecalificacionesasignatura', {
+			contentType: 'aplication/json',
+			data: JSON.stringify(object),
+			method: 'post',
+			headers: {
+				'X-CSRF-TOKEN' : $('[name="_token"]').val()
+			},
+			success: function (data) {
+				console.log('se ha guardado');
+				window.location.replace("../datos-profesor/vercalificacion/" + {{ $asignatura->id }} );
+			},
+			error: function (data) {
+				console.log('Error:', data)
+			}
+		});
+
+	}
+</script>
 
 @endsection
 

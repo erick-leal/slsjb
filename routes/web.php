@@ -34,7 +34,8 @@ Route::get('datos-apoderado/personal', [
 ]);
 
 Route::get('datos-apoderado/veranotacion/{id}','DatosApoderadoController@verAnotacion');
-Route::get('datos-apoderado/vercalificacion/{id}','DatosApoderadoController@verCalificacion');
+Route::get('datos-apoderado/asignaturas/{id}/{idalu}','DatosApoderadoController@asignaturas');
+Route::get('datos-apoderado/vercalificacion/{id}/{idalu}','DatosApoderadoController@verCalificacion');
 // FIN //
 
 //Vista Alumno
@@ -43,10 +44,8 @@ Route::get('datos-alumno/conductas', [
 	'uses' => 'DatosAlumnoController@conductas'
 ]);
 
-Route::get('datos-alumno/calificaciones', [
-	'as' => '/datos-alumno/calificaciones',
-	'uses' => 'DatosAlumnoController@calificaciones'
-]);
+Route::get('datos-alumno/calificaciones/{id}','DatosAlumnoController@calificaciones');
+
 
 Route::get('datos-alumno/asignaturas', [
 	'as' => '/datos-alumno/asignaturas',
@@ -71,7 +70,7 @@ Route::get('datos-profesor/personal', [
 ]);
 
 Route::get('datos-profesor/veranotacion/{id}/{idasi}','DatosProfesorController@verAnotacion');
-Route::get('datos-profesor/vercalificacion/{id}/{idasi}','DatosProfesorController@verCalificacion');
+Route::get('datos-profesor/vercalificacion/{id}','DatosProfesorController@verCalificacion');
 // FIN //
 
 //Vista Administrativo
@@ -101,6 +100,7 @@ Route::get('showeventosasignatura/{id}','ShowEventosAsignaturaController@showEve
 
 //Mostrar Calificaciones x Asignatura
 Route::get('showcalificacionesasignatura/{id}','ShowCalificacionesAsignaturaController@showCalificacionesAsignatura');
+Route::post('savecalificacionesasignatura','ShowCalificacionesAsignaturaController@guardarNotas');
 
 //Agregar anotacion
 Route::get('agregar/anotacion/{id}/{idasi}','AgregarAnotacionController@agregarAnotacion');

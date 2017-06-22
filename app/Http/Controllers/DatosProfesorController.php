@@ -7,13 +7,14 @@ use App\Profesor;
 use App\Asignatura;
 use App\Alumno;
 use DB;
+use App\Conducta;
 
 class DatosProfesorController extends Controller
 {
     public function asignaturas()
     {
     	$profesor = Profesor::find(auth('profesor')->user()->id);
-        $mis_asignaturas = $profesor->asignaturas->all();
+        $mis_asignaturas = Asignatura::where('id_profesor',$profesor->id)->whereYear('created_at', '=', date('Y'))->get();
         return view('datos-profesor/asignaturas')->with('profesor',$profesor)->with('mis_asignaturas',$mis_asignaturas);
     }
 
@@ -27,31 +28,55 @@ class DatosProfesorController extends Controller
     {
     	$alumno = Alumno::find($id);
     	$asignatura = Asignatura::find($idasi); 
-    	$mis_anotaciones = $alumno->conductas->all(); 
+    	
+        $mis_anotaciones = Conducta::where('id_alumno',$alumno->id)->whereYear('created_at', '=', date('Y'))->where('id_asignatura',$asignatura->id)->get(); 
     	
     	return view('datos-profesor.veranotacion')->with('alumno',$alumno)->with('mis_anotaciones',$mis_anotaciones)->with('asignatura',$asignatura);
     }
 
-    public function verCalificacion($id, $idasi)
+    public function verCalificacion($id)
     {
-        $alumno = Alumno::find($id);
-        $asignatura = Asignatura::find($idasi); 
-        //$mis_notas = $alumno->calificaciones;
-
-        $mis_notas = DB::table('calificaciones as cal')
-            ->join('alumnos as a', 'cal.id_alumno', '=', 'a.id')
-            ->join('asignaturas as asi', 'cal.id_asignatura', '=', 'asi.id')
-            ->select('cal.id', 'cal.n1', 'cal.n2', 'cal.n3', 'cal.n4', 'cal.n5', 'cal.n6', 'cal.n7', 'cal.n8',  'cal.promedio', 'cal.examen', 'cal.final', 'cal.observacion', 'cal.id_alumno',  'cal.id_asignatura')
-            ->where('cal.id','<>',null)
-            ->where('cal.id_alumno',$id)
-            ->where('cal.id_asignatura',$idasi)
-            ->get();   
-
-          
         
-        return view('datos-profesor.vercalificacion', ["mis_notas" => $mis_notas, "alumno" => $alumno, "asignatura" => $asignatura]);
+        $asignatura = Asignatura::find($id);
+        $alumnos = $asignatura->matriculas;
+        $evaluaciones = $asignatura->evaluaciones;
+
         
-        //return view('datos-profesor.vercalificacion')->with('alumno',$alumno)->with('mis_notas',$mis_notas)->with('asignatura',$asignatura);
+
+        $notas = array();
+        $promedios = array();
+        foreach ($asignatura->notas as $nota) {
+            if (!isset($notas[$nota->id_matricula])){
+                $notas[$nota->id_matricula] = array();
+            }
+
+            $notas[$nota->id_matricula][$nota->id_evaluacion] = $nota->nota;
+            if (!isset($promedios[$nota->id_matricula]))
+            {
+                $promedios[$nota->id_matricula]["promedio"] = 0;
+                $promedios[$nota->id_matricula]["numero_evaluaciones"] = 0;
+            }
+
+            $promedios[$nota->id_matricula]["promedio"] += $nota->nota;
+            $promedios[$nota->id_matricula]["numero_evaluaciones"]++;
+            
+        }
+
+        foreach ($promedios as $key => $value)
+        {
+            $promedios[$key]["promedio"] /= $promedios[$key]["numero_evaluaciones"];
+        }
+
+                      
+ 
+        
+        return view('datos-profesor.vercalificacion')->with('alumnos',$alumnos)
+        ->with('asignatura',$asignatura)
+        ->with('evaluaciones',$evaluaciones)
+        ->with('notas',$notas)
+        ->with('promedios',$promedios); 
+        
+        
     }
 
 }

@@ -9,7 +9,7 @@
 					<h4 class="modal-title">Eliminar Evaluacion</h4>
 				</div>
 				<div class="modal-body">
-					<p>Confirme si desea Eliminar la evaluacion:<strong> {{$eva->nombre}}</strong></p>
+					<p>Confirme si desea Eliminar la evaluación:<strong> {{$eva->nombre}}</strong></p>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
