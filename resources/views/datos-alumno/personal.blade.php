@@ -69,10 +69,10 @@
 			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"">
 				<div class="form-group">
 					<label>Curso</label>
-					@if($alumno->curso == null)
+					@if($curso->curso->id == null)
 						<p></p>
 					@else
-						<p> {{ $alumno->curso->nombre}}</p>
+						<p> {{ $curso->curso->nombre}}</p> 
 					@endif
 				</div>
 			</div>

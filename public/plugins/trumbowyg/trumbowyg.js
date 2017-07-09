@@ -8,7 +8,7 @@
  *         Twitter : @AlexandreDemode
  *         Website : alex-d.fr
  */
-
+ 
 jQuery.trumbowyg = {
     langs: {
         en: {
@@ -366,7 +366,7 @@ jQuery.trumbowyg = {
             tagsToRemove: [],
 
             btnsGrps: {
-                design: ['bold', 'italic', 'underline', 'strikethrough'],
+                design: ['bold', 'italic', 'underline'],
                 semantic: ['strong', 'em', 'del'],
                 justify: ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
                 lists: ['unorderedList', 'orderedList']
@@ -375,13 +375,8 @@ jQuery.trumbowyg = {
                 ['viewHTML'],
                 ['undo', 'redo'],
                 ['formatting'],
-                'btnGrp-semantic',
-                ['superscript', 'subscript'],
-                ['link'],
-                ['insertImage'],
                 'btnGrp-justify',
                 'btnGrp-lists',
-                ['horizontalRule'],
                 ['removeformat'],
                 ['fullscreen']
             ],

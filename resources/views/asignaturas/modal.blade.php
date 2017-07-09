@@ -6,10 +6,11 @@
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span ariahidden="true">x</span>
 					</button>
-					<h4 class="modal-title">Eliminar Asignaturas</h4>
+					<h4 class="modal-title">Eliminar Asignatura.</h4>
 				</div>
 				<div class="modal-body">
 					<p>Confirme si desea Eliminar la asignatura:<strong> {{$asi->nombre}}</strong></p>
+					<p><i class="btn-xs btn-danger"><span class="fa fa-remove" ></span></i> Si la Asignatura <strong>{{$asi->nombre}}</strong> tiene Alumnos, no podrá ser eliminada.</p>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>

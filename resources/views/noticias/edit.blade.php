@@ -23,6 +23,11 @@
 	            </div>
 
 	            <div class="form-group">
+	                {!! Form::label('resumen','Bajada de titulo')!!}
+	                {!! Form::text('resumen', $noticia->resumen, array('placeholder' => 'Bajada de titulo...','class' => 'form-control')) !!}
+	            </div>
+
+	            <div class="form-group">
 	                {!! Form::label('fecha','Fecha')!!}
 	                {!! Form::date('fecha', $noticia->fecha, array('placeholder' => 'Fecha...','class' => 'form-control')) !!}
 	            </div>
@@ -50,7 +55,10 @@
 
 @section('js')
 	<script>
-		$('.textarea-descripcion').trumbowyg();
+		$('.textarea-descripcion').trumbowyg({
+			lang: 'es',
+			removeformatPasted: true
+		});
 	</script>
 @endsection	
 

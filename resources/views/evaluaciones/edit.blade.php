@@ -45,7 +45,10 @@
 @section('js')
 	<script>
 		$('.select-asignatura').chosen({no_results_text: "Asignatura no registrada", max_selected_options: 1});
-		$('.textarea-descripcion').trumbowyg();
+		$('.textarea-descripcion').trumbowyg({
+			lang: 'es',
+			removeformatPasted: true
+		});
 	</script>
 @endsection	
 

@@ -16,24 +16,28 @@
                         <div class="panel-body">
                             <h3 class="text-center">{{$noticia->nombre}}</h3>
                             <hr>
-                            <a href="#" class="thumbail">
+                            <a href="" data-target="#modal-show-{{ $noticia->id }}"" data-toggle="modal"  class="thumbail">
                             @if(($noticia->foto)!="")
-                                <center><img class="img-responsive img-noticia" src="{{ asset('imagenes/noticias/'.$noticia->foto) }}" height="200px" width="200px"></center>
+                                <center><img class="img-responsive img-noticia" src="{{ asset('imagenes/noticias/'.$noticia->foto) }}" height="200px" width="300px"></center>
                             @endif
                             </a> 
                             <br><br>
                             <div class = "caption">
-                                {{$noticia->descripcion}}
+                              <a href="" data-target="#modal-show-{{ $noticia->id }}"" data-toggle="modal">
+                              {{$noticia->resumen}}
+                              </a>
                             </div>
                             <br><br>
-                            <i class="fa fa-user"></i>  <a>{{$noticia->administrativo->cargo->nombre}}</a>
-                                <div class="pull-right">
-                                    <i class="fa fa-clock-o"></i> {{Carbon\Carbon::parse($noticia->created_at)->format('d-m-Y') }} 
-                                </div>
+                            <div class="pull-left">
+                              <i class="fa fa-user"></i> {{$noticia->administrativo->cargo->nombre}}
+                            </div>
+                            <div class="pull-right">
+                                <i class="fa fa-clock-o"></i> {{Carbon\Carbon::parse($noticia->fecha)->format('d-m-Y') }} 
+                            </div>
                         </div>
                     </div>
                 </div>
-
+             @include('noticias.modalshow')
             @endforeach
 
             </div>
@@ -119,24 +123,28 @@
                         <div class="panel-body">
                             <h3 class="text-center">{{$noticia->nombre}}</h3>
                             <hr>
-                            <a href="#" class="thumbail">
+                            <a href="" data-target="#modal-show-{{ $noticia->id }}"" data-toggle="modal" class="thumbail">
                             @if(($noticia->foto)!="")
-                                <center><img class="img-responsive img-noticia" src="{{ asset('imagenes/noticias/'.$noticia->foto) }}" height="200px" width="200px"></center>
+                                <center><img class="img-responsive img-noticia" src="{{ asset('imagenes/noticias/'.$noticia->foto) }}" height="200px" width="300px"></center>
                             @endif
                             </a> 
                             <br><br>
                             <div class = "caption">
-                                {{$noticia->descripcion}}
+                                <a href="" data-target="#modal-show-{{ $noticia->id }}"" data-toggle="modal" >  
+                                {{$noticia->resumen}}
+                                </a>
                             </div>
                             <br><br>
-                            <i class="fa fa-user"></i>  <a>{{$noticia->administrativo->nombre." ".$noticia->administrativo->apellido_paterno}}</a>
-                                <div class="pull-right">
-                                    <i class="fa fa-clock-o"></i> {{$noticia->fecha}} 
-                                </div>
+                            <div class="pull-left">
+                            <i class="fa fa-user"></i>  {{$noticia->administrativo->nombre." ".$noticia->administrativo->apellido_paterno}}
+                            </div>
+                            <div class="pull-right">
+                              <i class="fa fa-clock-o"></i> {{Carbon\Carbon::parse($noticia->fecha)->format('d-m-Y')}} 
+                            </div>
                         </div>
                     </div>
                 </div>
-
+                @include('noticias.modalshow')
             @endforeach
 
             </div>

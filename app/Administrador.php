@@ -19,4 +19,9 @@ class Administrador extends User
     {
         $this->notify(new AdministradorResetPasswordNotification($token));
     }
+
+    public function getNameAndLastAttribute()
+    {
+        return $this->nombre.' '.$this->apellido_paterno.' '.$this->apellido_materno;
+    }
 }

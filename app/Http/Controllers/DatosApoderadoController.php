@@ -10,7 +10,7 @@ use App\Apoderado;
 use DB;
 use App\Matricula;
 use App\Conducta;
-use App\Asignatura;
+use App\Asignatura; 
 
 class DatosApoderadoController extends Controller
 {
@@ -31,6 +31,7 @@ class DatosApoderadoController extends Controller
         ->join( 'matriculas', 'alumnos.id', '=', 'matriculas.id_alumno')
         ->join('cursos','matriculas.id_curso','=','cursos.id')
         ->where('alumnos.id_apoderado', '=', $apoderado->id )
+        ->whereYear('matriculas.created_at', '=', date('Y'))
         ->get();
 
     	return view('datos-apoderado.alumnos')->with('alumnos',$alumnos)->with('apoderado',$apoderado)->with('i', ($request->input('page', 1) - 1) * 5);
@@ -72,11 +73,25 @@ class DatosApoderadoController extends Controller
             }
 
             $notas[$nota->id_matricula][$nota->id_evaluacion] = $nota->nota;
-        }
-       
-     
 
-        return view('datos-apoderado.vercalificacion')->with('alumno',$alumno)->with('matricula',$matricula)->with('asignatura',$asignatura)->with('evaluaciones',$evaluaciones)->with('notas',$notas)->with('apoderado',$apoderado);
+            if (!isset($promedios[$nota->id_matricula]))
+            {
+                $promedios[$nota->id_matricula]["sumatoria"] = 0;
+                $promedios[$nota->id_matricula]["numero_evaluaciones"] = 0;
+            }
+
+            $promedios[$nota->id_matricula]["sumatoria"] += $nota->nota;
+            $promedios[$nota->id_matricula]["numero_evaluaciones"]++;
+            
+        }
+
+        foreach ($promedios as $key => $value)
+        {
+            $promedios[$key]["promedio"] = $promedios[$key]["sumatoria"] / $promedios[$key]["numero_evaluaciones"];
+        } 
+        
+       
+        return view('datos-apoderado.vercalificacion')->with('alumno',$alumno)->with('matricula',$matricula)->with('asignatura',$asignatura)->with('evaluaciones',$evaluaciones)->with('notas',$notas)->with('apoderado',$apoderado)->with('promedios',$promedios);
     }
 
 }

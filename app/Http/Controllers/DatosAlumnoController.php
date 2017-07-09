@@ -39,9 +39,11 @@ class DatosAlumnoController extends Controller
     public function personal()
     {
     	$alumno = Alumno::find(auth('alumno')->user()->id);
-    	$alumno->apoderado;
-        $alumno->curso;
-    	return view('datos-alumno.personal')->with('alumno',$alumno);
+    	
+        
+        $curso = Matricula::where('id_alumno',$alumno->id)->get()->last();
+
+    	return view('datos-alumno.personal')->with('alumno',$alumno)->with('curso',$curso);
     }
 
     public function calificaciones($id) 
@@ -52,6 +54,7 @@ class DatosAlumnoController extends Controller
         $matricula = Matricula::where('id_alumno','=',$alumno->id)->get()->last();
 
         $notas = array();
+        $promedios = array();
         
         foreach ($asignatura->notas as $nota) 
         {
@@ -61,11 +64,28 @@ class DatosAlumnoController extends Controller
             }
 
             $notas[$nota->id_matricula][$nota->id_evaluacion] = $nota->nota;
+
+            if (!isset($promedios[$nota->id_matricula]))
+            {
+                $promedios[$nota->id_matricula]["sumatoria"] = 0;
+                $promedios[$nota->id_matricula]["numero_evaluaciones"] = 0;
+            }
+
+            $promedios[$nota->id_matricula]["sumatoria"] += $nota->nota;
+            $promedios[$nota->id_matricula]["numero_evaluaciones"]++;
+            
         }
+
+        foreach ($promedios as $key => $value)
+        {
+            $promedios[$key]["promedio"] = $promedios[$key]["sumatoria"] / $promedios[$key]["numero_evaluaciones"];
+        } 
+    
        
 
 
-        return view('datos-alumno.calificaciones')->with('alumno',$alumno)->with('matricula',$matricula)->with('asignatura',$asignatura)->with('evaluaciones',$evaluaciones)->with('notas',$notas);
+
+        return view('datos-alumno.calificaciones')->with('alumno',$alumno)->with('matricula',$matricula)->with('asignatura',$asignatura)->with('evaluaciones',$evaluaciones)->with('notas',$notas)->with('promedios',$promedios);
     }
 
     //public function eventos() 

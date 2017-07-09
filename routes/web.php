@@ -70,6 +70,7 @@ Route::get('datos-profesor/personal', [
 ]);
 
 Route::get('datos-profesor/veranotacion/{id}/{idasi}','DatosProfesorController@verAnotacion');
+//Route::delete('datos-profesor/veranotacion/{id}','DatosProfesorController@destroy');
 Route::get('datos-profesor/vercalificacion/{id}','DatosProfesorController@verCalificacion');
 // FIN //
 
@@ -84,6 +85,8 @@ Route::get('datos-administrativo/personal', [
 Route::get('pdfmatricula/{id}','PDFController@pdfmatricula');
 Route::get('pdfcalificaciones/{id}','PDFController@pdfCalificaciones');
 Route::get('matriculas/reportes','MatriculasReportesController@reportes');
+Route::get('pdfcursos/{id}','PDFController@pdfCursos');
+
 
 
 //Mostrar Asignaturas

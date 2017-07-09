@@ -20,11 +20,11 @@
 	 
 	<table class="table table-bordered">
 		<tr>
-			<th>N°</th>
+			<th width="50">N°</th>
 			<th>Sala</th>
 			<th>Capacidad</th>
 			<th>Ubicacion</th>
-			<th>Opciones</th>
+			<th width="100">Opciones</th>
 				
 		</tr>
 			@foreach ($salas as $sala)
@@ -33,7 +33,7 @@
 					<td>{{ $sala->nombre }}</td>
 					<td>{{ $sala->capacidad }}</td>
 					<td>{{ $sala->ubicacion }}</td>
-					<td><a href="" class="btn btn-info" ><span class="fa fa-eye" aria-hidden="true"></span></a>
+					<td>
 						<a href="{{route('salas.edit', $sala->id)}}" class="btn btn-warning"><span class="fa fa-edit" aria-hidden="true"></span></a>
 						<a href="" data-target="#modal-delete-{{ $sala->id }}"" data-toggle="modal" class="btn btn-danger"> <span class="fa fa-trash" aria-hidden="true"></span></a>
 				</tr>

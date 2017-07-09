@@ -26,7 +26,7 @@ class DatosProfesorController extends Controller
 
     public function verAnotacion($id, $idasi)
     {
-    	$alumno = Alumno::find($id);
+    	$alumno = Alumno::find($id); 
     	$asignatura = Asignatura::find($idasi); 
     	
         $mis_anotaciones = Conducta::where('id_alumno',$alumno->id)->whereYear('created_at', '=', date('Y'))->where('id_asignatura',$asignatura->id)->get(); 
@@ -37,11 +37,17 @@ class DatosProfesorController extends Controller
     public function verCalificacion($id)
     {
         
-        $asignatura = Asignatura::find($id);
-        $alumnos = $asignatura->matriculas;
+        $asignatura = Asignatura::find($id); 
+        //$alumnos = $asignatura->matriculas;
         $evaluaciones = $asignatura->evaluaciones;
 
-        
+        $alumnos = DB::table('matriculas')
+        ->select('matriculas.*','alumnos.nombre','alumnos.apellido_paterno','alumnos.apellido_materno')
+        ->join( 'alumnos', 'matriculas.id_alumno', '=', 'alumnos.id' )
+        ->join( 'asignatura_matricula', 'matriculas.id', '=', 'asignatura_matricula.matricula_id' )
+        ->where('asignatura_matricula.asignatura_id', '=', $id )
+        ->orderBy('alumnos.apellido_paterno', 'asc')
+        ->get();
 
         $notas = array();
         $promedios = array();
@@ -53,23 +59,21 @@ class DatosProfesorController extends Controller
             $notas[$nota->id_matricula][$nota->id_evaluacion] = $nota->nota;
             if (!isset($promedios[$nota->id_matricula]))
             {
-                $promedios[$nota->id_matricula]["promedio"] = 0;
+                $promedios[$nota->id_matricula]["sumatoria"] = 0;
                 $promedios[$nota->id_matricula]["numero_evaluaciones"] = 0;
             }
 
-            $promedios[$nota->id_matricula]["promedio"] += $nota->nota;
+            $promedios[$nota->id_matricula]["sumatoria"] += $nota->nota;
             $promedios[$nota->id_matricula]["numero_evaluaciones"]++;
             
         }
 
+
         foreach ($promedios as $key => $value)
         {
-            $promedios[$key]["promedio"] /= $promedios[$key]["numero_evaluaciones"];
-        }
-
-                      
+            $promedios[$key]["promedio"] = $promedios[$key]["sumatoria"] / $promedios[$key]["numero_evaluaciones"];
+        }              
  
-        
         return view('datos-profesor.vercalificacion')->with('alumnos',$alumnos)
         ->with('asignatura',$asignatura)
         ->with('evaluaciones',$evaluaciones)
@@ -78,5 +82,7 @@ class DatosProfesorController extends Controller
         
         
     }
+
+    
 
 }

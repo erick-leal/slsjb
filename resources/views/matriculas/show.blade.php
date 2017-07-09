@@ -1,4 +1,4 @@
-@if (Auth::guard("administrativo")->check())
+@if (Auth::guard("administrativo")->check() || Auth::guard("administrador")->check())
 
 @extends ('layouts.admin')
 @section ('content')

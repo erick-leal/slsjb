@@ -28,6 +28,7 @@
                                     
                                     
                                     
+                                    
                                 </tr>
                                 @foreach($mis_anotaciones as $anotacion)
                                 <tr>
@@ -37,10 +38,13 @@
                                     <td>{{$anotacion->asignatura->periodo}}</td>
                                     
                                     <td>{{$anotacion->tipo}}</td>
-                                    <td>{{$anotacion->descripcion}}</td>
+                                    <td>{{$anotacion->descripcion}}</td> 
+
+                                   
 
                                     
                                 </tr>
+                               
                                 @endforeach
                             </table>
 

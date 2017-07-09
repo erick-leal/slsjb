@@ -26,6 +26,11 @@ class Administrativo extends User
     	return $this->hasMany('App\Noticia');
     }
 
+    public function getNameAndLastAttribute()
+    {
+        return $this->nombre.' '.$this->apellido_paterno.' '.$this->apellido_materno;
+    }
+
     public function scopeSearch($query, $nombre)
     {
         return $query->where('nombre', 'LIKE', "%$nombre%");

@@ -55,7 +55,7 @@
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                   <small class="bg-red"><b> Profesor </b></small>&nbsp;&nbsp;
-                  {{ Auth::guard('profesor')->user()->nombre }}
+                  {{ Auth::guard('profesor')->user()->name_and_last }}
                     <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
@@ -86,7 +86,7 @@
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                   <small class="bg-yellow"><b> Administrativo </b></small>&nbsp;&nbsp;
-                  {{ Auth::guard('administrativo')->user()->nombre }}
+                  {{ Auth::guard('administrativo')->user()->name_and_last }}
                     <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
@@ -116,7 +116,7 @@
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                   <small style="background-color: rgb(0,31,63); border-color: rgb(0, 31, 63);"><b> Administrador </b></small>&nbsp;&nbsp;
-                  {{ Auth::guard('administrador')->user()->nombre }}
+                  {{ Auth::guard('administrador')->user()->name_and_last}}
                     <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
@@ -145,7 +145,7 @@
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                   <small class="bg-green"><b> Apoderado </b></small>&nbsp;&nbsp;
-                  {{ Auth::guard('apoderado')->user()->nombre }}
+                  {{ Auth::guard('apoderado')->user()->name_and_last }}
                     <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
@@ -176,7 +176,7 @@
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                   <small class="bg-blue"><b> Alumno </b></small>&nbsp;&nbsp;
-                  {{ Auth::guard('alumno')->user()->nombre }}
+                  {{ Auth::guard('alumno')->user()->name_and_last }}
                     <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
@@ -260,18 +260,27 @@
 
            
             <li>
+              <a href="{{URL::asset('cursos')}}">
+                <i class="fa fa-graduation-cap"></i> <span>Cursos</span>
+                <small class="label pull-right bg-yellow"></small>
+              </a>
+            </li>
+
+             <li>
+              <a href="{{URL::asset('asignaturas')}}">
+                <i class="fa fa-book"></i> <span>Asignaturas</span>
+                <small class="label pull-right bg-red"></small>
+              </a>
+            </li>
+
+            <li>
               <a href="{{URL::asset('cargos')}}">
                 <i class="fa fa-briefcase"></i> <span>Cargos</span>
                 <small class="label pull-right bg-yellow"></small>
               </a>
             </li>
 
-            <li>
-              <a href="{{URL::asset('cursos')}}">
-                <i class="fa fa-graduation-cap"></i> <span>Cursos</span>
-                <small class="label pull-right bg-yellow"></small>
-              </a>
-            </li>
+            
            
             <li>
               <a href="{{URL::asset('salas')}}">
@@ -294,12 +303,7 @@
               </a>
             </li>
 
-            <li>
-              <a href="{{URL::asset('asignaturas')}}">
-                <i class="fa fa-book"></i> <span>Asignaturas</span>
-                <small class="label pull-right bg-red"></small>
-              </a>
-            </li>
+           
 
            
             @elseif(Auth::guard('alumno')->check())
@@ -499,7 +503,7 @@
         <div class="pull-right hidden-xs">
           <b>Version</b> 1.0.0
         </div>
-        <strong>TrrblHD Developers</a>.</strong> All rights reserved.
+        <strong>TrrblHD Developers.</strong> All rights reserved.
       </footer>
 
       
@@ -513,6 +517,8 @@
     <script src="{{asset('js/app.min.js')}}"></script>
 
     <script src="{{asset('plugins/trumbowyg/trumbowyg.js')}}"></script>
+
+    <script src="{{asset('js/dist/langs/es.min.js')}}"></script>
 
     <script src="{{asset('plugins/chosen/chosen.jquery.js')}}"></script>
 

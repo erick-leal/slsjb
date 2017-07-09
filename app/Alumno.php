@@ -57,14 +57,16 @@ class Alumno extends User
         return $this->hasMany('App\Calificacion','id_alumno');
     }
 
-    public function asistencias()
-    {
-        return $this->hasMany('App\Asistencia');
-    }
+   
 
     public function scopeSearch($query, $nombre)
     {
         return $query->where('nombre', 'LIKE', "%$nombre%");
+    }
+
+    public function getNameAndLastAttribute()
+    {
+        return $this->nombre.' '.$this->apellido_paterno.' '.$this->apellido_materno;
     }
    
     /**

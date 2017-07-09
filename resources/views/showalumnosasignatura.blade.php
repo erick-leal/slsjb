@@ -55,7 +55,6 @@
 					
 					<td><a href="{{URL('datos-profesor/veranotacion',array($alu->id, $asignatura->id ))}}" class="btn btn-warning" ><span class="fa  fa-clone" aria-hidden="true"> </span></a></td>
 
-					<!--<td><a href="{{URL('datos-profesor/vercalificacion',array($alu->id, $asignatura->id ))}}" class="btn btn-danger" ><span class="fa fa-file-text" aria-hidden="true"> </span></a></td>-->
 
 				</tr>
 			@endforeach

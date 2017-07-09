@@ -13,7 +13,7 @@
 		<tr>
 			<th>Codigo</th>
 			<th>Nombre</th>
-			
+			<th>Periodo</th>
 			<th>Profesor</th>
 			<th>Sala</th>
 			<th>Opciones</th>	
@@ -22,6 +22,7 @@
 				<tr>
 					<td>{{ $asi->codigo }}</td>
 					<td>{{ $asi->nombre}}</td>
+					<td>{{ $asi->periodo}}</td>
 					@if(($asi->id_profesor) == null)
 					<td></td>
 					@else

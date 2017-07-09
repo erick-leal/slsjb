@@ -67,10 +67,7 @@ class Asignatura extends Model
         return $this->hasMany('App\Calificacion','id_asignatura');
     }
 
-    public function asistencias()
-    {
-        return $this->hasMany('App\Asistencia');
-    }
+   
 
     public function scopeSearch($query, $nombre)
     {

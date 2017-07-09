@@ -5,6 +5,9 @@
 @section('title','Lista de Cursos')
 
 @section('content')
+
+	 
+
 	@if (Auth::guard("administrador")->check())       	
 	<a class="btn btn-success" href="{{ route('cursos.create') }}"> Registrar Nuevo Curso</a>
 	@endif
@@ -24,7 +27,7 @@
 			<th>N°</th>
 			<th>Curso</th> 
 			<th>Modalidad</th>
-			<th>Cupos</th>
+			<th>Alumnos</th>
 			<th>Opciones</th>
 				
 		</tr>
@@ -34,7 +37,7 @@
 					<td>{{ $curso->nombre }}</td>
 					<td>{{ $curso->tipo }}</td>
 					<td>{{ $curso->matriculas_count }} / 45</td>
-					<td><a href="{{route('cursos.show', $curso->id)}}" class="btn btn-info" title="Ver Curso"><span class="fa fa-eye" aria-hidden="true"></span></a>
+					<td><a href="" data-target="#modal-show-{{ $curso->id }}"" data-toggle="modal" class="btn btn-info"> <span class="fa fa-eye" aria-hidden="true"></span></a>
 					<a href="{{URL('showalumnoscurso', $curso->id)}}" class="btn btn-success" title="Ver Alumnos"><span class="fa fa-user" aria-hidden="true"></span></a>
 					<a href="{{URL('showasignaturascurso', $curso->id)}}" class="btn btn-primary" title="Ver Asignaturas"><span class="fa fa-book" aria-hidden="true"></span></a>
 						@if (Auth::guard("administrador")->check()) 
@@ -42,6 +45,7 @@
 						<a href="" data-target="#modal-delete-{{ $curso->id }}"" data-toggle="modal" class="btn btn-danger"> <span class="fa fa-trash" aria-hidden="true"></span></a>
 						@endif
 				</tr>
+				@include('cursos.modalshow')
 				@include('cursos.modal')
 			@endforeach
 

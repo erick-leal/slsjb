@@ -9,7 +9,7 @@ class Noticia extends Model
 {
     protected $table = "noticias";
 
-    protected $fillable = ['nombre', 'descripcion', 'fecha', 'foto', 'id_administrativo'];
+    protected $fillable = ['nombre', 'descripcion', 'fecha', 'foto', 'resumen','id_administrativo'];
 
     public function administrativo()
     {

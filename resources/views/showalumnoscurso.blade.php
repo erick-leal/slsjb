@@ -5,9 +5,14 @@
 @section('title','Listado de Alumnos') 
 
 @section('content')
+
+	{!! Form::open( ['class' => 'navbar-form pull-right']) !!}
+        <a href="{{ URL('pdfcursos', $curso->id) }}" class="btn btn-danger" ><span class="fa fa-print " aria-hidden="true"> Imprimir PDF</span></a>
+    {!! Form::close()!!}
 	        	
-	 <strong>Curso : </strong> <a>{{$curso->nombre}}</a><br>
-	 <strong>Año : </strong><a>{{$curso->created_at->year}}</a><br><br>
+	 <strong>Curso : </strong> <a>{{$curso->nombre." - ".$curso->tipo}}</a><br>
+	 <strong>Año : </strong><a>{{$curso->created_at->year}}</a><br>
+	 <strong>Profesor Jefe: </strong><a>{{$curso->profesor->nombre." ".$curso->profesor->apellido_paterno." ".$curso->profesor->apellido_materno}}</a><br><br>
 	
 	 
 	<table class="table table-bordered">

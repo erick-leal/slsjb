@@ -9,7 +9,7 @@
         
 
           
-          {!! Form::open( ['class' => 'navbar-form pull-right']) !!}
+    {!! Form::open( ['class' => 'navbar-form pull-right']) !!}
         <a href="{{ URL('pdfcalificaciones', $asignatura->id) }}" class="btn btn-danger" ><span class="fa fa-print " aria-hidden="true"> Imprimir PDF</span></a>
     {!! Form::close()!!}
                 
@@ -44,12 +44,14 @@
 
             @foreach ($alumnos as $a)
                 <tr>
-                    <td>{{$a->alumno->apellido_paterno." ".$a->alumno->apellido_materno." ".$a->alumno->nombre}}</td>
+                    <td>{{$a->apellido_paterno." ".$a->apellido_materno." ".$a->nombre}}</td>
                     @for($i=0, $length = count($evaluaciones); $i < $length; $i++)
                     <td>
-                        <input class="nota" disabled type="text" data-id-matricula="{{ $a->id }}" data-id-evaluacion="{{ $evaluaciones[$i]->id }}" value="{{ (isset($notas[$a->id]))? (isset($notas[$a->id][$evaluaciones[$i]->id]))?$notas[$a->id][$evaluaciones[$i]->id]: 1.0 : 1.0 }}"/>
+                        <input class="nota" size="1" style="text-align:center" disabled type="text" data-id-matricula="{{ $a->id }}" data-id-evaluacion="{{ $evaluaciones[$i]->id }}" value="{{ (isset($notas[$a->id]))? (isset($notas[$a->id][$evaluaciones[$i]->id]))?$notas[$a->id][$evaluaciones[$i]->id]: 1.0 : 1.0 }}"/>
                     </td>
-                    @endfor 
+                    @endfor
+
+                    <td> <input class="nota" size="1" style="text-align:center" disabled value="{{ number_format($promedios[$a->id]['promedio'],1) }}" /></td>
                     
                 </tr>
             @endforeach

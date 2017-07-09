@@ -37,7 +37,13 @@
 	        </div>
 		</div>
 	{!! Form::close() !!}
+ 
+@endsection
 
+@section('js')
+	<script>
+		$('.select-profesor').chosen({no_results_text: "Profesor no registrado", max_selected_options: 1});
+	</script>
 @endsection
 
 @else

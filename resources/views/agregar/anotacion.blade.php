@@ -49,7 +49,10 @@
 
 @section('js')
 <script>
-	$('.textarea-descripcion').trumbowyg();
+	$('.textarea-descripcion').trumbowyg({
+			lang: 'es',
+			removeformatPasted: true
+		});
 </script>
 
 @endsection

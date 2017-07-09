@@ -21,6 +21,11 @@
 	                {!! Form::label('nombre','Titulo')!!}
 	                {!! Form::text('nombre', null, array('placeholder' => 'Titulo...','class' => 'form-control')) !!}
 	            </div>
+
+	            <div class="form-group">
+	                {!! Form::label('resumen','Bajada de titulo')!!}
+	                {!! Form::text('resumen', null, array('placeholder' => 'Bajada de titulo...','class' => 'form-control')) !!}
+	            </div>
 	      
 	            <div class="form-group">
 	                {!! Form::label('descripcion','Descripcion')!!}
@@ -41,8 +46,12 @@
 @endsection
 
 @section('js')
+	
+	
+
 	<script>
 		$('.textarea-descripcion').trumbowyg({
+			lang: 'es',
 			removeformatPasted: true
 		});
 	</script>

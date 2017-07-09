@@ -19,15 +19,15 @@
           <th width="10">{{$e->nombre}} <a href="" data-target="#modal-show-{{ $e->id }}"" data-toggle="modal" class="btn-xs btn-info"> <span class="fa fa-info" aria-hidden="true"></span></a></th>
           @include('datos-alumno.modal') 
         @endforeach
-      <th width="100">Promedio </th>
+      <th width="70">Promedio </th>
     </tr>
                 
     <tr>
      
         @for($i=0, $length = count($evaluaciones); $i < $length; $i++)
-          <td><input class="nota" disabled type="text" data-id-matricula="{{ $matricula->id }}" data-id-evaluacion="{{ $evaluaciones[$i]->id }}" value="{{ (isset($notas[$matricula->id]))? (isset($notas[$matricula->id][$evaluaciones[$i]->id]))?$notas[$matricula->id][$evaluaciones[$i]->id]: 1.0 : 1.0 }}"/></td>
+          <td><input class="nota" disabled size="1" style="text-align:center" type="text" data-id-matricula="{{ $matricula->id }}" data-id-evaluacion="{{ $evaluaciones[$i]->id }}" value="{{ (isset($notas[$matricula->id]))? (isset($notas[$matricula->id][$evaluaciones[$i]->id]))?$notas[$matricula->id][$evaluaciones[$i]->id]: 1.0 : 1.0 }}"/></td>
         @endfor
-      <td></td>
+      <td><input type="text" size="1" style="text-align:center" disabled value="{{ number_format($promedios[$matricula->id]['promedio'],1) }}" /></td>
     </tr>
 
   </table>
