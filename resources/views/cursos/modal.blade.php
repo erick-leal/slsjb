@@ -10,10 +10,19 @@
 				</div>
 				<div class="modal-body">
 					<p>Confirme si desea Eliminar el curso:<strong> {{$curso->nombre}}</strong></p>
+					<p><i class="btn-xs btn-danger"><span class="fa fa-remove" ></span></i> Si el Curso <strong>{{$curso->nombre}}</strong> registra <strong>Asignaturas</strong>, no podrá ser eliminado.</p>
+					<p><strong>Asignaturas Registradas :</strong> {{$curso->asignaturas_count}}</p>
+					
+				
+				
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+					@if(($curso->asignaturas_count) == 0)
 					<button type="submit" class="btn btn-primary">Confirmar</button>
+					@else
+					<button type="submit" disabled class="btn btn-primary">Confirmar</button>
+					@endif
 				</div>
 			</div>
 		</div>

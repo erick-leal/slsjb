@@ -9,7 +9,7 @@ use App\Profesor;
 use App\Matricula;
 
 class Asignatura extends Model
-{
+{ 
     protected $table = "asignaturas";
 
     protected $fillable = ['nombre', 'horario', 'periodo', 'codigo', 'id_sala', 'id_curso', 'id_profesor'];

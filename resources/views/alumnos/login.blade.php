@@ -13,15 +13,15 @@
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/alumnos/login') }}">
                         {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">Correo Electrónico :</label>
+                        <div class="form-group{{ $errors->has('rut') ? ' has-error' : '' }}">
+                            <label for="rut" class="col-md-4 control-label">RUT :</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
+                                <input id="rut" type="rut" class="form-control" name="rut" value="{{ old('rut') }}" required autofocus>
 
-                                @if ($errors->has('email'))
+                                @if ($errors->has('rut'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                        <strong>{{ $errors->first('rut') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -56,7 +56,8 @@
                                     <button type="submit" class="btn btn-primary">
                                         <i class="fa fa-btn fa-key"></i> Ingresar
                                     </button>
-                                    <!--<a class="btn btn-primary" href="{{ url('alumnos/register') }}">Crear cuenta</a>-->
+                                    <a class="btn btn-primary" href="{{ url('alumnos/register') }}">Crear cuenta</a><br>
+                                    <br>    
                                     <!--<a class="btn btn-link" href="{{ url('/alumno-auth/passwords/reset') }}">Olvidaste tu Contraseña?</a>-->
                                     <a href="#" data-id="1" data-toggle="modal" data-target="#myModal">Olvidaste tu Contraseña?</a> 
 
@@ -91,4 +92,10 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('js')
+<script>
+    $("input#rut").rut();
+</script>
 @endsection

@@ -49,10 +49,12 @@
 					<td>{{ $asi->sala->nombre}}</td>
 					@endif
 					<td><a href="{{route('asignaturas.show', $asi->id)}}" class="btn btn-info" ><span class="fa fa-eye" aria-hidden="true"></span></a>
-					<a href="{{URL('showalumnosasignatura', $asi->id)}}" class="btn btn-success" ><span class="fa fa-user" aria-hidden="true"></span></a>	
-						<a href="{{route('asignaturas.edit', $asi->id)}}" class="btn btn-warning"><span class="fa fa-edit" aria-hidden="true"></span></a>
+
+					<a href="{{URL('showalumnosasignatura', $asi->id)}}" class="btn btn-success" ><span class="fa fa-user" aria-hidden="true"></span></a>
+
+					<a href="{{route('asignaturas.edit', $asi->id)}}" class="btn btn-warning"><span class="fa fa-edit" aria-hidden="true"></span></a>
 						
-						<a href="" data-target="#modal-delete-{{ $asi->id }}"" data-toggle="modal" class="btn btn-danger"> <span class="fa fa-trash" aria-hidden="true"></span></a>
+					<a href="" data-target="#modal-delete-{{ $asi->id }}"" data-toggle="modal" class="btn btn-danger"> <span class="fa fa-trash" aria-hidden="true"></span></a></td>
 				</tr>
 				@include('asignaturas.modal')
 			@endforeach

@@ -17,6 +17,7 @@
                 <div class="panel-body">
 
                     {!! Form::open(['url'=>'/administradores/register']) !!}
+                    
                     <div class="form-group">
                         {!! Form::label('rut','RUT',['class'=>'control-label']) !!}
                         {!! Form::text('rut',null,['class'=>'form-control']) !!}

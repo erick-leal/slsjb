@@ -22,8 +22,11 @@ class AsignaturasController extends Controller
 
     public function index(Request $request) 
     {
-        $asignaturas = Asignatura::search($request->nombre)->orderBy('codigo','DSC')->paginate(15);
+        $asignaturas = Asignatura::search($request->nombre)->withCount('matriculas')->orderBy('codigo','DSC')->paginate(20);
+        
+        
         return view('asignaturas.index')->with('asignaturas',$asignaturas);
+
 
     }
 

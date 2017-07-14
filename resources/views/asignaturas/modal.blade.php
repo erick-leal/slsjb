@@ -10,11 +10,16 @@
 				</div>
 				<div class="modal-body">
 					<p>Confirme si desea Eliminar la asignatura:<strong> {{$asi->nombre}}</strong></p>
-					<p><i class="btn-xs btn-danger"><span class="fa fa-remove" ></span></i> Si la Asignatura <strong>{{$asi->nombre}}</strong> tiene Alumnos, no podrá ser eliminada.</p>
+					<p><i class="btn-xs btn-danger"><span class="fa fa-remove" ></span></i> Si la Asignatura <strong>{{$asi->nombre}}</strong> tiene <strong>Alumnos</strong>, no podrá ser eliminada.</p>
+					<p><strong>Alumnos :</strong> {{$asi->matriculas_count}}</p>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+					@if(($asi->matriculas_count) == 0 )
 					<button type="submit" class="btn btn-primary">Confirmar</button>
+					@else
+					<button type="submit" disabled class="btn btn-primary">Confirmar</button>
+					@endif
 				</div>
 			</div>
 		</div>

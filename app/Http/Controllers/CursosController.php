@@ -17,7 +17,8 @@ class CursosController extends Controller
 
     public function index(Request $request)
     {
-        $cursos = Curso::search($request->nombre)->withCount('matriculas')->orderBy('nombre','ASC')->whereYear('created_at', '=', date('Y'))->paginate(20);
+        $cursos = Curso::search($request->nombre)->withCount('matriculas')->withCount('asignaturas')->orderBy('nombre','ASC')->whereYear('created_at', '=', date('Y'))->paginate(20);
+        
         return view('cursos.index')->with('cursos',$cursos)->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
